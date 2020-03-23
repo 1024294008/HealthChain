@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import cn.edu.seu.R;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
