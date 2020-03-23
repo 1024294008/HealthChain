@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,15 +29,10 @@ public class LoginActivity extends AppCompatActivity {
         initView();
 
         //点击登录事件处理方法
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Login(v);
-            }
-        });
+        Login(login);
 
         //点击注册事件,跳转到注册页面
-       Register(register);
+        Register(register);
     }
 
     //获得登录界面的控件
@@ -52,27 +48,28 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String textUser = username.getText().toString();
+                String testPassword = password.getText().toString();
 
+                //如果用户名或密码为空，进行提示
+                if(textUser.isEmpty() || testPassword.isEmpty()){
+                    Toast toast = Toast.makeText(LoginActivity.this,"用户名和密码不能为空",Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                //如果用户名和密码一致  跳转到主页面
+                else {
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(intent);
+                }
+//                //用户名和密码不一致
+//                else
+//                {
+//                    Toast toast = Toast.makeText(LoginActivity.this,"您输入的用户名和密码不一致",Toast.LENGTH_SHORT);
+//                    toast.show();
+//                }
             }
         });
-        String textUser = username.getText().toString();
-        String testPassword = password.getText().toString();
 
-        //如果用户名或密码为空，进行提示
-        if(textUser.isEmpty() || testPassword.isEmpty()){
-            Toast toast = Toast.makeText(this,"用户名和密码不能为空",Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        //如果用户名和密码一致  暂时搁置
-//        else if(){
-//
-//        }
-        //用户名和密码不一致
-        else
-        {
-            Toast toast = Toast.makeText(this,"您输入的用户名和密码不一致",Toast.LENGTH_SHORT);
-            toast.show();
-        }
    }
 
    //注册处理，跳转到注册页面
