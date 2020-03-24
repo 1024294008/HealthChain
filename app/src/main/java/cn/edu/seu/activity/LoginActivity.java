@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     //跳转到主页面
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-
                     startActivity(intent);
                 }
 //                //用户名和密码不一致
