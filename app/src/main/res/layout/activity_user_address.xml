@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/standardBackground">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:layout_marginBottom="@dimen/standardMargin"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/userInfoHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp">
+            <ImageView
+
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@drawable/back2"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/standardBackground"
+                android:gravity="center_vertical"
+                android:padding="0dp"
+
+                android:text="修改地址"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/listItemFontSize" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/headpic"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
+                    android:text="保存"
+                    android:textColor="@color/colorBlack"
+                    android:src="@drawable/ic_list_item_detail"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="@dimen/standardMargin"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:layout_marginLeft="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="6dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/nickname"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="15sp"
+                    android:text="河北邯郸"
+                    android:background="@drawable/selector_edittext_bg"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="温馨提示："
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="@dimen/listItemFontSize" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="282dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxEms="8"
+                    android:maxLines="1"
+                    android:text="实际地址和健康数据相关，请据实填写"
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="@dimen/listItemFontSize" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
