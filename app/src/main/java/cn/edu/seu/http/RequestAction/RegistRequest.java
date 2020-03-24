@@ -4,10 +4,13 @@ import android.content.Context;
 import android.os.Handler;
 import java.util.Map;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
+import cn.edu.seu.http.url.Url;
 
+/**
+ * 注册
+ */
 public class RegistRequest {
 
-    private final String url = "http://192.168.31.112:80/json.html";
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
@@ -20,13 +23,15 @@ public class RegistRequest {
 
     public void doGet()
     {
-        httpRequest.setUrl(this.url);
-        httpRequest.get();
+//        String url = "http://192.168.31.112:80/json.html";
+//        httpRequest.setUrl(url);
+//        httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-        httpRequest.setUrl(this.url);
+        String url = Url.REGIST_URL;
+        httpRequest.setUrl(url);
         httpRequest.post(param);
     }
 }

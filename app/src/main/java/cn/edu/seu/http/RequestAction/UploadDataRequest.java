@@ -4,10 +4,13 @@ import android.content.Context;
 import android.os.Handler;
 import java.util.Map;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
+import cn.edu.seu.http.url.Url;
 
+/**
+ * 上传数据
+ */
 public class UploadDataRequest {
 
-    private final String url = "";
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
@@ -20,13 +23,15 @@ public class UploadDataRequest {
 
     public void doGet()
     {
-        httpRequest.setUrl(this.url);
-        httpRequest.get();
+//        String url = "";
+//        httpRequest.setUrl(url);
+//        httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-        httpRequest.setUrl(this.url);
+        String url = Url.UPLOAD_DATA_URL;
+        httpRequest.setUrl(url);
         httpRequest.post(param);
     }
 }

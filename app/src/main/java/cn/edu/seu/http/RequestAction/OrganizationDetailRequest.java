@@ -4,10 +4,13 @@ import android.content.Context;
 import android.os.Handler;
 import java.util.Map;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
+import cn.edu.seu.http.url.Url;
 
+/**
+ * 查看医疗机构详细信息
+ */
 public class OrganizationDetailRequest {
 
-    private final String url = "";
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
@@ -18,16 +21,18 @@ public class OrganizationDetailRequest {
         this.httpRequest = new HttpRequest(this.context, this.handler);
     }
 
-    public void doGet()
+    public void doGet(int id)
     {
-        httpRequest.setUrl(this.url);
+        String url = Url.ORGANIZATION_DETAILS_URL + "?id" + id;
+        httpRequest.setUrl(url);
         httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-        httpRequest.setUrl(this.url);
-        httpRequest.post(param);
+//        String url = "";
+//        httpRequest.setUrl(url);
+//        httpRequest.post(param);
     }
 }
 

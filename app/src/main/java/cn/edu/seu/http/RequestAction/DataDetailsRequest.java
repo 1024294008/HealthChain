@@ -4,10 +4,13 @@ import android.content.Context;
 import android.os.Handler;
 import java.util.Map;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
+import cn.edu.seu.http.url.Url;
 
+/**
+ * 历史数据详情
+ */
 public class DataDetailsRequest {
 
-    private final String url = "";
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
@@ -18,16 +21,18 @@ public class DataDetailsRequest {
         this.httpRequest = new HttpRequest(this.context, this.handler);
     }
 
-    public void doGet()
+    public void doGet(String dataAddr)
     {
-        httpRequest.setUrl(this.url);
+        String url = Url.HISTORY_DATA_DETAILS_URL + "?dataAddr" + dataAddr;
+        httpRequest.setUrl(url);
         httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-        httpRequest.setUrl(this.url);
-        httpRequest.post(param);
+//        String url = "";
+//        httpRequest.setUrl(url);
+//        httpRequest.post(param);
     }
 }
 

@@ -4,10 +4,13 @@ import android.content.Context;
 import android.os.Handler;
 import java.util.Map;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
+import cn.edu.seu.http.url.Url;
 
+/**
+ * 查看用户个人钱包
+ */
 public class UserWalletRequest {
 
-    private final String url = "";
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
@@ -18,16 +21,18 @@ public class UserWalletRequest {
         this.httpRequest = new HttpRequest(this.context, this.handler);
     }
 
-    public void doGet()
+    public void doGet(int id)
     {
-        httpRequest.setUrl(this.url);
+        String url = Url.USER_WALLET_URL + "?id" + id;
+        httpRequest.setUrl(url);
         httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-        httpRequest.setUrl(this.url);
-        httpRequest.post(param);
+//        String url = "";
+//        httpRequest.setUrl(url);
+//        httpRequest.post(param);
     }
 }
 

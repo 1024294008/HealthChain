@@ -9,31 +9,30 @@ import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.url.Url;
 
 /**
- * 登录
+ * 查看转账记录
  */
-public class LoginRequest {
-
+public class TransactionRecordRequest {
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
 
-    public LoginRequest(Context context, Handler handler) {
+    public TransactionRecordRequest(Context context, Handler handler) {
         this.context = context;
         this.handler = handler;
         this.httpRequest = new HttpRequest(this.context, this.handler);
     }
 
-    public void doGet()
+    public void doGet(String ethAddress)
     {
-//        String url = "http://192.168.31.112:80/json.html";
-//        httpRequest.setUrl(url);
-//        httpRequest.get();
+        String url = Url.USER_TRANSACTION_RECORD_URL + "?ethAddress" + ethAddress;
+        httpRequest.setUrl(url);
+        httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-        String url = Url.LOGIN_URL;
-        httpRequest.setUrl(url);
-        httpRequest.post(param);
+//        String url = "";
+//        httpRequest.setUrl(url);
+//        httpRequest.post(param);
     }
 }

@@ -9,15 +9,14 @@ import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.url.Url;
 
 /**
- * 登录
+ * 购买以太币
  */
-public class LoginRequest {
-
+public class BuyEthCoinRequest {
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
 
-    public LoginRequest(Context context, Handler handler) {
+    public BuyEthCoinRequest(Context context, Handler handler) {
         this.context = context;
         this.handler = handler;
         this.httpRequest = new HttpRequest(this.context, this.handler);
@@ -32,7 +31,7 @@ public class LoginRequest {
 
     public void doPost(Map<String, String> param)
     {
-        String url = Url.LOGIN_URL;
+        String url = Url.BUY_ETH_COIN_URL;
         httpRequest.setUrl(url);
         httpRequest.post(param);
     }

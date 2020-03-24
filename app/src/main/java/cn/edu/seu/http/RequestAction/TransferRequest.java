@@ -9,15 +9,14 @@ import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.url.Url;
 
 /**
- * 登录
+ * 转账
  */
-public class LoginRequest {
-
+public class TransferRequest {
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
 
-    public LoginRequest(Context context, Handler handler) {
+    public TransferRequest(Context context, Handler handler) {
         this.context = context;
         this.handler = handler;
         this.httpRequest = new HttpRequest(this.context, this.handler);
@@ -32,7 +31,7 @@ public class LoginRequest {
 
     public void doPost(Map<String, String> param)
     {
-        String url = Url.LOGIN_URL;
+        String url = Url.USER_TRANSFER;
         httpRequest.setUrl(url);
         httpRequest.post(param);
     }
