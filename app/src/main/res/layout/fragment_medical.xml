@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/standardBackground">
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/barHeight"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/standardMargin">
+        android:orientation="horizontal">
         <RelativeLayout
+            android:id="@+id/medicalFront"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
@@ -27,21 +26,45 @@
                 android:id="@+id/search"
                 android:layout_width="@dimen/barHeight"
                 android:layout_height="match_parent"
-                android:background="@drawable/selector_list_item_bg"
+                android:background="@drawable/selector_button_bg2"
                 android:scaleType="centerCrop"
                 android:padding="15dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_standard_search"/>
         </RelativeLayout>
-    </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/medicalBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="@dimen/barHeight"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_button_bg2"
+                android:scaleType="centerCrop"
+                android:padding="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back2"/>
+            <EditText
+                android:id="@+id/searchKey"
+                android:layout_toRightOf="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:maxLines="1"
+                android:gravity="center_vertical"
+                android:hint="搜索"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"/>
+        </RelativeLayout>
+    </FrameLayout>
     <FrameLayout
-        android:id="@+id/htmlListFrameLayoutGroup"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:layout_height="match_parent">
         <ListView
-            android:id="@+id/htmlFileListView"
+            android:id="@+id/medicalListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="@color/standardSelect"
