@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/standardBackground">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/barHeight"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/medicalFront"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/standardTitleSize"
+                android:text="每日健康"/>
+            <ImageButton
+                android:id="@+id/search"
+                android:layout_width="@dimen/barHeight"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_button_bg2"
+                android:scaleType="centerCrop"
+                android:padding="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_main_health_add"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/healthListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/standardSelect"
+            android:listSelector="@drawable/selector_list_item_bg"/>
+    </FrameLayout>
+</LinearLayout>

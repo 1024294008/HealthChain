@@ -1,0 +1,13 @@
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--圆角-->
+    <corners android:radius="10dp"/>
+
+    <!--描边-->
+    <stroke android:width="7dp"
+        android:color="@color/colorWhite"
+        android:dashWidth="5dp"
+        android:dashGap="0dp" />
+
+</shape>
