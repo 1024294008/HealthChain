@@ -3,6 +3,7 @@ package cn.edu.seu.fragment;
 import android.media.Image;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,9 +64,6 @@ public class MedicalFragment extends Fragment implements View.OnClickListener{
                 showBg();
                 onResume();
                 break;
-            default:
-                onResume();
-                break;
         }
     }
 
@@ -82,27 +80,53 @@ public class MedicalFragment extends Fragment implements View.OnClickListener{
     }
 
 
-
-
     @Override
     public void onResume() {
         super.onResume();
+        getView().setFocusable(true);
         getView().setFocusableInTouchMode(true);
         getView().requestFocus();
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if(medicalFront.getVisibility() == View.GONE &&  keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_BACK){
-                    System.out.println("---------------");
-                    System.out.println("点击了返回键");
-                    System.out.println("---------------");
-                    showFront();
-                    return true;
+                   Log.e("Tag","点击了返回键");
+                   showFront();
+                   return true;
                 }
-                System.out.println("按下了返回键");
-                return false;
+                else{
+                    Log.e("Tag","点击了返回键-------------");
+                    return false;
+                }
+
             }
         });
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        getFocus();
+//    }
+//
+//    private void getFocus() {
+//        getView().setFocusable(true);
+//        getView().setFocusableInTouchMode(true);
+//        getView().requestFocus();
+//        getView().setOnKeyListener(new View.OnKeyListener() {
+//
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    // 监听到返回按钮点击事件
+//                    Log.e("Tag", "点击了返回键");
+//                    if(medicalFront.getVisibility() == View.GONE) showFront();
+//
+//                    return true;// 未处理
+//                }
+//                return false;
+//            }
+//        });
+//    }
 
 }
