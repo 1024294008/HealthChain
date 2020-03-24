@@ -53,11 +53,11 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String textUser = username.getText().toString();
-                String testPassword = password.getText().toString();
+                String name = username.getText().toString();
+                String psd = password.getText().toString();
 
                 //如果用户名或密码为空，进行提示
-                if(textUser.isEmpty() || testPassword.isEmpty()){
+                if(name.isEmpty() || psd.isEmpty()){
                     Toast toast = Toast.makeText(LoginActivity.this,"用户名和密码不能为空",Toast.LENGTH_SHORT);
                     toast.show();
                 }
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     //保存用户名到sharedPerferences中
                     sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
-                    editor.putString("username", textUser);                           //key-value
+                    editor.putString("username", name);                           //key-value
                     editor.commit();                                                  //提交修改
 
                     //跳转到主页面
