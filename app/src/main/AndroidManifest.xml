@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".activity.RegisterActivity"></activity>
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true" />
         <activity android:name=".activity.MainActivity">
+=======
+        <activity android:name=".activity.MainActivity"
+            android:windowSoftInputMode="adjustPan">
+>>>>>>> 2e764c6f0bf80c88fe044e084a495a52de9b55ae
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
