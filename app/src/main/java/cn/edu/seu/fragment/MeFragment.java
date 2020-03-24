@@ -1,6 +1,5 @@
 package cn.edu.seu.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import cn.edu.seu.R;
-import cn.edu.seu.activity.LoginActivity;
 import cn.edu.seu.activity.MainActivity;
 
 /**
@@ -30,7 +28,7 @@ public class MeFragment extends Fragment {
     private LinearLayout device;
     private LinearLayout set;
     private LinearLayout visitor;
-    private TextView idName;
+    private TextView username;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_me, container, false);
@@ -63,13 +61,13 @@ public class MeFragment extends Fragment {
         device = (LinearLayout) view.findViewById(R.id.device);
         set = (LinearLayout) view.findViewById(R.id.set);
         visitor  = (LinearLayout) view.findViewById(R.id.visitor);
-        idName = (TextView) view.findViewById(R.id.id);
+        username = (TextView) view.findViewById(R.id.username);
 
         //读取sharedpreferences中的数据
         SharedPreferences read = getActivity().getSharedPreferences("test",Context.MODE_PRIVATE);
         String name = read.getString("username", "");
         //设置账户名称idName
-        idName.setText(name);
+        username.setText(name);
     }
 
     //点击用户，跳转到用户信息页面

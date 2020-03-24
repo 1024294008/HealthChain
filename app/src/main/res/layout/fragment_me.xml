@@ -61,16 +61,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorDeepGray"
-                        android:textSize="@dimen/listItemFontSize"
-                        android:text="健康账号："/>
 
                     <TextView
-                        android:id="@+id/id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="健康账号："
+                        android:textColor="@color/colorDeepGray"
+                        android:textSize="@dimen/listItemFontSize" />
+
+                    <TextView
+                        android:id="@+id/username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
