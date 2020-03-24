@@ -1,13 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MedicalFragment">
-
-    <TextView
+    android:orientation="vertical"
+    android:background="@color/standardBackground">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/barHeight"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/standardMargin">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/standardTitleSize"
+                android:text="医疗服务"/>
+            <ImageButton
+                android:id="@+id/search"
+                android:layout_width="@dimen/barHeight"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_list_item_bg"
+                android:scaleType="centerCrop"
+                android:padding="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_standard_search"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/htmlListFrameLayoutGroup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="医疗服务" />
-
-</FrameLayout>
+        android:background="@color/colorWhite">
+        <ListView
+            android:id="@+id/htmlFileListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/standardSelect"
+            android:listSelector="@drawable/selector_list_item_bg"/>
+    </FrameLayout>
+</LinearLayout>
