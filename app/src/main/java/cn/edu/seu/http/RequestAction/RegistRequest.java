@@ -23,9 +23,9 @@ public class RegistRequest {
 
     public void doGet()
     {
-//        String url = "http://192.168.31.112:80/json.html";
-//        httpRequest.setUrl(url);
-//        httpRequest.get();
+        String url = "http://192.168.31.112:80/json.html";
+        httpRequest.setUrl(url);
+        httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)

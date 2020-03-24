@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.edu.seu.R;
+import cn.edu.seu.http.HttpHandler.LoginHandler;
+import cn.edu.seu.http.HttpRequest.HttpRequest;
+import cn.edu.seu.http.RequestAction.LoginRequest;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -63,16 +70,29 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 //如果用户名和密码一致  跳转到主页面
                 else {
-                    //保存用户名到sharedPerferences中
-                    sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
-                    editor.putString("username", textUser);                           //key-value
-                    editor.commit();                                                  //提交修改
 
-                    //跳转到主页面
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    // 通过http调用后台方法，页面在handler渲染
+                    Handler handler = new LoginHandler(LoginActivity.this);
+                    LoginRequest request = new LoginRequest(LoginActivity.this, handler);
 
-                    startActivity(intent);
+                    Map<String, String> param = new HashMap<String, String>();
+                    param.put("account", textUser);
+                    param.put("password", textPassword);
+
+                    request.doPost(param);
+//                    request.doGet();
+
+
+//                    //保存用户名到sharedPerferences中    -- 定义在handler中
+//                    sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
+//                    editor.putString("username", textUser);                           //key-value
+//                    editor.commit();                                                  //提交修改
+//
+//                    //跳转到主页面
+//                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+//
+//                    startActivity(intent);
                 }
 //                //用户名和密码不一致
 //                else

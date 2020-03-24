@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.edu.seu.R;
+import cn.edu.seu.http.HttpHandler.RegistHandler;
+import cn.edu.seu.http.RequestAction.RegistRequest;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -75,10 +81,17 @@ public class RegisterActivity extends AppCompatActivity {
                 else
                 {
                     //将数据存储到数据库中
+                    Handler handler = new RegistHandler(RegisterActivity.this);
+                    RegistRequest request = new RegistRequest(RegisterActivity.this, handler);
 
-                    //提示注册成功
-                    Toast toast = Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT);
-                    toast.show();
+                    Map<String, String> param = new HashMap<String, String>();
+                    param.put("account", name);
+                    param.put("password", psd);
+                    param.put("address", add);
+                    param.put("tel", tel);
+
+                    request.doPost(param);
+//                    request.doGet();
                 }
 
             }

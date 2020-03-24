@@ -9,7 +9,7 @@ public class Url {
 
 
     // 注册操作 POST
-    // param:   account,password,sex,address(住址),tel
+    // param:   account,password,address(住址),tel
     // return:
     public final static String REGIST_URL = "http://localhost:8000/user_regist";
 
