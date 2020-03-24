@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="barHeight">55dp</dimen>
+    <dimen name="standardMargin">10dp</dimen>
+    <dimen name="standardPadding">10dp</dimen>
+    <dimen name="standardTitleSize">19sp</dimen>
+    <dimen name="listItemFontSize">15sp</dimen>
 </resources>
