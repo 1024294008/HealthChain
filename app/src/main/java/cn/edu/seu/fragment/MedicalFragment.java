@@ -3,6 +3,8 @@ package cn.edu.seu.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +26,14 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import cn.edu.seu.R;
 import cn.edu.seu.adapter.MedicalListAdapter;
+import cn.edu.seu.http.RequestAction.AllMedicalServiceRequest;
 
 /**
  * 医疗服务显示界面
@@ -179,13 +188,18 @@ public class MedicalFragment extends Fragment implements View.OnClickListener {
         medicalListFront.add(firstItem);
 
         // --------------从后台获取数据-------------
-        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
-        for (Integer i = 0; i < servicesTest.length; i++) {
-            Map<String, String> showItem = new HashMap<>();
-            showItem.put("serviceId", i.toString());
-            showItem.put("serviceName", servicesTest[i]);
-            medicalListFront.add(showItem);
-        }
+//        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
+//        for (Integer i = 0; i < servicesTest.length; i++) {
+//            Map<String, String> showItem = new HashMap<>();
+//            showItem.put("serviceId", i.toString());
+//            showItem.put("serviceName", servicesTest[i]);
+//            medicalListFront.add(showItem);
+//        }
+
+        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
+        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
+        request.doGet();
+
         // --------------------------------------------
 
         medicalListAdapterFront.notifyDataSetChanged();
@@ -201,5 +215,40 @@ public class MedicalFragment extends Fragment implements View.OnClickListener {
                 medicalListBg.add(item);
         }
         medicalListAdapterBg.notifyDataSetChanged();
+    }
+
+    /**
+     * 查找所有医疗服务页面
+     */
+    public class AllMedicalServiceHandler extends Handler {
+
+        public Context context;
+
+        public AllMedicalServiceHandler(Context context){
+            this.context = context;
+        }
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    // 具体执行内容
+                    try {
+                        JSONObject response = (JSONObject)msg.obj;
+                        JSONArray array = response.getJSONArray("serviceList");
+                        for(Integer i=0; i<array.length(); i++){
+                            Map<String, String> map = new HashMap<>();
+                            map.put("serviceId", array.getJSONObject(i).getString("serviceId")); // 需要解析id
+                            map.put("serviceName", array.getJSONObject(i).getString("serviceName")); // 需要解析
+                            medicalListFront.add(map);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+            }
+        }
     }
 }
