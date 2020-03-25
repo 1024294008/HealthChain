@@ -160,7 +160,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
     }
 
     //显示healthFront,隐藏healthBg
-    private void showFront(){
+    public void showFront(){
         healthBg.setVisibility(View.GONE);
         healthFront.setVisibility(View.VISIBLE);
 
@@ -333,5 +333,4 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
             heartRate.setText(_heartRate);
         }
     }
-
 }
