@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import cn.edu.seu.R;
 import cn.edu.seu.activity.MainActivity;
+import cn.edu.seu.activity.UserActivity;
 
 /**
  * 医疗服务显示界面
@@ -75,7 +76,7 @@ public class MeFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), UserActivity.class);
                 startActivity(intent);
             }
         });
