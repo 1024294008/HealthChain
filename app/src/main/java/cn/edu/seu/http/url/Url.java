@@ -15,8 +15,8 @@ public class Url {
 
 
     // 查看历史数据操作 post
-    // param：   userid,uploadTime,permitVisit
-    // return:
+    // param：   userid
+    // return: {"dataList": [{"time":"2018-1-8", "eval":"你好", "dataAddr":"0X8888"}, {"time":"", "eval":"", "dataAddr":""}, ...]}
     public final static String HISTORY_DATA_URL = "http://localhost:8000/user_findHistoryData";
 
 
@@ -24,6 +24,12 @@ public class Url {
     // param：   dataAddr(数据在区块链上的地址)
     // return:
     public final static String HISTORY_DATA_DETAILS_URL = "http://localhost:8000/user_historyData_details";
+
+
+    // 最近一条数据 post
+    // param：   userid,
+    // return: {"latestData": {"uploadTime":"2018-1-10","distance":"10000","heat":"76","sleepQuality":"good","heartRate":"75/s"}}
+    public final static String LATEST_DATA_URL = "http://localhost:8000/user_findLatestData";
 
 
     // 查看医疗服务详细信息操作 get

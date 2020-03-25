@@ -31,6 +31,7 @@
                         android:textSize="@dimen/standardTitleSize"
                         android:text="每日健康"/>
                     <ImageButton
+                        android:id="@+id/uploadOptions"
                         android:layout_width="@dimen/barHeight"
                         android:layout_height="match_parent"
                         android:background="@drawable/selector_button_bg2"
@@ -269,8 +270,10 @@
             <ListView
                 android:id="@+id/healthListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:cacheColorHint="@color/standardSelect"
+                android:background="@color/colorWhite"
+                android:divider="@null"
                 android:listSelector="@drawable/selector_list_item_bg"/>
         </LinearLayout>
     </FrameLayout>

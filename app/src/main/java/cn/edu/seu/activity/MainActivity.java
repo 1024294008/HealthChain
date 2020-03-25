@@ -1,20 +1,26 @@
 package cn.edu.seu.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import cn.edu.seu.R;
 import cn.edu.seu.fragment.HealthFragment;
 import cn.edu.seu.fragment.MeFragment;
 import cn.edu.seu.fragment.MedicalFragment;
+import cn.edu.seu.http.RequestAction.LatestDataRequest;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.CharArrayBuffer;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,6 +29,11 @@ import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 /**
  * 主界面
@@ -31,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private Fragment healthFragment;
     private Fragment medicalFragment;
     private Fragment meFragment;
+
+    public SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     private void initView(){
+
+        // 用户信息存在sharedPreferences
+        sharedPreferences = this.getSharedPreferences("test", Context.MODE_PRIVATE);
+
         //设置系统状态栏UI
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -111,4 +128,5 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         }
         transaction.commit();
     }
+
 }
