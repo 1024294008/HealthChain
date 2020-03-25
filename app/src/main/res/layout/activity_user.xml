@@ -17,12 +17,14 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:paddingLeft="5dp">
+
             <ImageView
 
+                android:id="@+id/back"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
                 android:padding="10dp"
-                android:src="@drawable/back2"/>
+                android:src="@drawable/back2" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -89,32 +91,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
             android:layout_marginBottom="@dimen/standardMargin"
+            android:background="@color/colorWhite"
             android:orientation="vertical"
             android:paddingLeft="5dp">
+
             <LinearLayout
                 android:id="@+id/line_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/selector_list_item_bg"
                 android:clickable="true"
                 android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:background="@drawable/selector_list_item_bg">
+                android:paddingBottom="6dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:padding="10dp"
                     android:gravity="center_vertical"
+                    android:padding="10dp"
                     android:text="昵称"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/listItemFontSize"/>
+                    android:textSize="@dimen/listItemFontSize" />
+
                 <TextView
                     android:id="@+id/nickname"
                     android:layout_width="wrap_content"
@@ -123,11 +128,12 @@
                     android:text="西红柿首富"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="@dimen/listItemFontSize" />
+
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:padding="13dp"
-                    android:src="@drawable/ic_list_item_detail"/>
+                    android:src="@drawable/ic_list_item_detail" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

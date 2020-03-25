@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import cn.edu.seu.R;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textView_address;
     private TextView textView_phone;
     private TextView textView_sex;
+    private ImageView back;
 
     private LinearLayout line_nickname;
     private LinearLayout line_account;
@@ -44,12 +46,16 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         textView_address = this.findViewById(R.id.address);
         textView_phone = this.findViewById(R.id.phone);
         textView_sex = this.findViewById(R.id.sex);
+        back = this.findViewById(R.id.back);
 
+        back.setOnClickListener(this);
         this.findViewById(R.id.line_nickname).setOnClickListener(this);
         this.findViewById(R.id.line_account).setOnClickListener(this);
         this.findViewById(R.id.line_address).setOnClickListener(this);
         this.findViewById(R.id.line_phone).setOnClickListener(this);
         this.findViewById(R.id.line_sex).setOnClickListener(this);
+        this.findViewById(R.id.line_password).setOnClickListener(this);
+
 
         //根据用户id从数据库里拿到后更新进本页面对应位置
         Toast.makeText(this, "进来了兄弟", Toast.LENGTH_SHORT).show();
@@ -59,6 +65,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.line_nickname:
+
                 Intent intent_nickname = new Intent(UserActivity.this,UserNicknameActivity.class);
                 Toast.makeText(this, "什么玩意", Toast.LENGTH_SHORT).show();
                 startActivity(intent_nickname);
@@ -76,10 +83,13 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent_sex);
                 break;
             case R.id.line_password:
+                Log.e("Tag","我要修改密码");
                 Intent intent_password = new Intent(UserActivity.this,UserPasswordActivity.class);
                 startActivity(intent_password);
                 break;
-
+            case R.id.back:
+                finish();
+                break;
         }
     }
 }

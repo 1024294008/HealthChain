@@ -11,10 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.UserTransferActivity"></activity>
+        <activity android:name=".activity.UserDevicesActivity"></activity>
+        <activity android:name=".activity.UserVisitorsActivity" />
+        <activity android:name=".activity.UserSettingActivity" />
+        <activity android:name=".activity.UserTransferActivity" />
         <activity android:name=".activity.UserWalletActivity" />
         <activity android:name=".activity.UserActivity" />
+        <activity android:name=".activity.UserNicknameActivity" />
+        <activity android:name=".activity.UserPasswordActivity" />
+        <activity android:name=".activity.UserPhoneActivity" />
+        <activity android:name=".activity.UserAddressActivity" />
+        <activity android:name=".activity.UserSexActivity" />
         <activity android:name=".activity.RegisterActivity">
+
 
             <!--
             <intent-filter>

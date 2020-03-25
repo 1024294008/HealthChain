@@ -16,6 +16,10 @@ import androidx.annotation.Nullable;
 import cn.edu.seu.R;
 import cn.edu.seu.activity.MainActivity;
 import cn.edu.seu.activity.UserActivity;
+import cn.edu.seu.activity.UserDevicesActivity;
+import cn.edu.seu.activity.UserSettingActivity;
+import cn.edu.seu.activity.UserVisitorsActivity;
+import cn.edu.seu.activity.UserWalletActivity;
 
 /**
  * 医疗服务显示界面
@@ -87,7 +91,7 @@ public class MeFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), UserWalletActivity.class);
                 startActivity(intent);
             }
         });
@@ -98,7 +102,7 @@ public class MeFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), UserDevicesActivity.class);
                 startActivity(intent);
             }
         });
@@ -109,7 +113,7 @@ public class MeFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), UserVisitorsActivity.class);
                 startActivity(intent);
             }
         });
@@ -120,7 +124,7 @@ public class MeFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), UserSettingActivity.class);
                 startActivity(intent);
             }
         });
