@@ -31,12 +31,14 @@
                 android:background="@color/standardBackground"
                 android:gravity="center_vertical"
                 android:padding="0dp"
-                android:text="修改地址"
+
+                android:text="修改性别"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/listItemFontSize" />
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <Button
                     android:id="@+id/save"
                     android:layout_width="45dp"
@@ -65,40 +67,35 @@
             android:layout_marginLeft="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="6dp"
                 android:orientation="horizontal">
-                <EditText
-                    android:id="@+id/address"
+                <RadioGroup
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:textSize="15sp"
-                    android:text="河北邯郸"
-                    android:background="@drawable/selector_edittext_bg"/>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="50dp">
+
+                    <RadioButton
+                        android:id="@+id/man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:text="男">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/women"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="150dp"
+                        android:layout_height="match_parent"
+                        android:text="女">
+
+                    </RadioButton>
+                </RadioGroup>
+
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="温馨提示："
-                    android:textColor="@color/colorDeepGray"
-                    android:textSize="@dimen/listItemFontSize" />
-
-                <TextView
-
-                    android:layout_width="282dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxEms="8"
-                    android:maxLines="1"
-                    android:text="实际地址和健康数据相关，请据实填写"
-                    android:textColor="@color/colorDeepGray"
-                    android:textSize="@dimen/listItemFontSize" />
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

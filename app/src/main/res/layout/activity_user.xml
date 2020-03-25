@@ -38,13 +38,14 @@
 
     </LinearLayout>
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/colorWhite"
         android:layout_marginBottom="@dimen/standardMargin"
         android:orientation="horizontal">
         <LinearLayout
-            android:id="@+id/user"
+            android:id="@+id/line_head"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -89,6 +90,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
@@ -96,7 +98,7 @@
             android:orientation="vertical"
             android:paddingLeft="5dp">
             <LinearLayout
-                android:id="@+id/wallet"
+                android:id="@+id/line_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -136,7 +138,7 @@
             android:orientation="vertical"
             android:paddingLeft="5dp">
             <LinearLayout
-                android:id="@+id/device"
+                android:id="@+id/line_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -166,6 +168,47 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:layout_marginBottom="@dimen/standardMargin"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+
+            <LinearLayout
+                android:id="@+id/line_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:background="@drawable/selector_list_item_bg">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="性别"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/listItemFontSize"/>
+                <TextView
+                    android:id="@+id/sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="男"
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="@dimen/listItemFontSize" />
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="13dp"
+                    android:src="@drawable/ic_list_item_detail"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
@@ -174,7 +217,7 @@
         android:paddingLeft="5dp">
 
         <LinearLayout
-            android:id="@+id/visitor"
+            android:id="@+id/line_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -214,7 +257,7 @@
             android:orientation="vertical"
             android:paddingLeft="5dp">
             <LinearLayout
-                android:id="@+id/set"
+                android:id="@+id/line_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -237,10 +280,55 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="18293941800"
-                    android:paddingRight="10dp"
+
                     android:textColor="@color/colorDeepGray"
                     android:textSize="@dimen/listItemFontSize" />
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="13dp"
+                    android:src="@drawable/ic_list_item_detail"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:layout_marginBottom="@dimen/standardMargin"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
 
+            <LinearLayout
+                android:id="@+id/line_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:background="@drawable/selector_list_item_bg">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="密码"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/listItemFontSize"/>
+                <TextView
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="修改"
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="@dimen/listItemFontSize" />
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="13dp"
+                    android:src="@drawable/ic_list_item_detail"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
