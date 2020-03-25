@@ -60,11 +60,11 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String textUser = username.getText().toString();
-                String textPassword = password.getText().toString();
+                String name = username.getText().toString();
+                String psd = password.getText().toString();
 
                 //如果用户名或密码为空，进行提示
-                if(textUser.isEmpty() || textPassword.isEmpty()){
+                if(name.isEmpty() || psd.isEmpty()){
                     Toast toast = Toast.makeText(LoginActivity.this,"用户名和密码不能为空",Toast.LENGTH_SHORT);
                     toast.show();
                 }
@@ -76,12 +76,11 @@ public class LoginActivity extends AppCompatActivity {
                     LoginRequest request = new LoginRequest(LoginActivity.this, handler);
 
                     Map<String, String> param = new HashMap<String, String>();
-                    param.put("account", textUser);
-                    param.put("password", textPassword);
+                    param.put("account", name);
+                    param.put("password", psd);
 
                     request.doPost(param);
 //                    request.doGet();
-
 
 //                    //保存用户名到sharedPerferences中    -- 定义在handler中
 //                    sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);
@@ -93,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
 //
 //                    startActivity(intent);
+
                 }
 //                //用户名和密码不一致
 //                else

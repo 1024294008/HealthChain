@@ -40,7 +40,6 @@ public class HealthListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         TextView time;
         TextView eval;
         if (convertView == null) {
