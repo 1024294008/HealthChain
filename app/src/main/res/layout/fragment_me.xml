@@ -76,7 +76,6 @@
                         android:ellipsize="end"
                         android:maxEms="8"
                         android:maxLines="1"
-                        android:text="123456"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="@dimen/listItemFontSize" />
                 </LinearLayout>

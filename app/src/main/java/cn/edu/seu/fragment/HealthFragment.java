@@ -70,6 +70,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
 
     public SharedPreferences sharedPreferences;
 
+    // 最近一条数据显示的组件
     private TextView uploadTime;
     private TextView distance;
     private TextView heat;
@@ -314,16 +315,22 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
                     try {
                         JSONObject response = (JSONObject) msg.obj;
                         JSONObject latestData = response.getJSONObject("latestData");
-                        uploadTime.setText(latestData.getString("uploadTime"));
-                        distance.setText(latestData.getString("distance"));
-                        heat.setText(latestData.getString("heat"));
-                        sleepQuality.setText(latestData.getString("sleepQuality"));
-                        heartRate.setText(latestData.getString("heartRate"));
+                        setData(latestData.getString("uploadTime"), latestData.getString("distance"), latestData.getString("heat"),
+                                latestData.getString("sleepQuality"), latestData.getString("heartRate"));
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Toast t = Toast.makeText(context, "数据加载失败..", Toast.LENGTH_SHORT);
+                        t.show();
+                        setData("","","","","");
                     }
-
+                }
             }
+        public void setData(String _uploadTime, String _distance, String _heat, String _sleepQuality, String _heartRate){
+            uploadTime.setText(_uploadTime);
+            distance.setText(_distance);
+            heat.setText(_heat);
+            sleepQuality.setText(_sleepQuality);
+            heartRate.setText(_heartRate);
         }
     }
 
