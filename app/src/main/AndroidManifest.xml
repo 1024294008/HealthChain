@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TransferActivity"></activity>
-        <activity android:name=".activity.WalletActivity" />
+        <activity android:name=".activity.UserTransferActivity"></activity>
+        <activity android:name=".activity.UserWalletActivity" />
         <activity android:name=".activity.UserActivity" />
         <activity android:name=".activity.RegisterActivity">
 
