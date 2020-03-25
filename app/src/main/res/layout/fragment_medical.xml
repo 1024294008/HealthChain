@@ -64,10 +64,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ListView
-            android:id="@+id/medicalListView"
+            android:id="@+id/medicalListViewFront"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="@color/standardSelect"
-            android:listSelector="@drawable/selector_list_item_bg"/>
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"/>
+        <ListView
+            android:id="@+id/medicalListViewBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/standardSelect"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"/>
     </FrameLayout>
 </LinearLayout>
