@@ -63,7 +63,9 @@ public class MedicalListAdapter extends BaseAdapter {
             serviceName = convertView.findViewById(R.id.serviceName);
 
             ViewCache cache = new ViewCache();
+            cache.serviceAcr = serviceAcr;
             cache.acr = acr;
+            cache.serviceIcon = serviceIcon;
             cache.serviceName = serviceName;
             convertView.setTag(cache);
 
@@ -77,18 +79,20 @@ public class MedicalListAdapter extends BaseAdapter {
         // 识别模式
         if(this.mode == 0) {
             // 固定设置第一项为服务历史
-            if (position == 0) {
+            if(medicalList.get(position).get("serviceName").equals("serviceHistory")) {
                 serviceAcr.getLayoutParams().height = 0;
-                serviceIcon.setImageDrawable(this.context.getResources().getDrawable(R.drawable.ic_main_medical_serve_history2, null));
+                serviceIcon.setImageDrawable(this.context.getResources().getDrawable(R.drawable.ic_main_medical_serve_history, null));
                 serviceName.setText("服务历史");
                 return convertView;
             }
             serviceName.setText(medicalList.get(position).get("serviceName"));
+            serviceIcon.setImageDrawable(this.context.getResources().getDrawable(R.drawable.ic_standard_head, null));
             // 根据serviceName获取首字母acr进行分类
-            String currentAcr = PinYinUtil.getFirstSpell(serviceName.getText().toString());
+            String currentAcr = PinYinUtil.getFirstSpell(medicalList.get(position).get("serviceName"));
             // 如果此项与前一项属于同一类，则不显示分类标签，否则显示
-            if (position != 1 && (PinYinUtil.getFirstSpell(medicalList.get(position - 1).get("serviceName")).equals(currentAcr))) {
+            if ((position != 0) && (PinYinUtil.getFirstSpell(medicalList.get(position - 1).get("serviceName")).equals(currentAcr))) {
                 serviceAcr.getLayoutParams().height = 0;
+                acr.setText(currentAcr);
             } else {
                 serviceAcr.getLayoutParams().height = 50;
                 acr.setText(currentAcr);
@@ -123,6 +127,12 @@ public class MedicalListAdapter extends BaseAdapter {
         Collections.sort(this.medicalList, new Comparator<Map<String, String>>() {
             @Override
             public int compare(Map<String, String> o1, Map<String, String> o2) {
+                if(o1.get("serviceName").equals("serviceHistory")) {
+                    return -1;
+                }
+                if(o2.get("serviceName").equals("serviceHistory")) {
+                    return 1;
+                }
                 String t1 = PinYinUtil.getFirstSpell(o1.get("serviceName"));
                 String t2 = PinYinUtil.getFirstSpell(o2.get("serviceName"));
                 if (t2 == null) {

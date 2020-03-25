@@ -61,7 +61,7 @@ public class PinYinUtil {
             }
         }
         String rs = pybf.toString().trim().toUpperCase();
-        if(rs.equals("") || rs.compareTo("A") < 0 || rs.compareTo("Z") > 0)
+        if(rs.equals("") || rs.substring(0, 1).compareTo("A") < 0 || rs.substring(0, 1).compareTo("Z") > 0)
             return "*";
         return rs.substring(0, 1);
     }
