@@ -3,6 +3,7 @@ package cn.edu.seu.http.HttpRequest;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -57,8 +58,8 @@ public class HttpRequest implements HttpApi {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("发生了一个错误！");
-                        error.printStackTrace();
+                        Toast t = Toast.makeText(context, "请求失败...", Toast.LENGTH_SHORT);
+                        t.show();
                     }
                 });
         queue.add(request);
@@ -83,8 +84,8 @@ public class HttpRequest implements HttpApi {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("发生了一个错误！");
-                        error.printStackTrace();
+                        Toast t = Toast.makeText(context, "请求失败...", Toast.LENGTH_SHORT);
+                        t.show();
                     }
                 });
         queue.add(request);
