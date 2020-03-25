@@ -1,8 +1,11 @@
 package cn.edu.seu.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xujiaji.happybubble.Auto;
 import com.xujiaji.happybubble.BubbleDialog;
@@ -30,9 +35,17 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import cn.edu.seu.R;
+import cn.edu.seu.activity.MainActivity;
 import cn.edu.seu.adapter.HealthListAdapter;
 import cn.edu.seu.adapter.MedicalListAdapter;
+import cn.edu.seu.http.RequestAction.HistoryDataRequest;
+import cn.edu.seu.http.RequestAction.LatestDataRequest;
 
 /**
  * 健康数据显示界面
@@ -55,6 +68,14 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
     // 处理后的数据源
     private List<Map<String, String>> healthList;
 
+    public SharedPreferences sharedPreferences;
+
+    private TextView uploadTime;
+    private TextView distance;
+    private TextView heat;
+    private TextView sleepQuality;
+    private TextView heartRate;
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_health, container, false);
 
@@ -64,12 +85,20 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         //显示healthFront,隐藏healthBg
         showFront();
 
+        // 获取历史数据
         getHealthListOrigin();
+
+        // 获取最近一条数据
+        getLatestData();
 
         return view;
     }
 
     private void initView(){
+
+        // 用户信息存在sharedPreferences
+        sharedPreferences = this.getActivity().getSharedPreferences("test", Context.MODE_PRIVATE);
+
         healthFront = (LinearLayout) view.findViewById(R.id.healthFront);
         healthBg = (LinearLayout) view.findViewById(R.id.healthBg);
         searchHistory = (RelativeLayout) view.findViewById(R.id.searchHistory);
@@ -77,6 +106,13 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         searchKey = view.findViewById(R.id.searchKey);
         healthListView = view.findViewById(R.id.healthListView);
         uploadOptions = view.findViewById(R.id.uploadOptions);
+
+        // 首页显示的最近一条数据的控件
+        uploadTime = (TextView)view.findViewById(R.id.uploadTime);
+        distance = (TextView)view.findViewById(R.id.distance);
+        heat = (TextView)view.findViewById(R.id.heat);
+        sleepQuality = (TextView)view.findViewById(R.id.sleepQuality);
+        heartRate = (TextView)view.findViewById(R.id.heartRate);
 
         healthList = new ArrayList<>();
         healthListOrigin = new ArrayList<>();
@@ -174,27 +210,121 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         healthListOrigin.clear();
 
         // --------------从后台获取数据-------------
-        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
-        for (Integer i = 0; i < servicesTest.length; i++) {
-            Map<String, String> showItem = new HashMap<>();
-            showItem.put("time", i.toString());
-            showItem.put("eval", servicesTest[i]);
-            showItem.put("dataAddr", servicesTest[i]);
-            healthListOrigin.add(showItem);
-        }
+
+        Handler handler = new HistoryDataHandler(this.getActivity());
+        HistoryDataRequest request = new HistoryDataRequest(this.getActivity(), handler);
+        request.doGet();
+//        Map<String, String> param = new HashMap<>();
+//        param.put("userid", sharedPreferences.getString("id", "")); // 获取用户id
+//        request.doPost(param);
+
+
+//        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
+//        for (Integer i = 0; i < servicesTest.length; i++) {
+//            Map<String, String> showItem = new HashMap<>();
+//            showItem.put("time", i.toString());
+//            showItem.put("eval", servicesTest[i]);
+//            showItem.put("dataAddr", servicesTest[i]);
+
+//            healthListOrigin.add(showItem);
+//        }
         // --------------------------------------------
+    }
+
+    public void getLatestData(){
+        // 将数据显示到控件上
+        Handler handler = new LatestDataHandler(this.getActivity());
+        LatestDataRequest request = new LatestDataRequest(this.getActivity(), handler);
+        String id = sharedPreferences.getString("id", ""); // 获取用户id
+        request.doGet(id);
     }
 
     // 根据关键字更新获取MedicalList数据
     private void getHealthList(String keywords){
         healthList.clear();
-        if(keywords.equals(""))
-            return;
+//        if(keywords.equals(""))
+//            return;
         for(Map<String, String> item: healthListOrigin){
             if(item.get("eval").startsWith(keywords))
                 healthList.add(item);
         }
         healthListAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 历史数据
+     */
+    public class HistoryDataHandler extends Handler {
+
+        private Context context;
+
+        public HistoryDataHandler(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    // 具体执行内容
+//                    Toast t = Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT);
+//                    t.show();
+
+                    try {
+                        JSONObject response = (JSONObject)msg.obj;
+                        JSONArray arry = response.getJSONArray("dataList");
+                        for(Integer i=0; i<arry.length(); i++){
+                            Map<String, String> map = new HashMap<>();
+                            map.put("time", arry.getJSONObject(i).getString("time"));
+                            map.put("eval", arry.getJSONObject(i).getString("eval"));
+                            map.put("dataAddr", arry.getJSONObject(i).getString("dataAddr"));
+                            healthListOrigin.add(map);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+            }
+        }
+    }
+
+
+    /**
+     * 最新一条数据  ---  直接返回具体数据
+     */
+    public class LatestDataHandler extends Handler {
+
+        private Context context;
+
+        public LatestDataHandler(Context context){
+            this.context = context;
+        }
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    // 具体执行内容
+//                    Toast t = Toast.makeText(this.context, msg.obj.toString(), Toast.LENGTH_SHORT);
+//                    t.show();
+
+                    try {
+                        JSONObject response = (JSONObject) msg.obj;
+                        JSONObject latestData = response.getJSONObject("latestData");
+                        uploadTime.setText(latestData.getString("uploadTime"));
+                        distance.setText(latestData.getString("distance"));
+                        heat.setText(latestData.getString("heat"));
+                        sleepQuality.setText(latestData.getString("sleepQuality"));
+                        heartRate.setText(latestData.getString("heartRate"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+            }
+        }
     }
 
 }
