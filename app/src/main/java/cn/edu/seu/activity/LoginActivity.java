@@ -71,16 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                 //如果用户名和密码一致  跳转到主页面
                 else {
 
-                    //保存用户名到sharedPerferences中
-                    sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
-                    editor.putString("username", name);                           //key-value
-                    editor.commit();                                                  //提交修改
-
-                    //跳转到主页面
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
-
                     // 通过http调用后台方法，页面在handler渲染
                     Handler handler = new LoginHandler(LoginActivity.this);
                     LoginRequest request = new LoginRequest(LoginActivity.this, handler);
@@ -91,7 +81,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     request.doPost(param);
 //                    request.doGet();
-
 
 //                    //保存用户名到sharedPerferences中    -- 定义在handler中
 //                    sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);

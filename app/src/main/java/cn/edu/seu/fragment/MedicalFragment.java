@@ -68,7 +68,7 @@ public class MedicalFragment extends Fragment implements View.OnClickListener{
     }
 
     //显示medicalSearch,隐藏medicalBg
-    private void showFront(){
+    public void showFront(){
         medicalBg.setVisibility(View.GONE);
         medicalFront.setVisibility(View.VISIBLE);
     }
@@ -89,7 +89,7 @@ public class MedicalFragment extends Fragment implements View.OnClickListener{
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if(medicalFront.getVisibility() == View.GONE &&  keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_BACK){
+                if(medicalBg.getVisibility() == View.VISIBLE &&  keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_BACK){
                    Log.e("Tag","点击了返回键");
                    showFront();
                    return true;
@@ -103,30 +103,6 @@ public class MedicalFragment extends Fragment implements View.OnClickListener{
         });
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        getFocus();
-//    }
-//
-//    private void getFocus() {
-//        getView().setFocusable(true);
-//        getView().setFocusableInTouchMode(true);
-//        getView().requestFocus();
-//        getView().setOnKeyListener(new View.OnKeyListener() {
-//
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
-//                    // 监听到返回按钮点击事件
-//                    Log.e("Tag", "点击了返回键");
-//                    if(medicalFront.getVisibility() == View.GONE) showFront();
-//
-//                    return true;// 未处理
-//                }
-//                return false;
-//            }
-//        });
-//    }
+
 
 }
