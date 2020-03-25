@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/standardBackground">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:layout_marginBottom="@dimen/standardMargin"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/userInfoHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@drawable/back2"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/standardBackground"
+                android:gravity="center_vertical"
+                android:padding="0dp"
+
+                android:text="修改性别"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/listItemFontSize" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
+                    android:text="保存"
+                    android:textColor="@color/colorBlack"
+                    android:src="@drawable/ic_list_item_detail"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="@dimen/standardMargin"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:layout_marginLeft="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="6dp"
+                android:orientation="horizontal">
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="50dp">
+
+                    <RadioButton
+                        android:id="@+id/man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:text="男">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/women"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="150dp"
+                        android:layout_height="match_parent"
+                        android:text="女">
+
+                    </RadioButton>
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
