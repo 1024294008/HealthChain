@@ -65,7 +65,7 @@ public class UserSettingActivity extends AppCompatActivity implements View.OnCli
 
         Intent intent_login = new Intent();
         intent_login.setClass(UserSettingActivity.this, LoginActivity.class);
-        intent_login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent_login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent_login);
         this.finish();
     }
