@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,13 +15,13 @@ import cn.edu.seu.R;
 /**
  * 用户信息界面
  */
-public class UserPasswordActivity extends AppCompatActivity {
+public class UserPasswordActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText editText_currentPassword;
     private EditText editText_newPassword;
     private EditText editText_newPassword2;
     private Button button_save;
-
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,10 @@ public class UserPasswordActivity extends AppCompatActivity {
         editText_newPassword = this.findViewById(R.id.newPassword);
         editText_newPassword2 = this.findViewById(R.id.newPassword2);
         button_save = this.findViewById(R.id.save);
+        back = this.findViewById(R.id.back);
+
+        back.setOnClickListener(this);
+        button_save.setOnClickListener(this);
     }
     //处理点击事件
     public void onClick(View v) {
@@ -61,17 +66,20 @@ public class UserPasswordActivity extends AppCompatActivity {
                     //相同进行修改，同步更新到数据库
 
 
+                    //提示
+                    Toast toast = Toast.makeText(UserPasswordActivity.this,"密码修改成功",Toast.LENGTH_SHORT);
+                    toast.show();
+
+
                     //再跳转到用户信息页面
-                    Intent intent = new Intent(UserPasswordActivity.this, UserActivity.class);
-                    startActivity(intent);
+                    this.finish();
                     break;
                 }else {
                     //什么都不做
                 }
             case R.id.back:
                 //什么都不做，返回用户信息页面
-                Intent intent_back = new Intent(UserPasswordActivity.this, UserActivity.class);
-                startActivity(intent_back);
+                this.finish();
                 break;
         }
     }
