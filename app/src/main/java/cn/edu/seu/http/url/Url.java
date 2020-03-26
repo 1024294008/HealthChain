@@ -57,8 +57,9 @@ public class Url {
 
 
     // 上传数据操作   post
-    // param:   userid, permitVisit(是否公开), healthyData(健康数据)
-    // returm:
+    // param:   userid, permitVisit(是否公开), distance, heat, sleepQuality, heartRate
+    // return: {"code": "200", "msg": "上传成功"}
+
     public final static String UPLOAD_DATA_URL = "http://localhost:8000/user_uploadData";
 
 

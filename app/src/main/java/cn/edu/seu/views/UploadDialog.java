@@ -2,7 +2,9 @@ package cn.edu.seu.views;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -10,7 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.edu.seu.R;
+import cn.edu.seu.http.HttpHandler.UploadDataHandler;
+import cn.edu.seu.http.RequestAction.UploadDataRequest;
 
 public class UploadDialog extends Dialog implements View.OnClickListener {
     private Context context;
@@ -22,6 +30,8 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
     private TextView heartRate;
     private Switch share;
     private EditText evaluation;
+
+    public SharedPreferences sharedPreferences;
 
     public UploadDialog(@NonNull Context context) {
         super(context);
@@ -37,6 +47,9 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
 
     // 初始化组件
     private void initView(){
+
+        sharedPreferences = context.getSharedPreferences("test", Context.MODE_PRIVATE);
+
         // 设置对话框属性
         setCanceledOnTouchOutside(true);
         android.view.WindowManager.LayoutParams p = getWindow().getAttributes();
@@ -117,11 +130,22 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
             Toast.makeText(context, "写个心情呗", Toast.LENGTH_SHORT).show();
         }
         // 获取数据并上传
-        // distance.getText().toString()
-        // heat.getText().toString()
-        // sleepQuality.getText().toString()
-        // heartRate.getText().toString()
-        // share.isChecked()
+        String str_distance =  distance.getText().toString();
+        String str_heat = heat.getText().toString();
+        String str_sleepQuality = sleepQuality.getText().toString();
+        String str_heartRate =  heartRate.getText().toString();
+        boolean is_share =  share.isChecked();
+        Handler handler =new UploadDataHandler(context);
+        UploadDataRequest request = new UploadDataRequest(context, handler);
+
+        Map<String, String> param = new HashMap<String, String>();
+        param.put("userid", sharedPreferences.getString("id", ""));
+        param.put("distance", str_distance);
+        param.put("heat", str_heat);
+        param.put("sleepQuality", str_sleepQuality);
+        param.put("heartRate", str_heartRate);
+        param.put("permitVisit", String.valueOf(is_share));
+        request.doPost(param);
 
     }
 }

@@ -2,6 +2,8 @@ package cn.edu.seu.http.RequestAction;
 
 import android.content.Context;
 import android.os.Handler;
+import android.widget.Toast;
+
 import java.util.Map;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.url.Url;
@@ -21,7 +23,7 @@ public class UserWalletRequest {
         this.httpRequest = new HttpRequest(this.context, this.handler);
     }
 
-    public void doGet(int id)
+    public void doGet(String id)
     {
         String url = Url.USER_WALLET_URL + "?id" + id;
         httpRequest.setUrl(url);

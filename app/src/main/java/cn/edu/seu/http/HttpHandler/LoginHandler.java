@@ -41,8 +41,15 @@ public class LoginHandler extends Handler {
                 sharedPreferences = context.getSharedPreferences("test", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
                 try {
-                    String name = response.getString("account");    // 提取账号信息
-                    editor.putString("username", name);                           //key-value
+                    editor.putString("id", response.getString("id")); // 用户信息
+                    editor.putString("username", response.getString("account"));
+                    editor.putString("password", response.getString("password"));
+                    editor.putString("ethAddress", response.getString("ethAddress"));
+                    editor.putString("sex", response.getString("sex"));
+                    editor.putString("address", response.getString("address"));
+                    editor.putString("birth", response.getString("birth"));
+                    editor.putString("tel", response.getString("tel"));
+                    editor.putString("balance", response.getString("balance"));
                     editor.commit();                                                  //提交修改
                 } catch (JSONException e) {
                     Toast t = Toast.makeText(context, "请求错误,请重试", Toast.LENGTH_SHORT);

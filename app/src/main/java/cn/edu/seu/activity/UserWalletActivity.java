@@ -84,7 +84,7 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
         Handler handler = new UserWalletHadnler(UserWalletActivity.this);
         UserWalletRequest request = new UserWalletRequest(UserWalletActivity.this, handler);
         String id = sharedPreferences.getString("id", "");
-        request.doGet(Integer.valueOf(id));
+        request.doGet(id);
     }
 
     /**
@@ -104,9 +104,6 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
             switch (msg.what){
                 case 0:
                     // 具体执行内容
-                    Toast t = Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT);
-                    t.show();
-
                     // {"ethAddress":"以太坊地址", "balance":"余额", "transactionRecordList":[{"id":"交易id", "transactTime":"交易时间", "transactEth": "交易金额", "transactAddr":"交易在区块链上的地址"}, ...]}
                     try {
                         JSONObject response = (JSONObject)msg.obj;
@@ -116,20 +113,21 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
 
 
                         // -- 交易记录数据 ---------
-                        List<Map<String, String>> dataList = new ArrayList<>();
-                        for(Integer i=0; i< transactionRecordList.length(); i++){
-                            Map<String, String> map = new HashMap<>();
-                            map.put("id", transactionRecordList.getJSONObject(i).getString("id"));
-                            map.put("transactTime", transactionRecordList.getJSONObject(i).getString("transactTime"));
-                            map.put("transactEth", transactionRecordList.getJSONObject(i).getString("transactEth"));
-                            map.put("transactAddr", transactionRecordList.getJSONObject(i).getString("transactAddr"));
-                            dataList.add(map);
-                        }
+//                        List<Map<String, String>> dataList = new ArrayList<>();
+//                        for(Integer i=0; i< transactionRecordList.length(); i++){
+//                            Map<String, String> map = new HashMap<>();
+//                            map.put("id", transactionRecordList.getJSONObject(i).getString("id"));
+//                            map.put("transactTime", transactionRecordList.getJSONObject(i).getString("transactTime"));
+//                            map.put("transactEth", transactionRecordList.getJSONObject(i).getString("transactEth"));
+//                            map.put("transactAddr", transactionRecordList.getJSONObject(i).getString("transactAddr"));
+//                            dataList.add(map);
+//                        }
                         // ------------------------
 
 
-                    } catch (JSONException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
+                        Toast.makeText(context, "钱包数据加载失败", Toast.LENGTH_SHORT).show();
                     }
 
                     break;
