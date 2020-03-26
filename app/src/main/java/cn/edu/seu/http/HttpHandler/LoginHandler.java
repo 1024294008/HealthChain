@@ -57,17 +57,19 @@ public class LoginHandler extends Handler {
                     }
                     else {
                         Toast.makeText(context, "账户信息错误,请重新确认", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 } catch (JSONException e) {
                     Toast t = Toast.makeText(context, "请求错误,请重试", Toast.LENGTH_SHORT);
                     t.show();
                     e.printStackTrace();
+                    return;
                 }
 
                 //跳转到主页面
                 Intent intent = new Intent(context, MainActivity.class);
-
                 context.startActivity(intent);
+                ((LoginActivity)context).finish();
                 break;
         }
     }
