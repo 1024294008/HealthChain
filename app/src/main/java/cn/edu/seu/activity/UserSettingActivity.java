@@ -2,7 +2,9 @@ package cn.edu.seu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,13 +42,31 @@ public class UserSettingActivity extends AppCompatActivity implements View.OnCli
                 break;
             //点击退出登录 跳转到桌面
             case R.id.logout:
-                Intent intent_login = new Intent();
-                intent_login.setClass(UserSettingActivity.this, LoginActivity.class);
-                intent_login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent_login);
-                this.finish();
+                loginOut();
                 break;
         }
     }
 
+    private void loginOut() {
+        // 清除数据
+        SharedPreferences sharedPreferences = this.getSharedPreferences("test", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
+        editor.putString("id", "");
+        editor.putString("username", "");
+        editor.putString("nickName", "");
+        editor.putString("password", "");
+        editor.putString("ethAddress", "");
+        editor.putString("sex", "");
+        editor.putString("address", "");
+        editor.putString("birth", "");
+        editor.putString("tel", "");
+        editor.putString("balance", "");
+        editor.commit();
+
+        Intent intent_login = new Intent();
+        intent_login.setClass(UserSettingActivity.this, LoginActivity.class);
+        intent_login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent_login);
+        this.finish();
+    }
 }
