@@ -1,6 +1,7 @@
 package cn.edu.seu.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -42,6 +43,7 @@ import org.json.JSONObject;
 
 import cn.edu.seu.R;
 import cn.edu.seu.activity.MainActivity;
+import cn.edu.seu.activity.UploadActivity;
 import cn.edu.seu.adapter.HealthListAdapter;
 import cn.edu.seu.adapter.MedicalListAdapter;
 import cn.edu.seu.http.RequestAction.HistoryDataRequest;
@@ -52,6 +54,7 @@ import cn.edu.seu.http.RequestAction.LatestDataRequest;
  */
 public class HealthFragment extends Fragment  implements View.OnClickListener{
     private View view;
+    private View dialogView;
 
     private LinearLayout healthFront;
     private LinearLayout healthBg;
@@ -59,6 +62,8 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
     private ImageButton back;
     private ImageButton uploadOptions;
     private EditText searchKey;
+
+    private BubbleDialog uploadDialog;
 
     private ListView healthListView;
     private HealthListAdapter healthListAdapter;
@@ -108,6 +113,8 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         healthListView = view.findViewById(R.id.healthListView);
         uploadOptions = view.findViewById(R.id.uploadOptions);
 
+        dialogView = LayoutInflater.from(HealthFragment.this.getActivity()).inflate(R.layout.dialog_health_upload_options, null);
+
         // 首页显示的最近一条数据的控件
         uploadTime = (TextView)view.findViewById(R.id.uploadTime);
         distance = (TextView)view.findViewById(R.id.distance);
@@ -119,6 +126,13 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         healthListOrigin = new ArrayList<>();
         healthListAdapter = new HealthListAdapter(this.getActivity(), healthList, R.layout.fragment_health_list_item);
 
+        uploadDialog = new BubbleDialog(HealthFragment.this.getActivity())
+                .addContentView(dialogView)
+                .autoPosition(Auto.UP_AND_DOWN)
+                .calBar(true)
+                .softShowUp();
+
+        dialogView.findViewById(R.id.upload).setOnClickListener(this);
         healthFront.setOnClickListener(this);
         healthBg.setOnClickListener(this);
         searchHistory.setOnClickListener(this);
@@ -154,8 +168,11 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
                 onResume();
                 break;
             case R.id.uploadOptions:
-                showOptionsDialog();
+                //显示上传数据对话框
+                uploadDialog.setClickedView(uploadOptions).show();
                 break;
+            case R.id.upload:
+                jumpUploadPage();
         }
     }
 
@@ -178,15 +195,11 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         searchKey.setText("");
     }
 
-    //显示上传数据对话框
-    private void showOptionsDialog(){
-        new BubbleDialog(HealthFragment.this.getActivity())
-                .addContentView(LayoutInflater.from(HealthFragment.this.getActivity()).inflate(R.layout.dialog_health_upload_options, null))
-                .setClickedView(uploadOptions)
-                .autoPosition(Auto.UP_AND_DOWN)
-                .calBar(true)
-                .softShowUp()
-                .show();
+
+    // 跳转到上传数据页面
+    private void jumpUploadPage(){
+        startActivity(new Intent(this.getActivity(), UploadActivity.class));
+        uploadDialog.dismiss();
     }
 
     public void onResume() {
@@ -285,7 +298,6 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                     break;
             }
         }
