@@ -87,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
                     editor.putString("username", name);                           //key-value
                     editor.commit();                                                  //提交修改
-
                     //跳转到主页面
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
 
