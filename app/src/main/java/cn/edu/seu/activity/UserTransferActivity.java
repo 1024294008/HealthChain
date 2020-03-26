@@ -1,11 +1,14 @@
 package cn.edu.seu.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,17 +16,26 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.edu.seu.R;
+import cn.edu.seu.http.RequestAction.TransferRequest;
 
 public class UserTransferActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView back;
-    private EditText ethaddress;
+    private EditText ethaddress; // 收钱方以太坊地址
     private EditText amount;   //转账金额
     private Button pay;
 
-    private String  dataBalance; //用户余额
+    private String dataBalance; //用户余额
+    private String localEthAddress; // 本人以太坊地址
 
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -41,8 +53,9 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
         pay = (Button) findViewById(R.id.pay);
 
         // 读取sharedpreferences中的用户余额
-        SharedPreferences data = getSharedPreferences("wallet", Context.MODE_PRIVATE);
-        dataBalance = data.getString("userbalance", "");
+        sharedPreferences = getSharedPreferences("wallet", Context.MODE_PRIVATE);
+        dataBalance = sharedPreferences.getString("userbalance", "");
+        localEthAddress = sharedPreferences.getString("ethAddress", ""); // 本人以太坊账号
 
         back.setOnClickListener(this);
         pay.setOnClickListener(this);
@@ -115,6 +128,15 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
         //更新对方钱包余额
         //为自己添加转账记录
         //为对方添加转账记录
+        Handler handler = new TransferHandler(UserTransferActivity.this);
+        TransferRequest request = new TransferRequest(UserTransferActivity.this, handler);
+        Map<String, String> param = new HashMap<String, String>();
+        // sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额)
+        param.put("sendAddress", localEthAddress);
+        param.put("recieveAddress", ethaddress.getText().toString());
+        param.put("transactEth", amount.getText().toString());
+        request.doPost(param);
+
 
         //提示转账成功
         Toast toast = Toast.makeText(UserTransferActivity.this,"转账成功，可返回上一级查看您的余额和转账记录",Toast.LENGTH_SHORT);
@@ -123,6 +145,46 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
         //清空输入的账户和转账金额
         ethaddress.setText("");
         amount.setText("");
+    }
+
+
+    /**
+     * 转账
+     */
+    public class TransferHandler extends Handler {
+
+        private Context context;
+
+        public TransferHandler(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    // 具体执行内容
+
+                    try {
+                        JSONObject response = (JSONObject)msg.obj; // {"code": "200", "userBalance": "用户余额,后台通过web3直接查询"}
+                        String code = response.getString("code");
+                        if("200".equals(code)){
+                            Toast t = Toast.makeText(context, "转账成功!", Toast.LENGTH_SHORT);
+                            t.show();
+                        }
+                        double userBalance = response.getDouble("userBalance"); // 用户余额
+                        sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
+                        editor.putString("userbalance", String.valueOf(userBalance)); // 刷新用户余额
+                        editor.commit();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+            }
+        }
     }
 }
 

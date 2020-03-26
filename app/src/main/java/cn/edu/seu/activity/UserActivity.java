@@ -1,9 +1,15 @@
 package cn.edu.seu.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import cn.edu.seu.R;
+import cn.edu.seu.http.RequestAction.UpdateUserInfoRequest;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
@@ -11,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户信息界面
@@ -31,6 +40,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout line_phone;
     private LinearLayout line_sex;
 
+    public SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +50,10 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView(){
+
+        // 用户信息
+        sharedPreferences = UserActivity.this.getSharedPreferences("test", Context.MODE_PRIVATE);
+
         //设置显示用户头像，用户名，账户，地址，手机号，性别，密码（不显示）
         imageView_head = this.findViewById(R.id.head);
         textView_nickname = this.findViewById(R.id.nickname);
@@ -90,6 +105,54 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.back:
                 finish();
                 break;
+        }
+    }
+
+    // 修改用户数据，需要调用。
+    public void updateUserInfo() {
+
+        String id = sharedPreferences.getString("id", "");
+        String password = sharedPreferences.getString("password", "");
+        String sex = sharedPreferences.getString("sex", "");
+        String tel = sharedPreferences.getString("tel", "");
+        String nickName = sharedPreferences.getString("nickName", "");
+        String address = sharedPreferences.getString("address", "");
+
+        Map<String, String> param = new HashMap<String, String>();
+        param.put("id", id);
+        param.put("password", password);
+        param.put("sex", sex);
+        param.put("tel", tel);
+        param.put("nickName", nickName);
+        param.put("address", address);
+
+        Handler handler = new UpdateUserInfoHandler(UserActivity.this);
+        UpdateUserInfoRequest request = new UpdateUserInfoRequest(UserActivity.this, handler);
+        request.doPost(param);
+
+    }
+
+    /**
+     * 修改用户个人信息
+     */
+    public class UpdateUserInfoHandler extends Handler {
+
+        private Context context;
+
+        public UpdateUserInfoHandler(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    // 具体执行内容
+                    Toast t = Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT);
+                    t.show();
+                    break;
+            }
         }
     }
 }

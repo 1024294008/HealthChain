@@ -1,6 +1,8 @@
 package cn.edu.seu.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,7 @@ public class UserNicknameActivity extends AppCompatActivity {
 
     private EditText editText_nickname;
     private Button button_save;
+    public SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,9 @@ public class UserNicknameActivity extends AppCompatActivity {
     }
 
     private void initView(){
+
+        sharedPreferences = UserNicknameActivity.this.getSharedPreferences("test", Context.MODE_PRIVATE);
+
         //得到组件： “修改昵称” 页面里的当前昵称内容组件，监听save按钮组件
         editText_nickname = this.findViewById(R.id.nickname);
         button_save = this.findViewById(R.id.save);
@@ -41,6 +47,11 @@ public class UserNicknameActivity extends AppCompatActivity {
             case R.id.save:
 
                 String string_nickname = editText_nickname.getText().toString().trim();
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
+                editor.putString("nickName", string_nickname);                      //key-value
+                editor.commit();
+
                 if (string_nickname == null) {
                     //首先将数据内容存储到数据库
 

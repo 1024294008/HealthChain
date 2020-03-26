@@ -69,19 +69,19 @@ public class Url {
 
 
     // 修改用户信息操作     post
-    // param:   id,password,sex,address(住址),tel
+    // param:   id,password,sex,address(住址),tel,nickName
     // return:
     public final static String UPDATE_USER_INFO_URL = "http://localhost:8000/user_updateInfo";
 
 
-    // 查看用户钱包信息操作   get
+    // 查看用户钱包信息操作   get    --  通过id拿到用户信息  根据以太坊地址查询交易记录
     // param:   id
-    // return:
+    // return: {"ethAddress":"以太坊地址", "balance":"余额", "transactionRecordList":[{"id":"交易id", "transactTime":"交易时间", "transactEth": "交易金额", "transactAddr":"交易在区块链上的地址"}, ...]}
     public final static String USER_WALLET_URL = "http://localhost:8000/user_myWallet";
 
     // 转账操作     post
     // param:      sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额)
-    // return:
+    // return: {"code": "200", "userBalance": "用户余额,后台通过web3直接查询"}
     public final static String USER_TRANSFER = "http://localhost:8000/user_transfer";
 
 
