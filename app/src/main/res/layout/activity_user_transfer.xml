@@ -8,8 +8,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-
-        android:layout_marginBottom="@dimen/standardMargin"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/userInfoHeader"
@@ -21,19 +19,18 @@
                 android:id="@+id/back"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/selector_button_bg2"
                 android:padding="10dp"
-                android:src="@drawable/back2"/>
-
+                android:src="@drawable/back2" />
             <TextView
-                android:layout_width="165dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/standardBackground"
-                android:gravity="center_vertical"
                 android:padding="0dp"
+                android:gravity="center_vertical"
                 android:text="转账"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/listItemFontSize" />
+                android:textSize="17sp"/>
 
 
         </LinearLayout>
@@ -97,7 +94,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="6dp"
                 android:orientation="horizontal">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -111,6 +107,7 @@
                     android:layout_width="50dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:inputType="numberDecimal"
                     android:gravity="center_vertical"
                     android:text="108.0000892100000"
                     android:textColor="@color/colorDeepGray"
@@ -123,8 +120,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal">
 
         <Button
@@ -132,7 +129,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="确认转账"
-            android:background="@color/colorDeepSkyBlueSelect"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/shape_standard_round_rect4"
             />
     </LinearLayout>
 

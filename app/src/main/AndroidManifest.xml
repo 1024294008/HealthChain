@@ -22,7 +22,8 @@
         <activity android:name=".activity.UserPhoneActivity" />
         <activity android:name=".activity.UserAddressActivity" />
         <activity android:name=".activity.UserSexActivity" />
-        <activity android:name=".activity.RegisterActivity">
+        <activity android:name=".activity.RegisterActivity"
+            android:theme="@style/FullTheme">
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +33,7 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
+            android:theme="@style/FullTheme"
             android:exported="true">
             <!--
             <intent-filter>

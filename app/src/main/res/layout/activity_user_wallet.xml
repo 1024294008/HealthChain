@@ -8,8 +8,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-
-        android:layout_marginBottom="@dimen/standardMargin"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/userInfoHeader"
@@ -21,29 +19,30 @@
                 android:id="@+id/back"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/selector_button_bg2"
                 android:padding="10dp"
-                android:src="@drawable/back2"/>
-
+                android:src="@drawable/back2" />
             <TextView
-                android:layout_width="165dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/standardBackground"
-                android:gravity="center_vertical"
                 android:padding="0dp"
+                android:gravity="center_vertical"
                 android:text="我的钱包"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/listItemFontSize" />
+                android:textSize="17sp"/>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/transant"
-                    android:layout_width="65dp"
-                    android:layout_height="wrap_content"
-                    android:padding="0dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shape_standard_round_rect4"
                     android:text="转账"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:src="@drawable/ic_list_item_detail"/>
             </RelativeLayout>
 
@@ -66,9 +65,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="6dp"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="55dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_wallet_account"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -79,15 +81,14 @@
                     android:textSize="@dimen/listItemFontSize" />
                 <TextView
                     android:id="@+id/address"
-                    android:layout_width="50dp"
+                    android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="0xql29839402390920390432jkn"
-                    android:textColor="@color/colorDeepGray"
-                    android:textSize="@dimen/listItemFontSize" />
+                    android:text="0x24602722816b6cad0e143ce9fabf31f6026ec622"
+                    android:textColor="@color/colorDeepSkyBlue"
+                    android:textSize="15sp" />
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -108,7 +109,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="6dp"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="55dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_wallet_banlance"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -124,8 +129,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="108.0000892100000"
-                    android:textColor="@color/colorDeepGray"
-                    android:textSize="@dimen/listItemFontSize" />
+                    android:textColor="@color/colorDeepSkyBlue"
+                    android:textSize="15sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -146,14 +151,15 @@
             android:textSize="13sp" />
     </LinearLayout>
 
-        <FrameLayout
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+        <ListView
+            android:id="@+id/visitorsListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/visitorsListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:cacheColorHint="@color/standardSelect"
-                android:listSelector="@drawable/selector_list_item_bg"/>
-        </FrameLayout>
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/standardSelect"
+            android:listSelector="@drawable/selector_list_item_bg"/>
+    </FrameLayout>
 </LinearLayout>

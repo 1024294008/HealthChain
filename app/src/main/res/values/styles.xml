@@ -22,4 +22,9 @@
         <item name="android:button">@null</item>
     </style>
 
+    <style name="FullTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 </resources>
