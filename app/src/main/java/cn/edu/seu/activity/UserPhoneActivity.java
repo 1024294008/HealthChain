@@ -37,16 +37,22 @@ public class UserPhoneActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.save:
+                if (editText_phone.getText()!=null){
+                    String string_phone = editText_phone.getText().toString().trim();
+                    if (string_phone.equals("")) {
+                        //首先将数据内容存储到数据库
 
-                String string_phone = editText_phone.getText().toString().trim();
-                if (string_phone == null) {
-                    //首先将数据内容存储到数据库
-
+                    }
+                    //再跳转到用户信息页面
+                    Intent intent = new Intent(UserPhoneActivity.this, UserActivity.class);
+                    startActivity(intent);
+                    break;
+                }else{
+                    //这意味着没有输入值什么也不做，保持原值
+                    break;
                 }
-                //再跳转到用户信息页面
-                Intent intent = new Intent(UserPhoneActivity.this, UserActivity.class);
-                startActivity(intent);
-                break;
+
+
             case R.id.back:
                 //什么都不做，返回用户信息页面
                 Intent intent_back = new Intent(UserPhoneActivity.this, UserActivity.class);

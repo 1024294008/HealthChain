@@ -41,7 +41,8 @@ public class UserNicknameActivity extends AppCompatActivity {
             case R.id.save:
 
                 String string_nickname = editText_nickname.getText().toString().trim();
-                if (string_nickname == null) {
+                //提示长度小于
+                if (string_nickname.equals(null)&&string_nickname.length()<4) {
                     //首先将数据内容存储到数据库
 
                 }
