@@ -40,12 +40,11 @@ public class UserSettingActivity extends AppCompatActivity implements View.OnCli
                 break;
             //点击退出登录 跳转到桌面
             case R.id.logout:
-//                Intent intent = new Intent(UserSettingActivity.this, LoginActivity.class);
-                Intent intent = new Intent();// 创建Intent对象
-                intent.setAction(Intent.ACTION_MAIN);// 设置Intent动作
-                intent.addCategory(Intent.CATEGORY_HOME);// 设置Intent种类
-
-                startActivity(intent);
+                Intent intent_login = new Intent();
+                intent_login.setClass(UserSettingActivity.this, LoginActivity.class);
+                intent_login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent_login);
+                this.finish();
                 break;
         }
     }

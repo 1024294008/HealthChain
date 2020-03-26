@@ -29,7 +29,7 @@
             android:paddingLeft="8dp"
             android:maxLines="1"
             android:ellipsize="end"
-            android:maxEms="15"
+            android:maxEms="8"
             android:textColor="#1D1D1C"
             android:textSize="15sp" />
     </RelativeLayout>
