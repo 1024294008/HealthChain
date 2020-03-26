@@ -121,13 +121,14 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
         distance.setText("10000米");
         heat.setText("1000卡路里");
         sleepQuality.setText("非常良好");
-        heartRate.setText("75分钟/次");
+        heartRate.setText("75次/分钟");
     }
 
     // 上传数据
     private void startUpload(){
         if(evaluation.getText().toString().equals("")){
             Toast.makeText(context, "写个心情呗", Toast.LENGTH_SHORT).show();
+            return;
         }
         // 获取数据并上传
         String str_distance =  distance.getText().toString();
