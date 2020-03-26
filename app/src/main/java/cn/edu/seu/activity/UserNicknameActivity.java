@@ -47,9 +47,10 @@ public class UserNicknameActivity extends AppCompatActivity implements View.OnCl
         switch (v.getId()) {
             case R.id.save:
                 String string_nickname = editText_nickname.getText().toString().trim();
-                if (string_nickname.isEmpty()) {
-                    //提示用户昵称不能为空
-                    Toast toast = Toast.makeText(UserNicknameActivity.this,"用户昵称不能为空",Toast.LENGTH_SHORT);
+
+                //提示用户昵称长度不能小于4
+                if ( string_nickname.equals(null) || string_nickname.length() < 4 ) {
+                    Toast toast = Toast.makeText(UserNicknameActivity.this,"用户昵称长度不能小于4",Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 else{
@@ -66,7 +67,6 @@ public class UserNicknameActivity extends AppCompatActivity implements View.OnCl
                     //再跳转到用户信息页面
                     this.finish();
                 }
-
                 break;
             case R.id.back:
                 //什么都不做，返回用户信息页面

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,27 +40,34 @@ public class UserPasswordActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.save:
-                String string_currentPassword = editText_currentPassword.getText().toString();
-                String string_newPassword = editText_newPassword.getText().toString();
-                String string_newPassword2 = editText_newPassword2.getText().toString();
-                //首先校验两次密码是否是否输入相同
-                if (string_newPassword != string_newPassword2) {
-                    //error,页面提示
+                if (editText_currentPassword.getText()!=null&&editText_newPassword.getText()!=null&&editText_newPassword2.getText()!=null){
+                    String string_currentPassword = editText_currentPassword.getText().toString();
+                    String string_newPassword = editText_newPassword.getText().toString();
+                    String string_newPassword2 = editText_newPassword2.getText().toString();
+                    //首先校验两次密码是否是否输入相同
+                    if(!string_newPassword.equals(string_newPassword2)) {
+                        Toast.makeText(this, "新密码两次输入不一致！", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    //校验输入新密码的长度
+                    if(string_newPassword.length()<=8){
+                        Toast.makeText(this, "密码长度至少8位！", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    //检验原密码是否和当前数据库的相同
+                    //不同则error，break
 
 
+                    //相同进行修改，同步更新到数据库
+
+
+                    //再跳转到用户信息页面
+                    Intent intent = new Intent(UserPasswordActivity.this, UserActivity.class);
+                    startActivity(intent);
                     break;
+                }else {
+                    //什么都不做
                 }
-                //检验原密码是否和当前数据库的相同
-                //不同则error，break
-
-
-                //相同进行修改，同步更新到数据库
-
-
-                //再跳转到用户信息页面
-                Intent intent = new Intent(UserPasswordActivity.this, UserActivity.class);
-                startActivity(intent);
-                break;
             case R.id.back:
                 //什么都不做，返回用户信息页面
                 Intent intent_back = new Intent(UserPasswordActivity.this, UserActivity.class);

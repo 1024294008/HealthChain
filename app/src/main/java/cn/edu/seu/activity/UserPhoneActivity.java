@@ -45,7 +45,6 @@ public class UserPhoneActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.save:
-
                 String string_phone = editText_phone.getText().toString().trim();
                 if (string_phone.isEmpty()) {
                     //提示手机号不能为空
@@ -71,7 +70,6 @@ public class UserPhoneActivity extends AppCompatActivity implements View.OnClick
                     //再跳转到用户信息页面
                     this.finish();
                 }
-
                 break;
             case R.id.back:
                 //什么都不做，返回用户信息页面
