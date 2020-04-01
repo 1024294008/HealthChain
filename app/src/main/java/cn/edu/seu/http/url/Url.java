@@ -80,8 +80,8 @@ public class Url {
     public final static String USER_WALLET_URL = "http://localhost:8000/user_myWallet";
 
     // 转账操作     post
-    // param:      sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额)
-    // return: {"code": "200", "userBalance": "用户余额,后台通过web3直接查询"}
+    // param:      sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额), transactRemarks(备注)
+    // return: {"code": "200", "data": {}, "userBalance": "用户余额,后台通过web3直接查询"}
     public final static String USER_TRANSFER = "http://localhost:8000/user_transfer";
 
 
