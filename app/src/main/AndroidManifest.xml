@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.edu.seu">
-    <!-- 打开网络访问权限 -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <activity android:name=".activity.UploadActivity"/>
-        <activity android:name=".activity.UserDevicesActivity"/>
+        <activity android:name=".activity.MedicalDetailActivity"></activity>
+
+        <activity android:name=".activity.UploadActivity" />
+
+        <activity android:name=".activity.UserDevicesActivity" />
         <activity android:name=".activity.UserVisitorsActivity" />
         <activity android:name=".activity.UserSettingActivity" />
         <activity android:name=".activity.UserTransferActivity" />
@@ -22,7 +24,10 @@
         <activity android:name=".activity.UserPhoneActivity" />
         <activity android:name=".activity.UserAddressActivity" />
         <activity android:name=".activity.UserSexActivity" />
-        <activity android:name=".activity.RegisterActivity">
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:theme="@style/FullTheme">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +37,9 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/FullTheme">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,10 +53,15 @@
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

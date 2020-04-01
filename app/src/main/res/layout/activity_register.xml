@@ -48,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="15sp"
+            android:textColor="@color/colorWhite"
             android:background="@drawable/selector_edittext_bg"/>
         <TextView
             android:layout_width="wrap_content"
@@ -59,6 +60,7 @@
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:textColor="@color/colorWhite"
             android:textSize="15sp"
             android:background="@drawable/selector_edittext_bg" />
         <TextView
@@ -71,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="phone"
+            android:textColor="@color/colorWhite"
             android:textSize="15sp"
             android:background="@drawable/selector_edittext_bg"/>
         <TextView
@@ -83,6 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="15sp"
+            android:textColor="@color/colorWhite"
             android:background="@drawable/selector_edittext_bg"/>
         <TextView
             android:id="@+id/register"

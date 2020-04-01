@@ -7,7 +7,7 @@
     android:background="@color/standardBackground">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="55dp"
 
         android:layout_marginBottom="@dimen/standardMargin"
         android:orientation="horizontal">
@@ -22,8 +22,8 @@
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
                 android:padding="10dp"
+                android:background="@drawable/selector_button_bg2"
                 android:src="@drawable/back2"/>
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -33,17 +33,19 @@
                 android:padding="0dp"
                 android:text="修改地址"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/listItemFontSize" />
+                android:textSize="17sp" />
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/save"
-                    android:layout_width="45dp"
-                    android:layout_height="wrap_content"
-                    android:padding="0dp"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shape_standard_round_rect4"
                     android:text="保存"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:src="@drawable/ic_list_item_detail"/>
             </RelativeLayout>
 
@@ -52,7 +54,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:background="@color/colorWhite"
         android:layout_marginBottom="@dimen/standardMargin"
         android:orientation="horizontal">

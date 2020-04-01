@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.edu.seu.R;
+import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.util.pinyin.PinYinUtil;
 
 public class MedicalListAdapter extends BaseAdapter {
@@ -86,7 +87,7 @@ public class MedicalListAdapter extends BaseAdapter {
                 return convertView;
             }
             serviceName.setText(medicalList.get(position).get("serviceName"));
-            serviceIcon.setImageDrawable(this.context.getResources().getDrawable(R.drawable.ic_standard_head, null));
+            serviceIcon.setImageDrawable(this.context.getResources().getDrawable(PortraitManager.getPortraitSrc(medicalList.get(position).get("portrait")), null));
             // 根据serviceName获取首字母acr进行分类
             String currentAcr = PinYinUtil.getFirstSpell(medicalList.get(position).get("serviceName"));
             // 如果此项与前一项属于同一类，则不显示分类标签，否则显示

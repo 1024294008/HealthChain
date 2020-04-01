@@ -7,9 +7,7 @@
     android:background="@color/standardBackground">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-
-        android:layout_marginBottom="@dimen/standardMargin"
+        android:layout_height="55dp"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/userInfoHeader"
@@ -19,10 +17,10 @@
             android:paddingLeft="5dp">
 
             <ImageView
-
                 android:id="@+id/back"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/selector_button_bg2"
                 android:padding="10dp"
                 android:src="@drawable/back2" />
             <TextView
@@ -33,7 +31,7 @@
                 android:gravity="center_vertical"
                 android:text="个人信息"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/listItemFontSize"/>
+                android:textSize="17sp"/>
 
 
         </LinearLayout>
@@ -125,7 +123,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="西红柿首富"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:maxEms="7"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="@dimen/listItemFontSize" />
 
@@ -150,7 +150,7 @@
                 android:clickable="true"
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
-                android:background="@drawable/selector_list_item_bg">
+                android:background="@color/colorWhite">
 
                 <TextView
                     android:layout_width="0dp"
@@ -158,6 +158,9 @@
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:maxEms="7"
                     android:text="账号"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/listItemFontSize"/>
@@ -166,7 +169,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="18293@qq.com"
                     android:paddingRight="10dp"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="@dimen/listItemFontSize" />
@@ -245,7 +247,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="河北邯郸"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxEms="7"
                 android:textColor="@color/colorDeepGray"
                 android:textSize="@dimen/listItemFontSize" />
             <ImageView

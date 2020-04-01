@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,6 +50,18 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initView(){
+        //设置系统状态栏UI
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            Window window = this.getWindow();
+            //取消设置透明状态栏,使 ContentView 内容不再覆盖状态栏
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            //设置状态栏颜色
+            window.setStatusBarColor(getResources().getColor(R.color.standardBackground, null));
+        }
+
         back = (ImageView) findViewById(R.id.back);
         ethaddress = (EditText) findViewById(R.id.ethaddress);
         amount = (EditText) findViewById(R.id.amount);
@@ -86,35 +101,36 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
     //判断用户余额是否足够
     private boolean isEnough(EditText amount, String dataBalance){
 
-        //转换成小数
-        double dbAmount = Double.parseDouble(amount.getText().toString());
-        double dbBalance = Double.parseDouble(dataBalance);
-
-        //emmmmm, 如何比较相等？
-        if(dbBalance > dbAmount)
-            return  true;
-        else
-            return false;
+//        //转换成小数
+//        double dbAmount = Double.parseDouble(amount.getText().toString());
+//        double dbBalance = Double.parseDouble(dataBalance);
+//
+//        //emmmmm, 如何比较相等？
+//        if(dbBalance > dbAmount)
+//            return  true;
+//        else
+//            return false;
+        return true;
     }
 
     //开始转账
     private void startTransfer(){
-        //如果用户未输入账户和余额 提示
+//        如果用户未输入账户和余额 提示
         if(ethaddress.getText().toString().isEmpty() || amount.getText().toString().isEmpty())
         {
             Toast toast = Toast.makeText(UserTransferActivity.this,"账户和金额不能为空",Toast.LENGTH_SHORT);
             toast.show();
             return ;
         }
-
-        //如果账户不存在
+//
+//        //如果账户不存在
         if( !isExist(ethaddress) ){
             //提示账户不存在
             Toast toast = Toast.makeText(UserTransferActivity.this,"您输入的账户不存在",Toast.LENGTH_SHORT);
             toast.show();
             return ;
         }
-
+//
         //如果余额不足
         if( !isEnough(amount, dataBalance) ){
             //提示用户余额不足

@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="15sp"
+            android:textColor="@color/colorWhite"
             android:background="@drawable/selector_edittext_bg"/>
         <TextView
             android:layout_width="wrap_content"
@@ -42,6 +43,7 @@
             android:id="@+id/password"
             android:inputType="textPassword"
             android:layout_width="match_parent"
+            android:textColor="@color/colorWhite"
             android:layout_height="50dp"
             android:textSize="15sp"
             android:background="@drawable/selector_edittext_bg" />

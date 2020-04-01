@@ -80,25 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                     param.put("password", psd);
 
                     request.doPost(param);
-//                    request.doGet();
-
-                    //保存用户名到sharedPerferences中    -- 定义在handler中
-                    sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
-                    editor.putString("username", name);                           //key-value
-                    editor.commit();                                                  //提交修改
-                    //跳转到主页面
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-
-                    startActivity(intent);
-
                 }
-//                //用户名和密码不一致
-//                else
-//                {
-//                    Toast toast = Toast.makeText(LoginActivity.this,"您输入的用户名和密码不一致",Toast.LENGTH_SHORT);
-//                    toast.show();
-//                }
+
             }
         });
 
