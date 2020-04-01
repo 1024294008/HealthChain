@@ -41,7 +41,7 @@ public class Url {
     // 所有医疗服务页面 get
     // param:
     // return:  {"serviceList":[{"serviceId": "id", "serviceName": "xxx"}, {"serviceId": "id", "serviceName": "xxx"}, ...}]}
-    public final static String ALL_MEDICAL_SERVICE_URL = "http://localhost:8000/user_allMedicalService";
+    public final static String ALL_MEDICAL_SERVICE_URL = "http://localhost:3000/api/user/getMedicalServiceList";
 
 
     // 查找医疗机构操作 post

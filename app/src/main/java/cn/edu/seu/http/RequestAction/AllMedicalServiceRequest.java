@@ -24,16 +24,16 @@ public class AllMedicalServiceRequest {
 
     public void doGet()
     {
-//        String url = Url.ALL_MEDICAL_SERVICE_URL;
-        String url = "http://192.168.31.112:80/json.html";
+        String url = Url.ALL_MEDICAL_SERVICE_URL;
+//        String url = "http://192.168.31.112:80/json.html";
         httpRequest.setUrl(url);
         httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-//        String url = "";
+//        String url = Url.ALL_MEDICAL_SERVICE_URL;
 //        httpRequest.setUrl(url);
-//        httpRequest.post(param);
+//        httpRequest.post(null);
     }
 }
