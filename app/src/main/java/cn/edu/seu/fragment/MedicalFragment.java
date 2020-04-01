@@ -33,6 +33,7 @@ import org.json.JSONObject;
 
 import cn.edu.seu.R;
 import cn.edu.seu.adapter.MedicalListAdapter;
+import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.http.RequestAction.AllMedicalServiceRequest;
 
 /**
@@ -188,17 +189,18 @@ public class MedicalFragment extends Fragment implements View.OnClickListener {
         medicalListFront.add(firstItem);
 
         // --------------从后台获取数据-------------
-//        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
-//        for (Integer i = 0; i < servicesTest.length; i++) {
-//            Map<String, String> showItem = new HashMap<>();
-//            showItem.put("serviceId", i.toString());
-//            showItem.put("serviceName", servicesTest[i]);
-//            medicalListFront.add(showItem);
-//        }
+        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
+        for (Integer i = 0; i < servicesTest.length; i++) {
+            Map<String, String> showItem = new HashMap<>();
+            showItem.put("serviceId", i.toString());
+            showItem.put("serviceName", servicesTest[i]);
+            showItem.put("portrait", PortraitManager.getPortrait().toString());
+            medicalListFront.add(showItem);
+        }
 
-        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
-        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
-        request.doGet();
+//        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
+//        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
+//        request.doGet();
 
         // --------------------------------------------
 
