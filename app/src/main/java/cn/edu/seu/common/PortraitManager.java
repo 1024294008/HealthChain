@@ -7,7 +7,14 @@ public class PortraitManager {
             R.drawable.portrait0,
             R.drawable.portrait1,
             R.drawable.portrait2,
-            R.drawable.portrait3
+            R.drawable.portrait4,
+            R.drawable.portrait5,
+            R.drawable.portrait6,
+            R.drawable.portrait6,
+            R.drawable.portrait7,
+            R.drawable.portrait8,
+            R.drawable.portrait9,
+            R.drawable.portrait10
     };
 
     public static Integer getPortraitSrc(String portrait){
