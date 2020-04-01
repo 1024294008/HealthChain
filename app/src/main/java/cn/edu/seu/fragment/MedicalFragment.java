@@ -240,11 +240,11 @@ public class MedicalFragment extends Fragment implements View.OnClickListener {
                         JSONObject response = (JSONObject)msg.obj;
                         JSONObject _data = response.getJSONObject("_data");
                         JSONObject medicalServiceList = _data.getJSONObject("medicalServiceList");
-                        JSONArray array = medicalServiceList.getJSONArray("data");
-                        for(Integer i=0; i<array.length(); i++){
+                        JSONArray data = medicalServiceList.getJSONArray("data");
+                        for(Integer i=0; i<data.length(); i++){
                             Map<String, String> map = new HashMap<>();
-                            map.put("serviceId", array.getJSONObject(i).getString("id")); // 需要解析id
-                            map.put("serviceName", array.getJSONObject(i).getString("portrait")); // 需要解析
+                            map.put("serviceId", String.valueOf(data.getJSONObject(i).getInt("id")));
+                            map.put("serviceName", data.getJSONObject(i).getString("serviceName"));
                             map.put("portrait", PortraitManager.getPortrait().toString());
                             medicalListFront.add(map);
                         }

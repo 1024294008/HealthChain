@@ -2,6 +2,8 @@ package cn.edu.seu.http.url;
 
 public class Url {
 
+    public final static String IFCONFIG = "192.168.31.170:3000";
+
     // 登录才操作    POST
     // param:   account,password
     // return:  {用户信息... , "code": "200"}
@@ -41,7 +43,7 @@ public class Url {
     // 所有医疗服务页面 get
     // param:
     // return:  {"serviceList":[{"serviceId": "id", "serviceName": "xxx"}, {"serviceId": "id", "serviceName": "xxx"}, ...}]}
-    public final static String ALL_MEDICAL_SERVICE_URL = "http://localhost:3000/api/user/getMedicalServiceList";
+    public final static String ALL_MEDICAL_SERVICE_URL = "http://" + IFCONFIG + "/api/user/getServiceList";
 
 
     // 查找医疗机构操作 post
