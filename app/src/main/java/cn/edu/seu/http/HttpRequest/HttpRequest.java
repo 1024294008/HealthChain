@@ -3,8 +3,10 @@ package cn.edu.seu.http.HttpRequest;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -43,9 +45,9 @@ public class HttpRequest implements HttpApi {
 
     @Override
     public void get() {
-        String url = this.getUrl();
+        url = this.getUrl();
         // get请求方式
-        JsonObjectRequest request = new JsonObjectRequest(getUrl(), null,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getUrl(),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -58,6 +60,7 @@ public class HttpRequest implements HttpApi {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, url, Toast.LENGTH_SHORT).show();
                         Toast t = Toast.makeText(context, "请求失败...", Toast.LENGTH_SHORT);
                         t.show();
                     }
@@ -71,7 +74,7 @@ public class HttpRequest implements HttpApi {
         JSONObject requestParam = new JSONObject(param);
         String url = this.getUrl();
         // post请求方式
-        JsonObjectRequest request = new JsonObjectRequest(url, requestParam,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestParam,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
