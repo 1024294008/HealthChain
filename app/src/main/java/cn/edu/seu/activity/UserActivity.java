@@ -150,6 +150,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         String tel = sharedPreferences.getString("tel", "");
         String nickName = sharedPreferences.getString("nickName", "");
         String address = sharedPreferences.getString("address", "");
+        String token = sharedPreferences.getString("token", "");
 
         Map<String, String> param = new HashMap<String, String>();
         param.put("id", id);
@@ -158,6 +159,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         param.put("tel", tel);
         param.put("nickName", nickName);
         param.put("address", address);
+        param.put("token", token);
 
         Handler handler = new UpdateUserInfoHandler(UserActivity.this);
         UpdateUserInfoRequest request = new UpdateUserInfoRequest(UserActivity.this, handler);

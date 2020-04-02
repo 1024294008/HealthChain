@@ -44,7 +44,7 @@ public class LoginHandler extends Handler {
                     String _code = response.getString("_code");
                     if("200".equals(_code)) {
                         JSONObject _data = response.getJSONObject("_data");
-                        String token = _data.getString("token");
+                        String token = response.getString("token");
                         JSONObject userInfo = _data.getJSONObject("userInfo");
                         editor.putString("id", userInfo.getString("id")); // 用户信息
                         editor.putString("username", userInfo.getString("account"));
@@ -56,6 +56,7 @@ public class LoginHandler extends Handler {
                         editor.putString("address", userInfo.getString("address"));
                         editor.putString("birth", userInfo.getString("birth"));
                         editor.putString("tel", userInfo.getString("tel"));
+                        editor.putString("token", token);
                         editor.commit(); //提交修改
                     }
                     else {
