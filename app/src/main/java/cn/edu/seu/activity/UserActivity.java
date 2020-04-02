@@ -187,8 +187,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                     try {
                         String _code = response.getString("_code");
                         if("200".equals(_code)){
-                            Toast t = Toast.makeText(context, "修改成功", Toast.LENGTH_SHORT);
-                            t.show();
                             break;
                         }
                         else{
@@ -198,6 +196,9 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        Toast t = Toast.makeText(context, "修改失败", Toast.LENGTH_SHORT);
+                        t.show();
+                        break;
                     }
 
             }
