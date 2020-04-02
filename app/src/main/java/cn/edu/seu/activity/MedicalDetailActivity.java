@@ -135,19 +135,18 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                         JSONObject response = (JSONObject)msg.obj;
                         String _code = response.getString("_code");
                         JSONObject _data = response.getJSONObject("_data");
-                        JSONObject orgInfo = _data.getJSONObject("orgInfo");
-                        JSONObject serviceInfo = _data.getJSONObject("serviceInfo");
+                        JSONObject serviceAndOrgInfo = _data.getJSONObject("serviceAndOrgInfo");
 
                         String user_img = sharedPreferences.getString("portrait", "");
 
-                        portrait_org.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(String.valueOf(orgInfo.getInt("portrait_org"))), null));
+                        portrait_org.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(String.valueOf(serviceAndOrgInfo.getInt("portrait_org"))), null));
                         portrait_user.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(user_img), null));
-                        organizationName.setText(orgInfo.getString("organizationName"));
-                        introduction.setText(orgInfo.getString("introduction"));
-                        tel.setText(orgInfo.getString("tel"));
-                        serviceName.setText(serviceInfo.getString("serviceName"));
-                        serviceDetails.setText(serviceInfo.getString("serviceDetails"));
-                        cost.setText(serviceInfo.getString("cost"));
+                        organizationName.setText(serviceAndOrgInfo.getString("organizationName"));
+                        introduction.setText(serviceAndOrgInfo.getString("introduction"));
+                        tel.setText(serviceAndOrgInfo.getString("tel"));
+                        serviceName.setText(serviceAndOrgInfo.getString("serviceName"));
+                        serviceDetails.setText(serviceAndOrgInfo.getString("serviceDetails"));
+                        cost.setText(serviceAndOrgInfo.getString("cost"));
 
 
                     } catch (JSONException e) {
