@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.edu.seu.R;
+import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.http.HttpHandler.RegistHandler;
 import cn.edu.seu.http.RequestAction.RegistRequest;
 
@@ -98,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                     param.put("password", psd);
                     param.put("address", add);
                     param.put("tel", tel);
+                    param.put("portrait", PortraitManager.getPortrait().toString());
 
                     request.doPost(param);
 //                    request.doGet();
