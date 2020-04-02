@@ -41,14 +41,15 @@ public class LoginHandler extends Handler {
                 sharedPreferences = context.getSharedPreferences("test", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
                 try {
-                    String _code = response.getString("_code");
+                    String _code = response.getString("_code"); // 状态码
                     if("200".equals(_code)) {
-                        JSONObject _data = response.getJSONObject("_data");
-                        String token = response.getString("token");
-                        JSONObject userInfo = _data.getJSONObject("userInfo");
-                        editor.putString("id", userInfo.getString("id")); // 用户信息
+                        JSONObject _data = response.getJSONObject("_data"); // 数据
+                        String token = _data.getString("token");    // token
+                        JSONObject userInfo = _data.getJSONObject("userInfo");  // 用户信息
+
+                        editor.putString("id", String.valueOf(userInfo.getInt("id")));
                         editor.putString("username", userInfo.getString("account"));
-                        editor.putString("portrait", userInfo.getString("portrait"));
+                        editor.putString("portrait", String.valueOf(userInfo.getInt("portrait")));
                         editor.putString("nickName", userInfo.getString("nickName"));
                         editor.putString("password", userInfo.getString("password"));
                         editor.putString("ethAddress", userInfo.getString("ethAddress"));
