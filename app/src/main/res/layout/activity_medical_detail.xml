@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="325dp">
         <ImageView
+            android:id="@+id/portrait_org"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
@@ -32,6 +33,7 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/back3"/>
             <TextView
+                android:id="@+id/requestService"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:gravity="center"
@@ -54,6 +56,7 @@
                 android:layout_alignParentBottom="true"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/organizationName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxWidth="300dp"
@@ -68,6 +71,7 @@
                     android:layout_marginBottom="@dimen/standardMargin"
                     android:background="@color/colorWhite"/>
                 <TextView
+                    android:id="@+id/introduction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxWidth="200dp"
@@ -82,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <cn.edu.seu.views.RoundImageView
-                android:id="@+id/serviceIcon"
+                android:id="@+id/portrait_user"
                 android:layout_width="75dp"
                 android:layout_height="70dp"
                 android:layout_marginRight="10dp"
@@ -117,6 +121,7 @@
                 android:textSize="@dimen/listItemFontSize"
                 android:text="服务名："/>
             <TextView
+                android:id="@+id/serviceName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -136,6 +141,7 @@
                 android:padding="10dp"
                 android:src="@drawable/ic_medical_detail_service_detail"/>
             <TextView
+                android:id="@+id/serviceDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorBlack"
@@ -170,6 +176,7 @@
                 android:textSize="@dimen/listItemFontSize"
                 android:text="费用："/>
             <TextView
+                android:id="@+id/cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -197,6 +204,7 @@
                 android:textSize="@dimen/listItemFontSize"
                 android:text="电话："/>
             <TextView
+                android:id="@+id/tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
