@@ -205,18 +205,18 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
         medicalListFront.add(firstItem);
 
         // --------------从后台获取数据-------------
-        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
-        for (Integer i = 0; i < servicesTest.length; i++) {
-            Map<String, String> showItem = new HashMap<>();
-            showItem.put("serviceId", i.toString());
-            showItem.put("serviceName", servicesTest[i]);
-            showItem.put("portrait", PortraitManager.getPortrait().toString());
-            medicalListFront.add(showItem);
-        }
+//        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
+//        for (Integer i = 0; i < servicesTest.length; i++) {
+//            Map<String, String> showItem = new HashMap<>();
+//            showItem.put("serviceId", i.toString());
+//            showItem.put("serviceName", servicesTest[i]);
+//            showItem.put("portrait", PortraitManager.getPortrait().toString());
+//            medicalListFront.add(showItem);
+//        }
 
-//        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
-//        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
-//        request.doGet();
+        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
+        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
+        request.doGet();
 
         // --------------------------------------------
 
@@ -254,11 +254,14 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
                     // 具体执行内容
                     try {
                         JSONObject response = (JSONObject)msg.obj;
-                        JSONArray array = response.getJSONArray("serviceList");
-                        for(Integer i=0; i<array.length(); i++){
+                        JSONObject _data = response.getJSONObject("_data");
+                        JSONObject medicalServiceList = _data.getJSONObject("medicalServiceList");
+                        JSONArray data = medicalServiceList.getJSONArray("data");
+                        for(Integer i=0; i<data.length(); i++){
                             Map<String, String> map = new HashMap<>();
-                            map.put("serviceId", array.getJSONObject(i).getString("serviceId")); // 需要解析id
-                            map.put("serviceName", array.getJSONObject(i).getString("serviceName")); // 需要解析
+                            map.put("serviceId", String.valueOf(data.getJSONObject(i).getInt("id")));
+                            map.put("serviceName", data.getJSONObject(i).getString("serviceName"));
+                            map.put("portrait", PortraitManager.getPortrait().toString());
                             medicalListFront.add(map);
                         }
                     } catch (Exception e) {

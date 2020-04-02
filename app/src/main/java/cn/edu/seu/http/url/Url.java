@@ -2,6 +2,8 @@ package cn.edu.seu.http.url;
 
 public class Url {
 
+    public final static String IFCONFIG = "192.168.0.105:3000";
+
     // 登录才操作    POST
     // param:   account,password
     // return:  {用户信息... , "code": "200"}
@@ -41,7 +43,7 @@ public class Url {
     // 所有医疗服务页面 get
     // param:
     // return:  {"serviceList":[{"serviceId": "id", "serviceName": "xxx"}, {"serviceId": "id", "serviceName": "xxx"}, ...}]}
-    public final static String ALL_MEDICAL_SERVICE_URL = "http://localhost:8000/user_allMedicalService";
+    public final static String ALL_MEDICAL_SERVICE_URL = "http://" + IFCONFIG + "/api/user/getServiceList";
 
 
     // 查找医疗机构操作 post
@@ -80,8 +82,8 @@ public class Url {
     public final static String USER_WALLET_URL = "http://localhost:8000/user_myWallet";
 
     // 转账操作     post
-    // param:      sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额)
-    // return: {"code": "200", "userBalance": "用户余额,后台通过web3直接查询"}
+    // param:      sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额), transactRemarks(备注)
+    // return: {"code": "200", "data": {}, "userBalance": "用户余额,后台通过web3直接查询"}
     public final static String USER_TRANSFER = "http://localhost:8000/user_transfer";
 
 
