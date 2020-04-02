@@ -32,6 +32,9 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_detail);
         initView();
+
+        // 设置服务详情页面内容
+        setContent();
     }
 
     private void initView(){
@@ -65,7 +68,7 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
 //        serviceName.setOnClickListener(this);
     }
 
-    //点击事件
+    // 点击事件
     public void onClick(View view){
         switch (view.getId()){
             case R.id.back:
@@ -76,4 +79,10 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                 break;
         }
     }
+
+    // 设置服务页面详情内容
+    private void setContent(){
+
+    }
+
 }
