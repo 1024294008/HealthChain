@@ -22,6 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -147,6 +150,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         String tel = sharedPreferences.getString("tel", "");
         String nickName = sharedPreferences.getString("nickName", "");
         String address = sharedPreferences.getString("address", "");
+        String token = sharedPreferences.getString("token", "");
 
         Map<String, String> param = new HashMap<String, String>();
         param.put("id", id);
@@ -155,6 +159,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         param.put("tel", tel);
         param.put("nickName", nickName);
         param.put("address", address);
+        param.put("token", token);
 
         Handler handler = new UpdateUserInfoHandler(UserActivity.this);
         UpdateUserInfoRequest request = new UpdateUserInfoRequest(UserActivity.this, handler);
@@ -178,9 +183,24 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             switch (msg.what){
                 case 0:
                     // 具体执行内容
-                    Toast t = Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT);
-                    t.show();
-                    break;
+                    JSONObject response = (JSONObject)msg.obj;
+                    try {
+                        String _code = response.getString("_code");
+                        if("200".equals(_code)){
+                            break;
+                        }
+                        else{
+                            Toast t = Toast.makeText(context, "修改失败", Toast.LENGTH_SHORT);
+                            t.show();
+                            break;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast t = Toast.makeText(context, "修改失败", Toast.LENGTH_SHORT);
+                        t.show();
+                        break;
+                    }
+
             }
         }
     }
