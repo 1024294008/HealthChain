@@ -36,6 +36,7 @@ import org.json.JSONObject;
 
 import cn.edu.seu.R;
 import cn.edu.seu.activity.MedicalDetailActivity;
+import cn.edu.seu.activity.ServiceHistoryActivity;
 import cn.edu.seu.adapter.MedicalListAdapter;
 import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.http.RequestAction.AllMedicalServiceRequest;
@@ -143,7 +144,8 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
         switch (parent.getId()){
             case R.id.medicalListViewFront:
                 if(position == 0){
-                    return;
+                    intent = new Intent(this.getActivity(), ServiceHistoryActivity.class);
+                    break;
                 }
                 intent.putExtra("serviceId", medicalListFront.get(position).get("serviceId"));
                 break;

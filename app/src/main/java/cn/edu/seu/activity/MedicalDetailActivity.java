@@ -12,7 +12,6 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MedicalDetailActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -61,7 +60,6 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
 
         // 设置服务详情页面内容
         setContent(serviceId);
-        Toast.makeText(this, serviceId.toString(), Toast.LENGTH_SHORT).show();
     }
 
     // 点击事件

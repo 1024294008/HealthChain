@@ -76,12 +76,6 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/shape_standard_round_rect"/>
             </RelativeLayout>
-            <ImageView
-                android:id="@+id/headpic"
-                android:layout_width="45dp"
-                android:layout_height="match_parent"
-                android:padding="13dp"
-                android:src="@drawable/ic_list_item_detail"/>
         </LinearLayout>
 
     </LinearLayout>
