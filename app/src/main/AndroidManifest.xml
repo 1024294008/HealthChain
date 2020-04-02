@@ -11,9 +11,13 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
-        <!-- android:usesCleartextTraffic="true"  明文放行 -->
+        <activity android:name=".activity.MedicalDetailActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-        <activity android:name=".activity.MedicalDetailActivity"></activity>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
 
         <activity android:name=".activity.UploadActivity" />
 
@@ -29,8 +33,7 @@
         <activity android:name=".activity.UserAddressActivity" />
         <activity android:name=".activity.UserSexActivity" />
         <activity
-            android:name=".activity.RegisterActivity"
-            android:theme="@style/FullTheme">
+            android:name=".activity.RegisterActivity">
 
             <!--
             <intent-filter>
@@ -41,16 +44,13 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true"
-            android:theme="@style/FullTheme">
+            android:exported="true">
 
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".activity.MainActivity"
