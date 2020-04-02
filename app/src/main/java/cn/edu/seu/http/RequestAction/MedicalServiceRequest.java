@@ -23,7 +23,7 @@ public class MedicalServiceRequest {
 
     public void doGet(int id)
     {
-        String url = Url.MEDICAL_SERVICE_URL + "?id" + id;
+        String url = Url.MEDICAL_SERVICE_URL + "?id=" + id;
         httpRequest.setUrl(url);
         httpRequest.get();
     }

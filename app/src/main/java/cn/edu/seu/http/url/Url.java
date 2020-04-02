@@ -2,9 +2,9 @@ package cn.edu.seu.http.url;
 
 public class Url {
 
-    public final static String IFCONFIG = "192.168.0.105:3000";
+    public final static String IFCONFIG = "192.168.31.170:3000";
 
-    // 登录才操作    POST
+    // 登录才操作    POSTr
     // param:   account,password
     // return:  {用户信息... , "code": "200"}
     public final static String LOGIN_URL = "http://" + IFCONFIG + "/api/user/login";
@@ -37,7 +37,7 @@ public class Url {
     // 查看医疗服务详细信息操作 get
     // param:   id
     // return: 暂无
-    public final static String MEDICAL_SERVICE_URL = "http://" + IFCONFIG + "/api/common/getMedicalServiceInfo";
+    public final static String MEDICAL_SERVICE_URL = "http://" + IFCONFIG + "/api/common/getServiceAndOrg";
 
 
     // 所有医疗服务页面 get
