@@ -102,6 +102,7 @@ public class MedicalListAdapter extends BaseAdapter {
             // 简易模式不显示分类标签
             serviceAcr.getLayoutParams().height = 0;
             serviceName.setText(medicalList.get(position).get("serviceName"));
+            serviceIcon.setImageDrawable(this.context.getResources().getDrawable(PortraitManager.getPortraitSrc(medicalList.get(position).get("portrait")), null));
         }
 
         return convertView;
