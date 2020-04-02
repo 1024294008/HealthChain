@@ -139,11 +139,18 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(position == 0 && ((TextView)(view.findViewById(R.id.serviceName))).getText().equals("服务历史")){
-            return;
-        }
         Intent intent = new Intent(this.getActivity(), MedicalDetailActivity.class);
-        intent.putExtra("serviceId", medicalListFront.get(position).get("serviceId"));
+        switch (parent.getId()){
+            case R.id.medicalListViewFront:
+                if(position == 0){
+                    return;
+                }
+                intent.putExtra("serviceId", medicalListFront.get(position).get("serviceId"));
+                break;
+            case R.id.medicalListViewBg:
+                intent.putExtra("serviceId", medicalListBg.get(position).get("serviceId"));
+                break;
+        }
         this.getActivity().startActivity(intent);
     }
 
@@ -190,7 +197,6 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
                     Log.e("Tag","点击了返回键-------------");
                     return false;
                 }
-
             }
         });
     }
@@ -205,18 +211,18 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
         medicalListFront.add(firstItem);
 
         // --------------从后台获取数据-------------
-//        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
-//        for (Integer i = 0; i < servicesTest.length; i++) {
-//            Map<String, String> showItem = new HashMap<>();
-//            showItem.put("serviceId", i.toString());
-//            showItem.put("serviceName", servicesTest[i]);
-//            showItem.put("portrait", PortraitManager.getPortrait().toString());
-//            medicalListFront.add(showItem);
-//        }
+        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
+        for (Integer i = 0; i < servicesTest.length; i++) {
+            Map<String, String> showItem = new HashMap<>();
+            showItem.put("serviceId", i.toString());
+            showItem.put("serviceName", servicesTest[i]);
+            showItem.put("portrait", PortraitManager.getPortrait().toString());
+            medicalListFront.add(showItem);
+        }
 
-        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
-        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
-        request.doGet();
+//        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
+//        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
+//        request.doGet();
 
         // --------------------------------------------
 
