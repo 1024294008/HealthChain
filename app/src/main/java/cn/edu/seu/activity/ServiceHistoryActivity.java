@@ -1,7 +1,5 @@
 package cn.edu.seu.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +8,15 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import cn.edu.seu.R;
 
-public class UserVisitorsActivity extends AppCompatActivity implements View.OnClickListener{
+public class ServiceHistoryActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView back;
-    private ListView visitorsListView;
+    private ListView serviceHistoryListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +39,11 @@ public class UserVisitorsActivity extends AppCompatActivity implements View.OnCl
         }
 
         back = (ImageView) this.findViewById(R.id.back);
-        visitorsListView = (ListView) this.findViewById(R.id.visitorsListView);
-        //从数据库里筛选出用户的所有访客记录，展示在界面
+        serviceHistoryListView = (ListView) this.findViewById(R.id.serviceHistoryListView);
+        //从数据库里筛选出用户在服务的消费记录展示在界面
+
+
+
 
         back.setOnClickListener(this);
     }
