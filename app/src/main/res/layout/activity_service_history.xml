@@ -8,9 +8,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
+
+        android:layout_marginBottom="@dimen/standardMargin"
         android:orientation="horizontal">
         <LinearLayout
-            android:id="@+id/devices"
+            android:id="@+id/serviceHistory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -28,7 +30,7 @@
                 android:layout_weight="1"
                 android:padding="0dp"
                 android:gravity="center_vertical"
-                android:text="设备连接历史"
+                android:text="服务历史"
                 android:textColor="@color/colorBlack"
                 android:textSize="17sp"/>
         </LinearLayout>
@@ -39,38 +41,11 @@
         android:layout_height="match_parent">
 
         <ListView
-            android:id="@+id/devicesListView"
+            android:id="@+id/serviceHistoryListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="@color/standardSelect"
             android:listSelector="@drawable/selector_list_item_bg"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorWhite">
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical"
-                android:paddingBottom="80dp">
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_list_null_bg"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:textColor="@color/colorDeepGray"
-                    android:textSize="15sp"
-                    android:text="当前列表为空"/>
-            </LinearLayout>
-        </RelativeLayout>
     </FrameLayout>
 
    

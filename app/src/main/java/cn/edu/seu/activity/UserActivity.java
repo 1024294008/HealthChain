@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import cn.edu.seu.R;
+import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.http.RequestAction.UpdateUserInfoRequest;
 
 import android.content.Context;
@@ -77,6 +78,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         back = this.findViewById(R.id.back);
 
         back.setOnClickListener(this);
+        imageView_head.setImageDrawable(getResources().getDrawable(PortraitManager.getPortraitSrc(sharedPreferences.getString("portrait", "0")), null));
         this.findViewById(R.id.line_nickname).setOnClickListener(this);
         this.findViewById(R.id.line_account).setOnClickListener(this);
         this.findViewById(R.id.line_address).setOnClickListener(this);

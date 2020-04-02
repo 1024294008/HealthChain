@@ -2,24 +2,21 @@ package cn.edu.seu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import cn.edu.seu.R;
+import cn.edu.seu.common.PortraitManager;
 
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MedicalDetailActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ImageButton back;
     private ImageView portrait_org;
     private ImageView portrait_user;
-    private TextView requestService;
     private TextView organizationName;
     private TextView serviceName;
     private TextView introduction;
@@ -32,9 +29,6 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_detail);
         initView();
-
-        // 设置服务详情页面内容
-        setContent();
     }
 
     private void initView(){
@@ -45,27 +39,27 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
             window.setStatusBarColor(Color.TRANSPARENT);
         }
 
-        back = this.findViewById(R.id.back);
-        requestService = this.findViewById(R.id.requestService);
+        // 获取intent信息
+        Integer serviceId = Integer.valueOf(getIntent().getStringExtra("serviceId"));
+
+        ImageButton back = this.findViewById(R.id.back);
+        TextView requestService = this.findViewById(R.id.requestService);
+
         portrait_org = this.findViewById(R.id.portrait_org);
         portrait_user = this.findViewById(R.id.portrait_user);
+
         organizationName = this.findViewById(R.id.organizationName);
-        serviceName = this.findViewById(R.id.serviceName);
         introduction = this.findViewById(R.id.introduction);
-        cost = this.findViewById(R.id.cost);
+        serviceName = this.findViewById(R.id.serviceName);
         serviceDetails = this.findViewById(R.id.serviceDetails);
+        cost = this.findViewById(R.id.cost);
         tel = this.findViewById(R.id.tel);
 
         back.setOnClickListener(this);
         requestService.setOnClickListener(this);
-//        portrait_user.setOnClickListener(this);
-//        portrait_org.setOnClickListener(this);
-//        organizationName.setOnClickListener(this);
-//        introduction.setOnClickListener(this);
-//        cost.setOnClickListener(this);
-//        serviceDetails.setOnClickListener(this);
-//        tel.setOnClickListener(this);
-//        serviceName.setOnClickListener(this);
+
+        // 设置服务详情页面内容
+        setContent(serviceId);
     }
 
     // 点击事件
@@ -81,7 +75,18 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     // 设置服务页面详情内容
-    private void setContent(){
+    private void setContent(Integer serviceId){
+        // 获取医疗信息和服务信息
+
+        //设置信息
+//        portrait_org.setImageDrawable(this.getResources().getDrawable(PortraitManager.getPortraitSrc(), null));;
+//        portrait_user.setImageDrawable(this.getResources().getDrawable(PortraitManager.getPortraitSrc(), null));;
+//        organizationName.setText();
+//        introduction.setText();
+//        serviceName.setText();
+//        serviceDetails.setText();
+//        cost.setText();
+//        tel.setText();
 
     }
 

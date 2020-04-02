@@ -1,6 +1,7 @@
 package cn.edu.seu.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
@@ -13,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.edu.seu.R;
+import cn.edu.seu.activity.MedicalDetailActivity;
+import cn.edu.seu.activity.ServiceHistoryActivity;
 import cn.edu.seu.adapter.MedicalListAdapter;
 import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.http.RequestAction.AllMedicalServiceRequest;
@@ -40,7 +45,7 @@ import cn.edu.seu.http.RequestAction.AllMedicalServiceRequest;
  * 医疗服务显示界面
  */
 
-public class MedicalFragment extends Fragment implements View.OnClickListener {
+public class MedicalFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private View view;
 
     //声明组件
@@ -96,6 +101,8 @@ public class MedicalFragment extends Fragment implements View.OnClickListener {
 
         medicalListViewFront.setAdapter(medicalListAdapterFront);
         medicalListViewBg.setAdapter(medicalListAdapterBg);
+        medicalListViewFront.setOnItemClickListener(this);
+        medicalListViewBg.setOnItemClickListener(this);
         back.setOnClickListener(this);
         search.setOnClickListener(this);
 
@@ -129,6 +136,24 @@ public class MedicalFragment extends Fragment implements View.OnClickListener {
                 onResume();
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(this.getActivity(), MedicalDetailActivity.class);
+        switch (parent.getId()){
+            case R.id.medicalListViewFront:
+                if(position == 0){
+                    intent = new Intent(this.getActivity(), ServiceHistoryActivity.class);
+                    break;
+                }
+                intent.putExtra("serviceId", medicalListFront.get(position).get("serviceId"));
+                break;
+            case R.id.medicalListViewBg:
+                intent.putExtra("serviceId", medicalListBg.get(position).get("serviceId"));
+                break;
+        }
+        this.getActivity().startActivity(intent);
     }
 
     //显示medicalSearch,隐藏medicalBg
@@ -174,7 +199,6 @@ public class MedicalFragment extends Fragment implements View.OnClickListener {
                     Log.e("Tag","点击了返回键-------------");
                     return false;
                 }
-
             }
         });
     }
@@ -189,18 +213,18 @@ public class MedicalFragment extends Fragment implements View.OnClickListener {
         medicalListFront.add(firstItem);
 
         // --------------从后台获取数据-------------
-//        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
-//        for (Integer i = 0; i < servicesTest.length; i++) {
-//            Map<String, String> showItem = new HashMap<>();
-//            showItem.put("serviceId", i.toString());
-//            showItem.put("serviceName", servicesTest[i]);
-//            showItem.put("portrait", PortraitManager.getPortrait().toString());
-//            medicalListFront.add(showItem);
-//        }
+        String[] servicesTest = new String[]{"地方", "Cindy", "y灾难", "din", "我是", "再见", "cu", "c差", "$电风扇", "fds", "wie", "sdf", "fdsa"};
+        for (Integer i = 0; i < servicesTest.length; i++) {
+            Map<String, String> showItem = new HashMap<>();
+            showItem.put("serviceId", i.toString());
+            showItem.put("serviceName", servicesTest[i]);
+            showItem.put("portrait", PortraitManager.getPortrait().toString());
+            medicalListFront.add(showItem);
+        }
 
-        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
-        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
-        request.doGet();
+//        Handler handler = new AllMedicalServiceHandler(this.getActivity()); // 数据在这里获取
+//        AllMedicalServiceRequest request = new AllMedicalServiceRequest(this.getActivity(), handler);
+//        request.doGet();
 
         // --------------------------------------------
 
