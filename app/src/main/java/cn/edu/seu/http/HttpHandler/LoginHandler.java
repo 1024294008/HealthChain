@@ -50,7 +50,7 @@ public class LoginHandler extends Handler {
                         editor.putString("id", String.valueOf(userInfo.getInt("id")));
                         editor.putString("username", userInfo.getString("account"));
                         editor.putString("portrait", String.valueOf(userInfo.getInt("portrait")));
-                        editor.putString("nickName", userInfo.getString("nickName"));
+                        editor.putString("nickName", userInfo.getString("nickname"));
                         editor.putString("password", userInfo.getString("password"));
                         editor.putString("ethAddress", userInfo.getString("ethAddress"));
                         editor.putString("sex", userInfo.getString("sex"));
