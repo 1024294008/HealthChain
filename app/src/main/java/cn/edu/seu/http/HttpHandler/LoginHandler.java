@@ -41,18 +41,23 @@ public class LoginHandler extends Handler {
                 sharedPreferences = context.getSharedPreferences("test", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
                 try {
-                    String code = response.getString("code");
-                    if("200".equals(code)) {
-                        editor.putString("id", response.getString("id")); // 用户信息
-                        editor.putString("username", response.getString("account"));
-                        editor.putString("nickName", response.getString("nickName"));
-                        editor.putString("password", response.getString("password"));
-                        editor.putString("ethAddress", response.getString("ethAddress"));
-                        editor.putString("sex", response.getString("sex"));
-                        editor.putString("address", response.getString("address"));
-                        editor.putString("birth", response.getString("birth"));
-                        editor.putString("tel", response.getString("tel"));
-                        editor.putString("balance", response.getString("balance"));
+                    String _code = response.getString("_code"); // 状态码
+                    if("200".equals(_code)) {
+                        JSONObject _data = response.getJSONObject("_data"); // 数据
+                        String token = _data.getString("token");    // token
+                        JSONObject userInfo = _data.getJSONObject("userInfo");  // 用户信息
+
+                        editor.putString("id", String.valueOf(userInfo.getInt("id")));
+                        editor.putString("username", userInfo.getString("account"));
+                        editor.putString("portrait", String.valueOf(userInfo.getInt("portrait")));
+                        editor.putString("nickName", userInfo.getString("nickname"));
+                        editor.putString("password", userInfo.getString("password"));
+                        editor.putString("ethAddress", userInfo.getString("ethAddress"));
+                        editor.putString("sex", userInfo.getString("sex"));
+                        editor.putString("address", userInfo.getString("address"));
+                        editor.putString("birth", userInfo.getString("birth"));
+                        editor.putString("tel", userInfo.getString("tel"));
+                        editor.putString("token", token);
                         editor.commit(); //提交修改
                     }
                     else {

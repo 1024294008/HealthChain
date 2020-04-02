@@ -8,6 +8,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import cn.edu.seu.activity.UserDevicesActivity;
 import cn.edu.seu.activity.UserSettingActivity;
 import cn.edu.seu.activity.UserVisitorsActivity;
 import cn.edu.seu.activity.UserWalletActivity;
+import cn.edu.seu.common.PortraitManager;
 
 /**
  * 医疗服务显示界面
@@ -33,7 +35,6 @@ public class MeFragment extends Fragment {
     private LinearLayout device;
     private LinearLayout set;
     private LinearLayout visitor;
-    private TextView username;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_me, container, false);
@@ -66,13 +67,17 @@ public class MeFragment extends Fragment {
         device = (LinearLayout) view.findViewById(R.id.device);
         set = (LinearLayout) view.findViewById(R.id.set);
         visitor  = (LinearLayout) view.findViewById(R.id.visitor);
-        username = (TextView) view.findViewById(R.id.username);
+
+        TextView username = view.findViewById(R.id.username);
+        ImageView portrait = view.findViewById(R.id.portrait);
+        TextView nickName = view.findViewById(R.id.nickname);
 
         //读取sharedpreferences中的数据
         SharedPreferences read = getActivity().getSharedPreferences("test",Context.MODE_PRIVATE);
-        String name = read.getString("username", "");
-        //设置账户名称idName
-        username.setText(name);
+        //设置用户信息
+        username.setText(read.getString("username", ""));
+        nickName.setText(read.getString("nickName", ""));
+        portrait.setImageDrawable(this.getActivity().getResources().getDrawable(PortraitManager.getPortraitSrc(read.getString("portrait", "0")), null));
     }
 
     //点击用户，跳转到用户信息页面

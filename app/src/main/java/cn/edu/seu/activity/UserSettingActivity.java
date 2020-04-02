@@ -12,8 +12,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import cn.edu.seu.R;
+import cn.edu.seu.common.PortraitManager;
 
 public class UserSettingActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -41,11 +43,20 @@ public class UserSettingActivity extends AppCompatActivity implements View.OnCli
             window.setStatusBarColor(getResources().getColor(R.color.standardBackground, null));
         }
 
-        back = (ImageView) this.findViewById(R.id.back);
-        logout = (Button) this.findViewById(R.id.logout);
+        back = findViewById(R.id.back);
+        logout = findViewById(R.id.logout);
+
+        ImageView portrait = findViewById(R.id.portrait);
+        TextView nickName = findViewById(R.id.nickname);
 
         back.setOnClickListener(this);
         logout.setOnClickListener(this);
+
+        //读取sharedpreferences中的数据
+        SharedPreferences read = getSharedPreferences("test",Context.MODE_PRIVATE);
+        //设置用户信息
+        nickName.setText(read.getString("nickName", ""));
+        portrait.setImageDrawable(getResources().getDrawable(PortraitManager.getPortraitSrc(read.getString("portrait", "0")), null));
     }
 
     //监听点击事件
@@ -75,7 +86,7 @@ public class UserSettingActivity extends AppCompatActivity implements View.OnCli
         editor.putString("address", "");
         editor.putString("birth", "");
         editor.putString("tel", "");
-        editor.putString("balance", "");
+        editor.putString("token", "");
         editor.commit();
 
         Intent intent_login = new Intent();
