@@ -80,7 +80,7 @@ public class UserPasswordActivity extends AppCompatActivity implements View.OnCl
                     Toast.makeText(this, "原密码错误", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (string_newPassword.equals("") || string_newPassword2.equals("")){
+                if (!string_newPassword.equals("") && !string_newPassword2.equals("")){
                     //首先校验两次密码是否是否输入相同
                     if(!string_newPassword.equals(string_newPassword2)) {
                         Toast.makeText(this, "新密码两次输入不一致！", Toast.LENGTH_SHORT).show();
