@@ -269,7 +269,7 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
                             Map<String, String> map = new HashMap<>();
                             map.put("serviceId", String.valueOf(data.getJSONObject(i).getInt("id")));
                             map.put("serviceName", data.getJSONObject(i).getString("serviceName"));
-                            map.put("portrait", PortraitManager.getPortrait().toString());
+                            map.put("portrait", data.getJSONObject(i).getString("portrait"));
                             medicalListFront.add(map);
                         }
                     } catch (Exception e) {

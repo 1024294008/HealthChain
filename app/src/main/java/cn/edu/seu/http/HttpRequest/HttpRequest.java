@@ -6,6 +6,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,6 +31,7 @@ public class HttpRequest implements HttpApi {
         this.context = context;
         this.queue = Volley.newRequestQueue(context);
         this.handler = handler;
+
     }
 
     @Override
@@ -91,6 +93,7 @@ public class HttpRequest implements HttpApi {
                         t.show();
                     }
                 });
+//        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
         queue.add(request);
     }
 }

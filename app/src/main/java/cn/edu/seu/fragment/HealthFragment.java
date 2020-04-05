@@ -81,6 +81,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
     private TextView heat;
     private TextView sleepQuality;
     private TextView heartRate;
+    private TextView evaluation;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_health, container, false);
@@ -121,6 +122,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         heat = (TextView)view.findViewById(R.id.heat);
         sleepQuality = (TextView)view.findViewById(R.id.sleepQuality);
         heartRate = (TextView)view.findViewById(R.id.heartRate);
+        evaluation = (TextView)view.findViewById(R.id.evaluation);
 
         healthList = new ArrayList<>();
         healthListOrigin = new ArrayList<>();
@@ -155,6 +157,12 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
                 getHealthList(s.toString());
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        getLatestData();
     }
 
     //重写点击事件
@@ -198,7 +206,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
 
     // 跳转到上传数据页面
     private void jumpUploadPage(){
-        startActivity(new Intent(this.getActivity(), UploadActivity.class));
+        startActivityForResult(new Intent(this.getActivity(), UploadActivity.class), 0);
         uploadDialog.dismiss();
     }
 
@@ -227,7 +235,9 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
 
         Handler handler = new HistoryDataHandler(this.getActivity());
         HistoryDataRequest request = new HistoryDataRequest(this.getActivity(), handler);
-        request.doGet();
+        Map<String, String> params = new HashMap<>();
+        params.put("token", sharedPreferences.getString("token", ""));
+        request.doPost(params);
 //        Map<String, String> param = new HashMap<>();
 //        param.put("userid", sharedPreferences.getString("id", "")); // 获取用户id
 //        request.doPost(param);
@@ -249,8 +259,11 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         // 将数据显示到控件上
         Handler handler = new LatestDataHandler(this.getActivity());
         LatestDataRequest request = new LatestDataRequest(this.getActivity(), handler);
-        String id = sharedPreferences.getString("id", ""); // 获取用户id
-        request.doGet(id);
+        String token = sharedPreferences.getString("token", ""); // 获取用户id
+        Map<String, String> item = new HashMap<>();
+        item.put("token", token);
+        item.put("index", "-1");
+        request.doPost(item);
     }
 
     // 根据关键字更新获取MedicalList数据
@@ -287,12 +300,15 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
 
                     try {
                         JSONObject response = (JSONObject)msg.obj;
-                        JSONArray arry = response.getJSONArray("dataList");
+                        JSONArray arry = response.getJSONArray("_data");
                         for(Integer i=0; i<arry.length(); i++){
                             Map<String, String> map = new HashMap<>();
-                            map.put("time", arry.getJSONObject(i).getString("time"));
-                            map.put("eval", arry.getJSONObject(i).getString("eval"));
-                            map.put("dataAddr", arry.getJSONObject(i).getString("dataAddr"));
+                            // 时间格式化
+//                            String time = arry.getJSONObject(i).getString("uploadTime").substring(6);
+//                            time = time.split(" ")[0];
+                            map.put("time", "time");
+                            map.put("eval", arry.getJSONObject(i).getString("evaluation"));
+                            map.put("index", arry.getJSONObject(i).getString("index"));
                             healthListOrigin.add(map);
                         }
                     } catch (Exception e) {
@@ -326,23 +342,24 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
 
                     try {
                         JSONObject response = (JSONObject) msg.obj;
-                        JSONObject latestData = response.getJSONObject("latestData");
+                        JSONObject latestData = response.getJSONObject("_data");
                         setData(latestData.getString("uploadTime"), latestData.getString("distance"), latestData.getString("heat"),
-                                latestData.getString("sleepQuality"), latestData.getString("heartRate"));
+                                latestData.getString("sleepQuality"), latestData.getString("heartRate"), latestData.getString("evaluation"));
                     } catch (Exception e) {
                         e.printStackTrace();
                         Toast t = Toast.makeText(context, "数据加载失败..", Toast.LENGTH_SHORT);
                         t.show();
-                        setData("","","","","");
+                        setData("","","","","", "");
                     }
-                }
             }
-        public void setData(String _uploadTime, String _distance, String _heat, String _sleepQuality, String _heartRate){
+        }
+        public void setData(String _uploadTime, String _distance, String _heat, String _sleepQuality, String _heartRate, String _evaluation){
             uploadTime.setText(_uploadTime);
             distance.setText(_distance);
             heat.setText(_heat);
             sleepQuality.setText(_sleepQuality);
             heartRate.setText(_heartRate);
+            evaluation.setText(_evaluation);
         }
     }
 }

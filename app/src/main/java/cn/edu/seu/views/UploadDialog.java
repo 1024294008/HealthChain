@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -136,16 +138,19 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
         String str_sleepQuality = sleepQuality.getText().toString();
         String str_heartRate =  heartRate.getText().toString();
         boolean is_share =  share.isChecked();
-        Handler handler =new UploadDataHandler(context);
+        String str_evaluation = evaluation.getText().toString();
+        Handler handler =new UploadDataHandler(context, this);
         UploadDataRequest request = new UploadDataRequest(context, handler);
 
         Map<String, String> param = new HashMap<String, String>();
-        param.put("userid", sharedPreferences.getString("id", ""));
+        param.put("token", sharedPreferences.getString("token", ""));
         param.put("distance", str_distance);
         param.put("heat", str_heat);
         param.put("sleepQuality", str_sleepQuality);
         param.put("heartRate", str_heartRate);
-        param.put("permitVisit", String.valueOf(is_share));
+        param.put("permitVisit", is_share?"1":"0");
+        param.put("evaluation", str_evaluation);
+        param.put("uploadTime", (new SimpleDateFormat("yyyy-MM-dd HH:mm")).format(new Date()));
         request.doPost(param);
 
     }

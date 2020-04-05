@@ -2,7 +2,7 @@ package cn.edu.seu.http.url;
 
 public class Url {
 
-    public final static String IFCONFIG = "192.168.31.170:3000";
+    public final static String IFCONFIG = "192.168.1.100:3000";
 
     // 登录才操作    POSTr
     // param:   account,password
@@ -19,7 +19,7 @@ public class Url {
     // 查看历史数据操作 post
     // param：   userid
     // return: {"dataList": [{"time":"2018-1-8", "eval":"你好", "dataAddr":"0X8888"}, {"time":"", "eval":"", "dataAddr":""}, ...]}
-    public final static String HISTORY_DATA_URL = "http://" + IFCONFIG + "/api/user/getHealthData";
+    public final static String HISTORY_DATA_URL = "http://" + IFCONFIG + "/api/user/getHealthDataList";
 
 
     // 历史数据详情   get
@@ -61,7 +61,7 @@ public class Url {
     // 上传数据操作   post
     // param:   userid, permitVisit(是否公开), distance, heat, sleepQuality, heartRate
     // return: {"code": "200", "msg": "上传成功"}
-    public final static String UPLOAD_DATA_URL = "http://" + IFCONFIG + "/user_uploadData";
+    public final static String UPLOAD_DATA_URL = "http://" + IFCONFIG + "/api/common/uploadUserHealthData";
 
 
     // 查看用户个人信息操作   get

@@ -38,7 +38,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/ic_health_upload_options_bg2"/>
+            android:src="@drawable/ic_main_health_upload_options_bg2"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -46,6 +46,6 @@
             android:layout_marginLeft="5dp"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
-            android:text="扫描设备"/>
+            android:text="数据报表"/>
     </LinearLayout>
 </LinearLayout>
