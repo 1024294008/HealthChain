@@ -140,24 +140,26 @@
                 android:layout_height="45dp"
                 android:padding="10dp"
                 android:src="@drawable/ic_medical_detail_service_detail"/>
+
             <TextView
-                android:id="@+id/serviceDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textColor="@color/colorBlack"
                 android:gravity="center_vertical"
-                android:textSize="@dimen/listItemFontSize"
-                android:text="服务详情："/>
+                android:text="服务详情："
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/listItemFontSize" />
         </LinearLayout>
+
         <TextView
+            android:id="@+id/serviceDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorDeepGray"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="20dp"
-            android:textSize="12sp"
             android:maxLines="4"
-            android:text="提供完善的健康咨询"/>
+            android:text="提供完善的健康咨询"
+            android:textColor="@color/colorDeepGray"
+            android:textSize="12sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
