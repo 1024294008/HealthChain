@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -42,7 +43,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.edu.seu.R;
+import cn.edu.seu.activity.HealthDetailActivity;
 import cn.edu.seu.activity.MainActivity;
+import cn.edu.seu.activity.MedicalDetailActivity;
 import cn.edu.seu.activity.UploadActivity;
 import cn.edu.seu.adapter.HealthListAdapter;
 import cn.edu.seu.adapter.MedicalListAdapter;
@@ -52,7 +55,7 @@ import cn.edu.seu.http.RequestAction.LatestDataRequest;
 /**
  * 健康数据显示界面
  */
-public class HealthFragment extends Fragment  implements View.OnClickListener{
+public class HealthFragment extends Fragment  implements View.OnClickListener, AdapterView.OnItemClickListener {
     private View view;
     private View dialogView;
 
@@ -141,6 +144,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         back.setOnClickListener(this);
         uploadOptions.setOnClickListener(this);
         healthListView.setAdapter(healthListAdapter);
+        healthListView.setOnItemClickListener(this);
 
         // 监听搜索框内容变化
         searchKey.addTextChangedListener(new TextWatcher() {
@@ -162,7 +166,10 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        getLatestData();
+        if(requestCode == 0){
+            getLatestData();
+        }
+        showFront();
     }
 
     //重写点击事件
@@ -184,6 +191,13 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(this.getActivity(), HealthDetailActivity.class);
+        intent.putExtra("index", healthList.get(position).get("index"));
+        startActivityForResult(intent, 1);
+    }
+
     //显示healthFront,隐藏healthBg
     public void showFront(){
         healthBg.setVisibility(View.GONE);
@@ -201,6 +215,12 @@ public class HealthFragment extends Fragment  implements View.OnClickListener{
         healthFront.setVisibility(View.GONE);
 
         searchKey.setText("");
+        searchKey.setFocusable(true);
+        searchKey.setFocusableInTouchMode(true);
+        searchKey.requestFocus();
+        InputMethodManager inputManager =
+                (InputMethodManager) searchKey.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.showSoftInput(searchKey, 0);
     }
 
 

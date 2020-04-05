@@ -69,7 +69,7 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="0xql29839402390920390432jkn"
+                    android:text=""
                     android:textColor="@color/colorDeepGray"
                     android:textSize="@dimen/listItemFontSize" />
             </LinearLayout>
@@ -109,7 +109,7 @@
                     android:layout_height="match_parent"
                     android:inputType="numberDecimal"
                     android:gravity="center_vertical"
-                    android:text="108.0000892100000"
+                    android:text=""
                     android:textColor="@color/colorDeepGray"
                     android:textSize="@dimen/listItemFontSize" />
             </LinearLayout>

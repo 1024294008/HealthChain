@@ -179,6 +179,12 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
         medicalFront.setVisibility(View.GONE);
 
         searchKey.setText("");
+        searchKey.setFocusable(true);
+        searchKey.setFocusableInTouchMode(true);
+        searchKey.requestFocus();
+        InputMethodManager inputManager =
+                (InputMethodManager) searchKey.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.showSoftInput(searchKey, 0);
     }
 
     @Override

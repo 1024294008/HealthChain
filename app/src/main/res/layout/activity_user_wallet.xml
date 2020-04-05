@@ -85,7 +85,7 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="0x24602722816b6cad0e143ce9fabf31f6026ec622"
+                    android:text=""
                     android:textColor="@color/colorDeepSkyBlue"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -128,7 +128,7 @@
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="108.0000892100000"
+                    android:text=""
                     android:textColor="@color/colorDeepSkyBlue"
                     android:textSize="15sp" />
             </LinearLayout>

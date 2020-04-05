@@ -44,7 +44,7 @@
                 android:clickable="true"
                 android:textColor="@color/colorWhite"
                 android:background="@drawable/selector_button_bg"
-                android:text="请求服务"/>
+                android:text="购买服务"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -62,11 +62,11 @@
                     android:maxWidth="300dp"
                     android:textColor="@color/colorWhite"
                     android:maxLines="2"
-                    android:textSize="25sp"
-                    android:text="东南大学附属医院"/>
+                    android:textSize="25sp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
+                    android:minWidth="170dp"
                     android:layout_marginTop="@dimen/standardMargin"
                     android:layout_marginBottom="@dimen/standardMargin"
                     android:background="@color/colorWhite"/>
@@ -78,8 +78,7 @@
                     android:minHeight="60dp"
                     android:maxLines="6"
                     android:textColor="@color/colorWhite"
-                    android:textSize="15sp"
-                    android:text="是江苏省唯一教育江苏省唯一教育部直部直属“985”、“211”工程重点建设的大学附属医院"/>
+                    android:textSize="15sp"/>
             </LinearLayout>
         </RelativeLayout>
         <RelativeLayout
@@ -128,8 +127,7 @@
                 android:maxEms="8"
                 android:maxLines="1"
                 android:textColor="@color/colorDeepGray"
-                android:textSize="@dimen/listItemFontSize"
-                android:text="健康咨询"/>
+                android:textSize="@dimen/listItemFontSize"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,7 +155,6 @@
             android:layout_marginLeft="45dp"
             android:layout_marginRight="20dp"
             android:maxLines="4"
-            android:text="提供完善的健康咨询"
             android:textColor="@color/colorDeepGray"
             android:textSize="12sp" />
         <LinearLayout
@@ -185,8 +182,7 @@
                 android:maxEms="8"
                 android:maxLines="1"
                 android:textColor="@color/colorDeepGray"
-                android:textSize="@dimen/listItemFontSize"
-                android:text="100"/>
+                android:textSize="@dimen/listItemFontSize"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -213,8 +209,7 @@
                 android:maxEms="8"
                 android:maxLines="1"
                 android:textColor="@color/colorDeepGray"
-                android:textSize="@dimen/listItemFontSize"
-                android:text="13515652254"/>
+                android:textSize="@dimen/listItemFontSize"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

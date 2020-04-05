@@ -29,7 +29,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/back"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:maxEms="8"
@@ -45,14 +46,43 @@
                 android:background="@color/colorWhite">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"/>
+                    android:layout_height="30dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="@dimen/healthItemMargin"
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_main_health_time" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="上传时间："
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/listItemFontSize" />
+
+                        <TextView
+                            android:id="@+id/uploadTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxEms="8"
+                            android:maxLines="1"
+                            android:textColor="@color/colorDeepSkyBlue"
+                            android:textSize="@dimen/listItemFontSize" />
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
@@ -177,6 +207,34 @@
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:padding="10dp"
+                            android:src="@drawable/ic_main_health_share"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/colorBlack"
+                            android:gravity="center_vertical"
+                            android:textSize="@dimen/listItemFontSize"
+                            android:text="隐私："/>
+                        <TextView
+                            android:id="@+id/permitVisit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/colorBlack"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:maxEms="15"
+                            android:textSize="@dimen/listItemFontSize"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="@dimen/healthItemMargin"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:padding="10dp"
                             android:src="@drawable/ic_main_health_evaluation"/>
                         <TextView
                             android:id="@+id/evaluation"
@@ -187,8 +245,7 @@
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:maxEms="15"
-                            android:textSize="@dimen/listItemFontSize"
-                            android:text="健康每一天!!"/>
+                            android:textSize="@dimen/listItemFontSize"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

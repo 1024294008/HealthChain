@@ -8,8 +8,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-
-        android:layout_marginBottom="@dimen/standardMargin"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/serviceHistory"
@@ -42,8 +40,9 @@
 
         <ListView
             android:id="@+id/serviceHistoryListView"
+            android:background="@color/colorWhite"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:cacheColorHint="@color/standardSelect"
             android:listSelector="@drawable/selector_list_item_bg"/>
     </FrameLayout>

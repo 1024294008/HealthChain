@@ -6,6 +6,7 @@ import cn.edu.seu.R;
 import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.RequestAction.MedicalServiceRequest;
+import cn.edu.seu.views.BuyServiceDialog;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -37,6 +38,8 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
     private TextView serviceDetails;
     private TextView cost;
     private TextView tel;
+    private String ethAddress;
+    private BuyServiceDialog buyServiceDialog;
 
     public SharedPreferences sharedPreferences;
 
@@ -88,7 +91,10 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                 this.finish();
                 break;
             case R.id.requestService:
-                //弹出对话框
+                if(buyServiceDialog == null){
+                    buyServiceDialog = new BuyServiceDialog(this, ethAddress, cost.getText().toString());
+                }
+                buyServiceDialog.show();
                 break;
         }
     }
@@ -137,17 +143,15 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                         JSONObject _data = response.getJSONObject("_data");
                         JSONObject serviceAndOrgInfo = _data.getJSONObject("serviceAndOrgInfo");
 
-                        String user_img = sharedPreferences.getString("portrait", "");
-
                         portrait_org.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(String.valueOf(serviceAndOrgInfo.getInt("portrait_org"))), null));
-                        portrait_user.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(user_img), null));
+                        portrait_user.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(String.valueOf(serviceAndOrgInfo.getInt("portrait_service"))), null));
                         organizationName.setText(serviceAndOrgInfo.getString("organizationName"));
                         introduction.setText(serviceAndOrgInfo.getString("introduction"));
                         tel.setText(serviceAndOrgInfo.getString("tel"));
                         serviceName.setText(serviceAndOrgInfo.getString("serviceName"));
                         serviceDetails.setText(serviceAndOrgInfo.getString("serviceDetails"));
                         cost.setText(serviceAndOrgInfo.getString("cost"));
-
+                        ethAddress = serviceAndOrgInfo.getString("ethAddress");
 
                     } catch (JSONException e) {
                         e.printStackTrace();

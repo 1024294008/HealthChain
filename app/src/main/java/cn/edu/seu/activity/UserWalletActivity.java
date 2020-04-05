@@ -72,6 +72,7 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
 
         back.setOnClickListener(this);
         transant.setOnClickListener(this);
+        address.setText(sharedPreferences.getString("ethAddress", ""));
     }
 
     public void onClick(View v) {

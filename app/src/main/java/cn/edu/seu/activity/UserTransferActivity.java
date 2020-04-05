@@ -27,6 +27,7 @@ import java.util.Map;
 
 import cn.edu.seu.R;
 import cn.edu.seu.http.RequestAction.TransferRequest;
+import cn.edu.seu.views.TransferDialog;
 
 public class UserTransferActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -34,6 +35,7 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
     private EditText ethaddress; // 收钱方以太坊地址
     private EditText amount;   //转账金额
     private Button pay;
+    private TransferDialog transferDialog;
 
     private String dataBalance; //用户余额
     private String localEthAddress; // 本人以太坊地址
@@ -115,15 +117,14 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
 
     //开始转账
     private void startTransfer(){
-//        如果用户未输入账户和余额 提示
+        //如果用户未输入账户和余额 提示
         if(ethaddress.getText().toString().isEmpty() || amount.getText().toString().isEmpty())
         {
             Toast toast = Toast.makeText(UserTransferActivity.this,"账户和金额不能为空",Toast.LENGTH_SHORT);
             toast.show();
             return ;
         }
-//
-//        //如果账户不存在
+        //如果账户不存在
         if( !isExist(ethaddress) ){
             //提示账户不存在
             Toast toast = Toast.makeText(UserTransferActivity.this,"您输入的账户不存在",Toast.LENGTH_SHORT);
@@ -139,28 +140,29 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
             return ;
         }
 
-        //确认转账
-        //更新我的钱包余额
-        //更新对方钱包余额
-        //为自己添加转账记录
-        //为对方添加转账记录
-        Handler handler = new TransferHandler(UserTransferActivity.this);
-        TransferRequest request = new TransferRequest(UserTransferActivity.this, handler);
-        Map<String, String> param = new HashMap<String, String>();
-        // sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额)
-        param.put("sendAddress", localEthAddress);
-        param.put("recieveAddress", ethaddress.getText().toString());
-        param.put("transactEth", amount.getText().toString());
-        request.doPost(param);
+        if(transferDialog == null){
+            transferDialog = new TransferDialog(this, ethaddress.getText().toString(), amount.getText().toString());
+        }
+        transferDialog.show();
 
 
-        //提示转账成功
-        Toast toast = Toast.makeText(UserTransferActivity.this,"转账成功，可返回上一级查看您的余额和转账记录",Toast.LENGTH_SHORT);
-        toast.show();
-
-        //清空输入的账户和转账金额
-        ethaddress.setText("");
-        amount.setText("");
+//        Handler handler = new TransferHandler(UserTransferActivity.this);
+//        TransferRequest request = new TransferRequest(UserTransferActivity.this, handler);
+//        Map<String, String> param = new HashMap<String, String>();
+//        // sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额)
+//        param.put("sendAddress", localEthAddress);
+//        param.put("recieveAddress", ethaddress.getText().toString());
+//        param.put("transactEth", amount.getText().toString());
+//        request.doPost(param);
+//
+//
+//        //提示转账成功
+//        Toast toast = Toast.makeText(UserTransferActivity.this,"转账成功，可返回上一级查看您的余额和转账记录",Toast.LENGTH_SHORT);
+//        toast.show();
+//
+//        //清空输入的账户和转账金额
+//        ethaddress.setText("");
+//        amount.setText("");
     }
 
 

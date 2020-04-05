@@ -5,22 +5,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import cn.edu.seu.R;
+import cn.edu.seu.adapter.DescriptionListAdapter;
 
 public class ServiceHistoryActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView back;
     private ListView serviceHistoryListView;
+    private List<Map<String, String>> serviceHistoryList;
+    private DescriptionListAdapter descriptionListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_visitors);
+        setContentView(R.layout.activity_service_history);
 
         initView();
     }
@@ -40,12 +49,22 @@ public class ServiceHistoryActivity extends AppCompatActivity implements View.On
 
         back = (ImageView) this.findViewById(R.id.back);
         serviceHistoryListView = (ListView) this.findViewById(R.id.serviceHistoryListView);
-        //从数据库里筛选出用户在服务的消费记录展示在界面
-
-
-
+        serviceHistoryList = new ArrayList<>();
+        descriptionListAdapter = new DescriptionListAdapter(this, serviceHistoryList, R.layout.activity_description_list_item);
 
         back.setOnClickListener(this);
+        serviceHistoryListView.setAdapter(descriptionListAdapter);
+
+        Map<String, String> item = new HashMap<>();
+        item.put("description", "2020购买了健康咨询服务");
+        serviceHistoryList.add(item);
+
+        item = new HashMap<>();
+        item.put("description", "2021购买了健康咨询服务");
+        serviceHistoryList.add(item);
+
+        descriptionListAdapter.notifyDataSetChanged();
+
     }
 
     public void onClick(View v) {
