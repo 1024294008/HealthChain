@@ -69,9 +69,11 @@ public class ServiceHistoryActivity extends AppCompatActivity implements View.On
 
     private void getServiceHistory(){
         // 测试数据
+
+        // 转账记录表   备注为  购买服务
         Map<String, String> item = new HashMap<>();
         item.put("description", "您于2020年5月3号购买了健康咨询服务");
-        serviceHistoryList.add(item);;
+        serviceHistoryList.add(item);
 
         descriptionListAdapter.notifyDataSetChanged();
     }

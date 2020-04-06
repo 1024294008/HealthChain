@@ -65,6 +65,8 @@ public class UserVisitorsActivity extends AppCompatActivity implements View.OnCl
 
     private void getVisitor(){
         // 测试数据
+
+        // 访客记录表
         Map<String, String> item = new HashMap<>();
         item.put("description", "东南大学附属医院于2020年4月6日访问了您的健康数据");
         visitorsList.add(item);;

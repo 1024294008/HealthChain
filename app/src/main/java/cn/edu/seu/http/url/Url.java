@@ -81,11 +81,13 @@ public class Url {
     // return: {"ethAddress":"以太坊地址", "balance":"余额", "transactionRecordList":[{"id":"交易id", "transactTime":"交易时间", "transactEth": "交易金额", "transactAddr":"交易在区块链上的地址"}, ...]}
     public final static String USER_WALLET_URL = "http://" + IFCONFIG + "/user_myWallet";
 
-    // 转账操作     post
-    // param:      sendAddress(付款方以太坊账号-->本人账号), recieveAddress(收款方以太坊账号), transactEth(交易金额), transactRemarks(备注)
+    // 用户之间转账转账操作     post
+    // param:      输入用户的账号
     // return: {"code": "200", "data": {}, "userBalance": "用户余额,后台通过web3直接查询"}
-    public final static String USER_TRANSFER = "http://" + IFCONFIG + "/user_transfer";
+    public final static String USER_TRANSFER_TO_USER = "http://" + IFCONFIG + "/api/user/transferUserToUser";
 
+    // 用户向机构转账
+    public final static String USER_TRANSFER_TO_ORG = "http://" + IFCONFIG + "/api/user/transfer";
 
     // 查看个人交易记录     get
     // param:   ethAddress(本人以太坊地址)
