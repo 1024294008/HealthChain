@@ -76,10 +76,13 @@ public class Url {
     public final static String UPDATE_USER_INFO_URL = "http://" + IFCONFIG + "/api/user/updateUserInfo";
 
 
-    // 查看用户钱包信息操作   get    --  通过id拿到用户信息  根据以太坊地址查询交易记录
+    // 获取用户余额
     // param:   id
-    // return: {"ethAddress":"以太坊地址", "balance":"余额", "transactionRecordList":[{"id":"交易id", "transactTime":"交易时间", "transactEth": "交易金额", "transactAddr":"交易在区块链上的地址"}, ...]}
-    public final static String USER_WALLET_URL = "http://" + IFCONFIG + "/user_myWallet";
+    // return:
+    public final static String USER_BALANCE_URL = "http://" + IFCONFIG + "/api/user/getBalance";
+
+    // 用户的转账记录
+    public final static String USER_TRANSFER_ALL_URL = "http://" + IFCONFIG + "/api/user/findRecordByEthAddress";
 
     // 用户之间转账转账操作     post
     // param:      输入用户的账号
@@ -89,11 +92,8 @@ public class Url {
     // 用户向机构转账
     public final static String USER_TRANSFER_TO_ORG = "http://" + IFCONFIG + "/api/user/transfer";
 
-    // 查看个人交易记录     get
-    // param:   ethAddress(本人以太坊地址)
-    // return: 暂无
-    public final static String USER_TRANSACTION_RECORD_URL = "http://" + IFCONFIG + "/user_transactionRecord";
-
+    // 交易记录详情
+    public final static String TRANSACTION_RECORD_DETAIL = "http://" + IFCONFIG + "/api/user/UserTransactionRecordDetail";
 
     // 用户购买服务的交易记录
     public final static String USER_BUY_SERVICE_URL = "http://" + IFCONFIG + "/api/user/findBytransactRemarks";
