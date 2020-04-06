@@ -227,11 +227,11 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
                             transferListAdapter.notifyDataSetChanged();
                         }
                         else{
-                            Toast.makeText(context, "交易记录加载失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "交易记录加载失败..", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(context, "交易记录加载失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "交易记录加载失败！！", Toast.LENGTH_SHORT).show();
                     }
 
                     break;

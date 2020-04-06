@@ -2,7 +2,7 @@ package cn.edu.seu.http.url;
 
 public class Url {
 
-    public final static String IFCONFIG = "192.168.1.100:3000";
+    public final static String IFCONFIG = "192.168.31.170:3000";
 
     // 登录才操作    POSTr
     // param:   account,password
@@ -101,5 +101,14 @@ public class Url {
     // 查看访客记录操作 post
     // param:   id
     // return: 暂无
-    public final static String VISIT_DATA_URL = "http://" + IFCONFIG + "/api/user/findRecordAndOrnInfoByUserId";;
+    public final static String VISIT_DATA_URL = "http://" + IFCONFIG + "/api/user/findRecordAndOrnInfoByUserId";
+
+    // 购买以太币
+    public final static String BUY_ETH_COIN_URL = "http://" + IFCONFIG + "";
+
+    // 用户转账
+    public final static String USER_TRANSFER = "http://" + IFCONFIG + "";
+
+    // 交易记录
+    public final static String USER_TRANSACTION_RECORD_URL = "http://" + IFCONFIG + "";
 }

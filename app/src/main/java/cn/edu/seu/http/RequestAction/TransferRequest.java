@@ -31,8 +31,8 @@ public class TransferRequest {
 
     public void doPost(Map<String, String> param)
     {
-        String url = Url.USER_TRANSFER;
-        httpRequest.setUrl(url);
-        httpRequest.post(param);
+//        String url = Url.USER_TRANSFER;
+//        httpRequest.setUrl(url);
+//        httpRequest.post(param);
     }
 }
