@@ -95,14 +95,11 @@ public class Url {
     public final static String USER_TRANSACTION_RECORD_URL = "http://" + IFCONFIG + "/user_transactionRecord";
 
 
-    // 购买以太币操作  post
-    // param:   sendAddress(付款方以太坊账号-->管理员), recieveAddress(收款方以太坊账号-->本人账号), transactEth(交易金额)
-    // return: 暂无
-    public final static String BUY_ETH_COIN_URL = "http://" + IFCONFIG + "/user_butEthCoin";
+    // 用户购买服务的交易记录
+    public final static String USER_BUY_SERVICE_URL = "http://" + IFCONFIG + "/api/user/findBytransactRemarks";
 
-
-    // 查看访客记录操作 get
+    // 查看访客记录操作 post
     // param:   id
     // return: 暂无
-    public final static String VISIT_DATA_URL = "http://" + IFCONFIG + "/user_visitData";;
+    public final static String VISIT_DATA_URL = "http://" + IFCONFIG + "/api/user/findRecordAndOrnInfoByUserId";;
 }
