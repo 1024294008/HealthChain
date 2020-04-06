@@ -55,16 +55,7 @@ public class ServiceHistoryActivity extends AppCompatActivity implements View.On
         back.setOnClickListener(this);
         serviceHistoryListView.setAdapter(descriptionListAdapter);
 
-        Map<String, String> item = new HashMap<>();
-        item.put("description", "2020购买了健康咨询服务");
-        serviceHistoryList.add(item);
-
-        item = new HashMap<>();
-        item.put("description", "2021购买了健康咨询服务");
-        serviceHistoryList.add(item);
-
-        descriptionListAdapter.notifyDataSetChanged();
-
+        getServiceHistory();
     }
 
     public void onClick(View v) {
@@ -74,5 +65,14 @@ public class ServiceHistoryActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
         }
+    }
+
+    private void getServiceHistory(){
+        // 测试数据
+        Map<String, String> item = new HashMap<>();
+        item.put("description", "您于2020年5月3号购买了健康咨询服务");
+        serviceHistoryList.add(item);;
+
+        descriptionListAdapter.notifyDataSetChanged();
     }
 }

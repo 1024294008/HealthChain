@@ -10,17 +10,24 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import cn.edu.seu.R;
+import cn.edu.seu.adapter.DescriptionListAdapter;
 
 public class UserVisitorsActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView back;
     private ListView visitorsListView;
+    private List<Map<String, String>> visitorsList;
+    private DescriptionListAdapter descriptionListAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_visitors);
-
         initView();
     }
 
@@ -39,9 +46,12 @@ public class UserVisitorsActivity extends AppCompatActivity implements View.OnCl
 
         back = (ImageView) this.findViewById(R.id.back);
         visitorsListView = (ListView) this.findViewById(R.id.visitorsListView);
-        //从数据库里筛选出用户的所有访客记录，展示在界面
+        visitorsList = new ArrayList<>();
+        descriptionListAdapter = new DescriptionListAdapter(this, visitorsList, R.layout.activity_description_list_item);
 
         back.setOnClickListener(this);
+        visitorsListView.setAdapter(descriptionListAdapter);
+        getVisitor();
     }
 
     public void onClick(View v) {
@@ -51,5 +61,14 @@ public class UserVisitorsActivity extends AppCompatActivity implements View.OnCl
                 finish();
                 break;
         }
+    }
+
+    private void getVisitor(){
+        // 测试数据
+        Map<String, String> item = new HashMap<>();
+        item.put("description", "东南大学附属医院于2020年4月6日访问了您的健康数据");
+        visitorsList.add(item);;
+
+        descriptionListAdapter.notifyDataSetChanged();
     }
 }
