@@ -13,9 +13,11 @@ import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,14 +31,18 @@ import java.util.List;
 import java.util.Map;
 
 import cn.edu.seu.R;
+import cn.edu.seu.adapter.TransferListAdapter;
 import cn.edu.seu.http.RequestAction.UserWalletRequest;
 
-public class UserWalletActivity extends AppCompatActivity implements View.OnClickListener{
+public class UserWalletActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private ImageView back;
     private Button transant;
     private TextView balance;
     private TextView address;
+    private ListView transactionRecordListView;
+    private List<Map<String, String>>  transactionRecordList;
+    private TransferListAdapter transferListAdapter;
 
     public SharedPreferences sharedPreferences;
 
@@ -44,10 +50,7 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_wallet);
-
         initView();
-
-        getWalletData();
     }
 
     private void initView(){
@@ -69,10 +72,18 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
         transant = (Button) findViewById(R.id.transant);
         balance = (TextView) findViewById(R.id.balance);
         address = (TextView) findViewById(R.id.address);
+        transactionRecordList = new ArrayList<>();
+        transactionRecordListView = findViewById(R.id.transactionRecordListView);
+        transferListAdapter = new TransferListAdapter(this, transactionRecordList, R.layout.activity_transaction_record_list_item);
 
         back.setOnClickListener(this);
         transant.setOnClickListener(this);
         address.setText(sharedPreferences.getString("ethAddress", ""));
+        transactionRecordListView.setAdapter(transferListAdapter);
+        transactionRecordListView.setOnItemClickListener(this);
+
+        getBalance();
+        getTransactionRecord();
     }
 
     public void onClick(View v) {
@@ -82,24 +93,39 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
                 finish();
                 break;
             case R.id.transant:
-
-                //保存用户的余额
-                SharedPreferences.Editor editor = sharedPreferences.edit();       //获取编辑器
-                editor.putString("userbalance", balance.getText().toString());    //key-value
-                editor.commit();                                                  //提交修改
-
                 Intent intent = new Intent(UserWalletActivity.this, UserTransferActivity.class);
                 startActivity(intent);
                 break;
         }
     }
 
-    // 加载钱包数据
-    public void getWalletData(){
-        Handler handler = new UserWalletHadnler(UserWalletActivity.this);
-        UserWalletRequest request = new UserWalletRequest(UserWalletActivity.this, handler);
-        String id = sharedPreferences.getString("id", "");
-        request.doGet(id);
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(UserWalletActivity.this, TransactionRecordDetailActivity.class);
+        intent.putExtra("id", transactionRecordList.get(position).get("id"));
+        intent.putExtra("type", transactionRecordList.get(position).get("type"));
+        startActivity(intent);
+    }
+
+    // 获取余额
+    private void getBalance(){
+        // 获取余额
+        // 转账方token：sharedPreferences.getString("token", "")
+        // 设置balance.setText()
+    }
+
+    // 获取转账记录
+    private void getTransactionRecord(){
+        // 测试数据(需要用循环)
+        Map<String, String> item = new HashMap<>();
+        item.put("id", "1"); // 交易记录id
+        item.put("type", "0"); // 交易类型(type为0表示支出。为1表示收入)
+        item.put("amount", "50000000000");  // 交易金额
+        transactionRecordList.add(item);;
+
+        transferListAdapter.notifyDataSetChanged();
+
+        // 以太坊地址ethAddress：sharedPreferences.getString("ethAddress", "")
     }
 
     /**
