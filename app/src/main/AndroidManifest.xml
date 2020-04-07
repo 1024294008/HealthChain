@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.TransactionRecordDetailActivity"></activity>
+        <activity android:name=".activity.DataAnalyzeActivity"></activity>
+        <activity android:name=".activity.TransactionRecordDetailActivity" />
         <activity android:name=".activity.HealthDetailActivity" />
         <activity android:name=".activity.ServiceHistoryActivity" />
         <activity android:name=".activity.MedicalDetailActivity">
