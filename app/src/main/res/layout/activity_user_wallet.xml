@@ -156,7 +156,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
         <ListView
-            android:id="@+id/visitorsListView"
+            android:id="@+id/transactionRecordListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="@color/standardSelect"

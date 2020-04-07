@@ -268,18 +268,29 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
                     // 具体执行内容
                     try {
                         JSONObject response = (JSONObject)msg.obj;
-                        JSONObject _data = response.getJSONObject("_data");
-                        JSONObject medicalServiceList = _data.getJSONObject("medicalServiceList");
-                        JSONArray data = medicalServiceList.getJSONArray("data");
-                        for(Integer i=0; i<data.length(); i++){
-                            Map<String, String> map = new HashMap<>();
-                            map.put("serviceId", String.valueOf(data.getJSONObject(i).getInt("id")));
-                            map.put("serviceName", data.getJSONObject(i).getString("serviceName"));
-                            map.put("portrait", data.getJSONObject(i).getString("portrait"));
-                            medicalListFront.add(map);
+                        String _code = response.getString("_code");
+
+                        if("200".equals(_code)){
+                            JSONObject _data = response.getJSONObject("_data");
+                            JSONObject medicalServiceList = _data.getJSONObject("medicalServiceList");
+                            JSONArray data = medicalServiceList.getJSONArray("data");
+
+//                            Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show();
+
+                            for(Integer i=0; i<data.length(); i++){
+                                Map<String, String> map = new HashMap<>();
+                                map.put("serviceId", String.valueOf(data.getJSONObject(i).getInt("id")));
+                                map.put("serviceName", data.getJSONObject(i).getString("serviceName"));
+                                map.put("portrait", data.getJSONObject(i).getString("portrait"));
+                                medicalListFront.add(map);
+                            }
+                        }
+                        else{
+                            Toast.makeText(context, "医疗服务列表查找失败", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Toast.makeText(context, "医疗服务列表查找失败", Toast.LENGTH_SHORT).show();
                     }
 
                     break;

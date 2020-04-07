@@ -24,14 +24,14 @@ public class TransactionRecordRequest {
 
     public void doGet(String ethAddress)
     {
-        String url = Url.USER_TRANSACTION_RECORD_URL + "?ethAddress" + ethAddress;
-        httpRequest.setUrl(url);
-        httpRequest.get();
+//        String url = Url.USER_TRANSACTION_RECORD_URL + "?ethAddress" + ethAddress;
+//        httpRequest.setUrl(url);
+//        httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-//        String url = "";
+//        String url = Url.USER_TRANSACTION_RECORD_URL;
 //        httpRequest.setUrl(url);
 //        httpRequest.post(param);
     }

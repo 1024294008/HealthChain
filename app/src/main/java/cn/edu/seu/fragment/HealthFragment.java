@@ -43,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.edu.seu.R;
+import cn.edu.seu.activity.DataAnalyzeActivity;
 import cn.edu.seu.activity.HealthDetailActivity;
 import cn.edu.seu.activity.MainActivity;
 import cn.edu.seu.activity.MedicalDetailActivity;
@@ -138,6 +139,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener, A
                 .softShowUp();
 
         dialogView.findViewById(R.id.upload).setOnClickListener(this);
+        dialogView.findViewById(R.id.dataAnalyze).setOnClickListener(this);
         healthFront.setOnClickListener(this);
         healthBg.setOnClickListener(this);
         searchHistory.setOnClickListener(this);
@@ -168,6 +170,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener, A
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 0){
             getLatestData();
+            getHealthListOrigin();
         }
         showFront();
     }
@@ -188,6 +191,11 @@ public class HealthFragment extends Fragment  implements View.OnClickListener, A
                 break;
             case R.id.upload:
                 jumpUploadPage();
+                break;
+            case R.id.dataAnalyze:
+                startActivity(new Intent(this.getActivity(), DataAnalyzeActivity.class));
+                uploadDialog.dismiss();
+                break;
         }
     }
 

@@ -9,14 +9,15 @@ import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.url.Url;
 
 /**
- * 转账
+ * 向用户转账
  */
-public class TransferRequest {
+public class TransferToUserRequest {
+
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
 
-    public TransferRequest(Context context, Handler handler) {
+    public TransferToUserRequest(Context context, Handler handler) {
         this.context = context;
         this.handler = handler;
         this.httpRequest = new HttpRequest(this.context, this.handler);
@@ -24,15 +25,15 @@ public class TransferRequest {
 
     public void doGet()
     {
-//        String url = "http://192.168.31.112:80/json.html";
-//        httpRequest.setUrl(url);
-//        httpRequest.get();
+        String url = "http://192.168.31.112:80/json.html";
+        httpRequest.setUrl(url);
+        httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-//        String url = Url.USER_TRANSFER;
-//        httpRequest.setUrl(url);
-//        httpRequest.post(param);
+        String url = Url.USER_TRANSFER_TO_USER;
+        httpRequest.setUrl(url);
+        httpRequest.post(param);
     }
 }

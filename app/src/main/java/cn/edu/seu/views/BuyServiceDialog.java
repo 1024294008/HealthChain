@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,7 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.edu.seu.R;
+import cn.edu.seu.http.HttpHandler.TransferToOrgHandler;
+import cn.edu.seu.http.RequestAction.TransferToOrgRequest;
 
 public class BuyServiceDialog extends Dialog implements View.OnClickListener {
     private Context context;
@@ -81,9 +88,26 @@ public class BuyServiceDialog extends Dialog implements View.OnClickListener {
             Toast.makeText(context, "密码错误", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // 用户向机构转账
         // 转账
         // 转账方token：sharedPreferences.getString("token", "")
         // 接收方以太坊地址（机构）：this.receiverEthAddress
         // 转账金额：this.value
+
+        String token = sharedPreferences.getString("token", "");
+        String receiverEthAddr = this.receiverEthAddress;
+        String val = this.value;
+
+        Handler handler = new TransferToOrgHandler(context);
+        TransferToOrgRequest request = new TransferToOrgRequest(context, handler);
+
+        Map<String, String>params = new HashMap<>();
+        params.put("token", token);
+        params.put("receiverEthAddr", receiverEthAddr);
+        params.put("value", val);
+        params.put("transactRemarks", "购买服务");
+
+        request.doPost(params);
     }
 }
