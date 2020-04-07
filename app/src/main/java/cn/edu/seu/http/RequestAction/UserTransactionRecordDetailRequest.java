@@ -9,30 +9,32 @@ import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.url.Url;
 
 /**
- * 转账
+ * 交易记录详情
  */
-public class TransferRequest {
+public class UserTransactionRecordDetailRequest {
+
     private Context context;
     private Handler handler;
     private HttpRequest httpRequest;
 
-    public TransferRequest(Context context, Handler handler) {
+    public UserTransactionRecordDetailRequest(Context context, Handler handler) {
         this.context = context;
         this.handler = handler;
         this.httpRequest = new HttpRequest(this.context, this.handler);
     }
 
-    public void doGet()
+    public void doGet(String id)
     {
-//        String url = "http://192.168.31.112:80/json.html";
-//        httpRequest.setUrl(url);
-//        httpRequest.get();
+        String url = "";
+        httpRequest.setUrl(url);
+        httpRequest.get();
     }
 
     public void doPost(Map<String, String> param)
     {
-//        String url = Url.USER_TRANSFER;
-//        httpRequest.setUrl(url);
-//        httpRequest.post(param);
+        String url = Url.TRANSACTION_RECORD_DETAIL;
+        httpRequest.setUrl(url);
+        httpRequest.post(param);
     }
 }
+

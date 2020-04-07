@@ -4,13 +4,20 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.edu.seu.R;
+import cn.edu.seu.http.HttpHandler.TransferToUserHandler;
+import cn.edu.seu.http.RequestAction.TransferToUserRequest;
 
 public class TransferDialog extends Dialog implements View.OnClickListener {
     private Context context;
@@ -79,9 +86,25 @@ public class TransferDialog extends Dialog implements View.OnClickListener {
             Toast.makeText(context, "密码错误", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // 用户和用户之间转账
         // 转账
         // 转账方token：sharedPreferences.getString("token", "")
         // 接收方账户（用户）：this.receiverAccount
         // 转账金额：this.value
+        String token = sharedPreferences.getString("token", "");
+        String account = this.receiverAccount;
+        String val = this.value;
+
+        Handler handler = new TransferToUserHandler(context);
+        TransferToUserRequest request = new TransferToUserRequest(context, handler);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("token", token);
+        params.put("account", account);
+        params.put("value", val);
+        params.put("transactRemarks", "转账");
+
+        request.doPost(params);
     }
 }
