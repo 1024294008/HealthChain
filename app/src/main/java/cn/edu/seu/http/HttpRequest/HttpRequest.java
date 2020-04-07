@@ -93,7 +93,7 @@ public class HttpRequest implements HttpApi {
                         t.show();
                     }
                 });
-//        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
+        request.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
         queue.add(request);
     }
 }
