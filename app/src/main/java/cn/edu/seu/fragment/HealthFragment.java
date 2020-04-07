@@ -170,6 +170,7 @@ public class HealthFragment extends Fragment  implements View.OnClickListener, A
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 0){
             getLatestData();
+            getHealthListOrigin();
         }
         showFront();
     }

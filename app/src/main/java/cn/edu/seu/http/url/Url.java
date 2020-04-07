@@ -2,7 +2,7 @@ package cn.edu.seu.http.url;
 
 public class Url {
 
-    public final static String IFCONFIG = "192.168.31.170:3000";
+    public final static String IFCONFIG = "192.168.1.100:3000";
 
     // 登录才操作    POSTr
     // param:   account,password

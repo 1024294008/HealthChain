@@ -33,11 +33,12 @@ public class DataAnalyzeActivity extends AppCompatActivity implements View.OnCli
     private WebView loadWebView;
     private SharedPreferences sharedPreferences;
     private final String[] chartsUrl = new String[]{
-            "http://" + Url.IFCONFIG + "/api/user/permitVisitChart",
+            "http://" + Url.IFCONFIG + "/api/user/uploadTimeChart",
             "http://" + Url.IFCONFIG + "/api/user/distanceChart",
-            "http://" + Url.IFCONFIG + "/api/user/heartRateChart",
             "http://" + Url.IFCONFIG + "/api/user/heatChart",
+            "http://" + Url.IFCONFIG + "/api/user/heartRateChart",
             "http://" + Url.IFCONFIG + "/api/user/sleepQualityChart",
+            "http://" + Url.IFCONFIG + "/api/user/permitVisitChart"
     };
     private String token;
 
@@ -81,6 +82,7 @@ public class DataAnalyzeActivity extends AppCompatActivity implements View.OnCli
         dialogView.findViewById(R.id.chart3).setOnClickListener(this);
         dialogView.findViewById(R.id.chart4).setOnClickListener(this);
         dialogView.findViewById(R.id.chart5).setOnClickListener(this);
+        dialogView.findViewById(R.id.chart6).setOnClickListener(this);
 
         // 设置webview
         loadProgress.setVisibility(View.INVISIBLE);
@@ -135,10 +137,20 @@ public class DataAnalyzeActivity extends AppCompatActivity implements View.OnCli
                 chartOptions.dismiss();
                 break;
             case R.id.chart3:
+                setCurrentChart(3);
+                chartOptions.dismiss();
                 break;
             case R.id.chart4:
+                setCurrentChart(4);
+                chartOptions.dismiss();
                 break;
             case R.id.chart5:
+                setCurrentChart(5);
+                chartOptions.dismiss();
+                break;
+            case R.id.chart6:
+                setCurrentChart(6);
+                chartOptions.dismiss();
                 break;
         }
     }

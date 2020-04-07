@@ -17,7 +17,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/ic_main_health_upload_options_bg2"/>
+            android:src="@drawable/ic_data_analyze_options1"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -25,7 +25,7 @@
             android:gravity="center_vertical"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
-            android:text="表1"/>
+            android:text="上传时间"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/chart2"
@@ -38,7 +38,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/ic_main_health_upload_options_bg2"/>
+            android:src="@drawable/ic_data_analyze_options2"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -46,7 +46,7 @@
             android:layout_marginLeft="5dp"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
-            android:text="表2"/>
+            android:text="步行距离"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/chart3"
@@ -59,7 +59,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/ic_main_health_upload_options_bg2"/>
+            android:src="@drawable/ic_data_analyze_options3"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -67,7 +67,7 @@
             android:layout_marginLeft="5dp"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
-            android:text="表3"/>
+            android:text="热量消耗"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/chart4"
@@ -88,7 +88,7 @@
             android:layout_marginLeft="5dp"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
-            android:text="表4"/>
+            android:text="心率"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/chart5"
@@ -101,7 +101,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/ic_main_health_upload_options_bg2"/>
+            android:src="@drawable/ic_data_analyze_options5"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -109,6 +109,27 @@
             android:layout_marginLeft="5dp"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
-            android:text="心率折线图"/>
+            android:text="睡眠质量"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/chart6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:background="@drawable/selector_list_item_bg">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_data_analyze_optons6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:text="隐私性"/>
     </LinearLayout>
 </LinearLayout>
