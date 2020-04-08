@@ -52,7 +52,7 @@
                         android:layout_height="match_parent"
                         android:textColor="@color/colorBlack"
                         android:gravity="center_vertical"
-                        android:inputType="textPassword"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:hint="支付密码"
                         android:textSize="@dimen/listItemFontSize"/>
