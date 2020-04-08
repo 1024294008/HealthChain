@@ -331,8 +331,8 @@ public class HealthFragment extends Fragment  implements View.OnClickListener, A
                             for(Integer i=0; i<arry.length(); i++){
                                 Map<String, String> map = new HashMap<>();
                                 // 时间格式化
-//                            String time = arry.getJSONObject(i).getString("uploadTime").substring(5，10);
-                                map.put("time", "time");
+                                String time = arry.getJSONObject(i).getString("uploadTime").substring(5, 10);
+                                map.put("time", time);
                                 map.put("eval", arry.getJSONObject(i).getString("evaluation"));
                                 map.put("index", arry.getJSONObject(i).getString("index"));
                                 healthListOrigin.add(map);
