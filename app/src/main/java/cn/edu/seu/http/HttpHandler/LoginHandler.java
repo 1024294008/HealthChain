@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,9 +23,11 @@ public class LoginHandler extends Handler {
 
     private Context context;
     public SharedPreferences sharedPreferences;
+    private RelativeLayout loadProgress;
 
-    public LoginHandler(Context context) {
+    public LoginHandler(Context context, RelativeLayout loadProgress) {
         this.context = context;
+        this.loadProgress = loadProgress;
     }
 
     @Override
@@ -69,6 +73,8 @@ public class LoginHandler extends Handler {
                     t.show();
                     e.printStackTrace();
                     return;
+                } finally {
+                    loadProgress.setVisibility(View.INVISIBLE);
                 }
 
                 //跳转到主页面

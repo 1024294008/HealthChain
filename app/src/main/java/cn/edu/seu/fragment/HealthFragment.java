@@ -322,22 +322,21 @@ public class HealthFragment extends Fragment  implements View.OnClickListener, A
             super.handleMessage(msg);
             switch (msg.what){
                 case 0:
-                    // 具体执行内容
-//                    Toast t = Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT);
-//                    t.show();
-
                     try {
                         JSONObject response = (JSONObject)msg.obj;
-                        JSONArray arry = response.getJSONArray("_data");
-                        for(Integer i=0; i<arry.length(); i++){
-                            Map<String, String> map = new HashMap<>();
-                            // 时间格式化
-//                            String time = arry.getJSONObject(i).getString("uploadTime").substring(6);
-//                            time = time.split(" ")[0];
-                            map.put("time", "time");
-                            map.put("eval", arry.getJSONObject(i).getString("evaluation"));
-                            map.put("index", arry.getJSONObject(i).getString("index"));
-                            healthListOrigin.add(map);
+                        String _code = response.getString("_code");
+                        if("200".equals(_code)){
+                            JSONArray arry = response.getJSONArray("_data");
+
+                            for(Integer i=0; i<arry.length(); i++){
+                                Map<String, String> map = new HashMap<>();
+                                // 时间格式化
+//                            String time = arry.getJSONObject(i).getString("uploadTime").substring(5，10);
+                                map.put("time", "time");
+                                map.put("eval", arry.getJSONObject(i).getString("evaluation"));
+                                map.put("index", arry.getJSONObject(i).getString("index"));
+                                healthListOrigin.add(map);
+                            }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -364,19 +363,16 @@ public class HealthFragment extends Fragment  implements View.OnClickListener, A
             super.handleMessage(msg);
             switch (msg.what){
                 case 0:
-                    // 具体执行内容
-//                    Toast t = Toast.makeText(this.context, msg.obj.toString(), Toast.LENGTH_SHORT);
-//                    t.show();
-
                     try {
                         JSONObject response = (JSONObject) msg.obj;
-                        JSONObject latestData = response.getJSONObject("_data");
-                        setData(latestData.getString("uploadTime"), latestData.getString("distance"), latestData.getString("heat"),
-                                latestData.getString("sleepQuality"), latestData.getString("heartRate"), latestData.getString("evaluation"));
+                        String _code = response.getString("_code");
+                        if("200".equals(_code)){
+                            JSONObject latestData = response.getJSONObject("_data");
+                            setData(latestData.getString("uploadTime"), latestData.getString("distance"), latestData.getString("heat"),
+                                    latestData.getString("sleepQuality"), latestData.getString("heartRate"), latestData.getString("evaluation"));
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast t = Toast.makeText(context, "数据加载失败..", Toast.LENGTH_SHORT);
-                        t.show();
                         setData("","","","","", "");
                     }
             }

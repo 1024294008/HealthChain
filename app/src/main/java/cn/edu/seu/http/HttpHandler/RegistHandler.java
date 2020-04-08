@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,9 +23,11 @@ import cn.edu.seu.activity.RegisterActivity;
 public class RegistHandler extends Handler {
 
     private Context context;
+    private RelativeLayout loadProgress;
 
-    public RegistHandler(Context context) {
+    public RegistHandler(Context context, RelativeLayout loadProgress) {
         this.context = context;
+        this.loadProgress = loadProgress;
     }
 
     @Override
@@ -52,6 +56,8 @@ public class RegistHandler extends Handler {
                     Toast toast = Toast.makeText(context,"注册失败",Toast.LENGTH_SHORT);
                     toast.show();
                     e.printStackTrace();
+                } finally {
+                    loadProgress.setVisibility(View.INVISIBLE);
                 }
 
         }

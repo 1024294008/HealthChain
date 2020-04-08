@@ -80,7 +80,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:padding="8dp"
-            android:src="@drawable/ic_main_health_upload_options_bg2"/>
+            android:src="@drawable/ic_main_data_analyze_options4"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
