@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private TextView register;
+    private RelativeLayout loadProgress;
 
     public SharedPreferences sharedPreferences;
 
@@ -63,10 +65,13 @@ public class LoginActivity extends AppCompatActivity {
         register = (TextView) this.findViewById(R.id.register);
         username = (EditText) this.findViewById(R.id.username);
         password = (EditText) this.findViewById(R.id.password);
+        loadProgress = findViewById(R.id.loadProgress);
+
+        loadProgress.setVisibility(View.INVISIBLE);
     }
 
    //登录处理
-   private void login(View login){
+   private void login(final View login){
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,13 +87,14 @@ public class LoginActivity extends AppCompatActivity {
                 else {
 
                     // 通过http调用后台方法，页面在handler渲染
-                    Handler handler = new LoginHandler(LoginActivity.this);
+                    Handler handler = new LoginHandler(LoginActivity.this, loadProgress);
                     LoginRequest request = new LoginRequest(LoginActivity.this, handler);
 
                     Map<String, String> param = new HashMap<String, String>();
                     param.put("account", name);
                     param.put("password", psd);
 
+                    loadProgress.setVisibility(View.VISIBLE);
                     request.doPost(param);
                 }
 

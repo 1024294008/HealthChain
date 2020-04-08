@@ -140,23 +140,23 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                     try {
                         JSONObject response = (JSONObject)msg.obj;
                         String _code = response.getString("_code");
-                        JSONObject _data = response.getJSONObject("_data");
-                        JSONObject serviceAndOrgInfo = _data.getJSONObject("serviceAndOrgInfo");
+                        if("200".equals(_code)){
+                            JSONObject _data = response.getJSONObject("_data");
+                            JSONObject serviceAndOrgInfo = _data.getJSONObject("serviceAndOrgInfo");
 
-                        portrait_org.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(String.valueOf(serviceAndOrgInfo.getInt("portrait_org"))), null));
-                        portrait_user.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(String.valueOf(serviceAndOrgInfo.getInt("portrait_service"))), null));
-                        organizationName.setText(serviceAndOrgInfo.getString("organizationName"));
-                        introduction.setText(serviceAndOrgInfo.getString("introduction"));
-                        tel.setText(serviceAndOrgInfo.getString("tel"));
-                        serviceName.setText(serviceAndOrgInfo.getString("serviceName"));
-                        serviceDetails.setText(serviceAndOrgInfo.getString("serviceDetails"));
-                        cost.setText(serviceAndOrgInfo.getString("cost"));
-                        ethAddress = serviceAndOrgInfo.getString("ethAddress");
+                            portrait_org.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(String.valueOf(serviceAndOrgInfo.getInt("portrait_org"))), null));
+                            portrait_user.setImageDrawable(context.getResources().getDrawable(PortraitManager.getPortraitSrc(String.valueOf(serviceAndOrgInfo.getInt("portrait_service"))), null));
+                            organizationName.setText(serviceAndOrgInfo.getString("organizationName"));
+                            introduction.setText(serviceAndOrgInfo.getString("introduction"));
+                            tel.setText(serviceAndOrgInfo.getString("tel"));
+                            serviceName.setText(serviceAndOrgInfo.getString("serviceName"));
+                            serviceDetails.setText(serviceAndOrgInfo.getString("serviceDetails"));
+                            cost.setText(serviceAndOrgInfo.getString("cost"));
+                            ethAddress = serviceAndOrgInfo.getString("ethAddress");
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast t = Toast.makeText(context, "数据请求失败", Toast.LENGTH_SHORT);
-                        t.show();
                         break;
                     }
 

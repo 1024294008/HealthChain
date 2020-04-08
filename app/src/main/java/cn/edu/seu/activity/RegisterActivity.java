@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText telephone;
     private EditText address;
     private TextView register;
+    private RelativeLayout loadProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class RegisterActivity extends AppCompatActivity {
         telephone = (EditText) this.findViewById(R.id.telephone);
         address = (EditText) this.findViewById(R.id.address);
         register = (TextView) this.findViewById(R.id.register);
+        loadProgress = findViewById(R.id.loadProgress);
+
+        loadProgress.setVisibility(View.INVISIBLE);
     }
 
 
@@ -91,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else
                 {
                     //将数据存储到数据库中
-                    Handler handler = new RegistHandler(RegisterActivity.this);
+                    Handler handler = new RegistHandler(RegisterActivity.this, loadProgress);
                     RegistRequest request = new RegistRequest(RegisterActivity.this, handler);
 
                     Map<String, String> param = new HashMap<String, String>();
@@ -100,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                     param.put("address", add);
                     param.put("tel", tel);
                     param.put("portrait", PortraitManager.getPortrait().toString());
-
+                    loadProgress.setVisibility(View.VISIBLE);
                     request.doPost(param);
 //                    request.doGet();
                 }

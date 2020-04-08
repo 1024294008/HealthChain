@@ -86,4 +86,15 @@
                 android:text="Login"/>
         </LinearLayout>
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/loadProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8000">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/shape_progress_bg"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 </FrameLayout>
