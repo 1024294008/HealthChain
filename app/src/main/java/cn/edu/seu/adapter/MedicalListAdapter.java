@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -144,6 +145,7 @@ public class MedicalListAdapter extends BaseAdapter {
                 }
             }
         });
+
     }
 
 }
