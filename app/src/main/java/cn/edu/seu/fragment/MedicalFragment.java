@@ -233,8 +233,6 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
         request.doGet();
 
         // --------------------------------------------
-
-        medicalListAdapterFront.notifyDataSetChanged();
     }
 
     // 通过关键字更新MedicalListBg
@@ -292,7 +290,7 @@ public class MedicalFragment extends Fragment implements View.OnClickListener, A
                         e.printStackTrace();
                         Toast.makeText(context, "医疗服务列表查找失败", Toast.LENGTH_SHORT).show();
                     }
-
+                    medicalListAdapterFront.notifyDataSetChanged();
                     break;
             }
         }
