@@ -35,6 +35,7 @@ public class MeFragment extends Fragment {
     private LinearLayout device;
     private LinearLayout set;
     private LinearLayout visitor;
+    private TextView nickname;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_me, container, false);
@@ -67,7 +68,7 @@ public class MeFragment extends Fragment {
         device = (LinearLayout) view.findViewById(R.id.device);
         set = (LinearLayout) view.findViewById(R.id.set);
         visitor  = (LinearLayout) view.findViewById(R.id.visitor);
-
+        nickname = view.findViewById(R.id.nickname);
         TextView username = view.findViewById(R.id.username);
         ImageView portrait = view.findViewById(R.id.portrait);
         TextView nickName = view.findViewById(R.id.nickname);
@@ -134,4 +135,13 @@ public class MeFragment extends Fragment {
             }
         });
     }
+
+    public void onResume() {
+        super.onResume();
+        SharedPreferences read = getActivity().getSharedPreferences("test",Context.MODE_PRIVATE);
+        //设置用户信息
+        nickname.setText(read.getString("nickName", ""));
+    }
+
+
 }
