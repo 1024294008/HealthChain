@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -36,6 +37,7 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
     private EditText amount;   //转账金额
     private Button pay;
     private TransferDialog transferDialog;
+    private RelativeLayout loadProgress;
 
     private String dataBalance; //用户余额
     private String localEthAddress; // 本人以太坊地址
@@ -68,6 +70,7 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
         ethaddress = (EditText) findViewById(R.id.ethaddress);
         amount = (EditText) findViewById(R.id.amount);
         pay = (Button) findViewById(R.id.pay);
+        loadProgress = findViewById(R.id.loadProgress);
 
         // 读取sharedpreferences中的用户余额
         sharedPreferences = getSharedPreferences("wallet", Context.MODE_PRIVATE);
@@ -76,6 +79,7 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
 
         back.setOnClickListener(this);
         pay.setOnClickListener(this);
+        loadProgress.setVisibility(View.INVISIBLE);
     }
 
     //监听点击事件
@@ -140,9 +144,7 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
             return ;
         }
 
-        if(transferDialog == null){
-            transferDialog = new TransferDialog(this, ethaddress.getText().toString(), amount.getText().toString());
-        }
+        transferDialog = new TransferDialog(this, ethaddress.getText().toString(), amount.getText().toString(), loadProgress);
         transferDialog.show();
 
 

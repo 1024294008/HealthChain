@@ -45,6 +45,7 @@
                 android:layout_height="50dp"
                 android:textSize="15sp"
                 android:textColor="@color/colorWhite"
+                android:text="16612340001"
                 android:background="@drawable/selector_edittext_bg"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -53,7 +54,8 @@
                 android:text="Password"/>
             <EditText
                 android:id="@+id/password"
-                android:inputType="text"
+                android:inputType="textPassword"
+                android:text="123456"
                 android:layout_width="match_parent"
                 android:textColor="@color/colorWhite"
                 android:layout_height="50dp"

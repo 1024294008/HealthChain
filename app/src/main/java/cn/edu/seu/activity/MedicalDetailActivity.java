@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
     private TextView tel;
     private String ethAddress;
     private BuyServiceDialog buyServiceDialog;
+    private RelativeLayout loadProgress;
 
     public SharedPreferences sharedPreferences;
 
@@ -77,8 +79,11 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
         cost = this.findViewById(R.id.cost);
         tel = this.findViewById(R.id.tel);
 
+        loadProgress = findViewById(R.id.loadProgress);
+
         back.setOnClickListener(this);
         requestService.setOnClickListener(this);
+        loadProgress.setVisibility(View.INVISIBLE);
 
         // 设置服务详情页面内容
         setContent(serviceId);
@@ -91,9 +96,7 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                 this.finish();
                 break;
             case R.id.requestService:
-                if(buyServiceDialog == null){
-                    buyServiceDialog = new BuyServiceDialog(this, ethAddress, cost.getText().toString());
-                }
+                buyServiceDialog = new BuyServiceDialog(this, ethAddress, cost.getText().toString(), loadProgress);
                 buyServiceDialog.show();
                 break;
         }

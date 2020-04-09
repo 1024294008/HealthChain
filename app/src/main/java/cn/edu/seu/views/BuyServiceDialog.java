@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,14 +27,16 @@ public class BuyServiceDialog extends Dialog implements View.OnClickListener {
     private String receiverEthAddress; // 接收方以太坊地址
     private String value; // 转账金额
     private EditText purchasePassword;
+    private RelativeLayout loadProgress;
 
     public SharedPreferences sharedPreferences;
 
-    public BuyServiceDialog(@NonNull Context context, String receiverEthAddress, String value)  {
+    public BuyServiceDialog(@NonNull Context context, String receiverEthAddress, String value, RelativeLayout loadProgress)  {
         super(context);
         this.context = context;
         this.receiverEthAddress = receiverEthAddress;
         this.value = value;
+        this.loadProgress = loadProgress;
     }
 
     @Override
@@ -88,7 +91,6 @@ public class BuyServiceDialog extends Dialog implements View.OnClickListener {
             Toast.makeText(context, "密码错误", Toast.LENGTH_SHORT).show();
             return;
         }
-
         // 用户向机构转账
         // 转账
         // 转账方token：sharedPreferences.getString("token", "")
@@ -99,7 +101,10 @@ public class BuyServiceDialog extends Dialog implements View.OnClickListener {
         String receiverEthAddr = this.receiverEthAddress;
         String val = this.value;
 
-        Handler handler = new TransferToOrgHandler(context);
+        this.dismiss();
+        loadProgress.setVisibility(View.VISIBLE);
+
+        Handler handler = new TransferToOrgHandler(context, loadProgress);
         TransferToOrgRequest request = new TransferToOrgRequest(context, handler);
 
         Map<String, String>params = new HashMap<>();

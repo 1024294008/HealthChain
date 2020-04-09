@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     // 设备数据列表
     private List<Map<String, String>> deviceList;
     private DeviceListAdapter deviceListAdapter;
+    private RelativeLayout loadProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +47,17 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
             //设置状态栏颜色
             window.setStatusBarColor(getResources().getColor(R.color.standardBackground, null));
         }
+        loadProgress = findViewById(R.id.loadProgress);
 
         ListView deviceListView = findViewById(R.id.deviceList);
         deviceList = new ArrayList<>();
-        deviceListAdapter = new DeviceListAdapter(this, deviceList, R.layout.activity_upload_list_item, new UploadDialog(this));
+        deviceListAdapter = new DeviceListAdapter(this, deviceList, R.layout.activity_upload_list_item, new UploadDialog(this, loadProgress));
 
         deviceListView.setAdapter(deviceListAdapter);
         findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.refresh).setOnClickListener(this);
+
+        loadProgress.setVisibility(View.INVISIBLE);
     }
 
     @Override
