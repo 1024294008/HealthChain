@@ -65,6 +65,41 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
+            android:text="对方账户"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:background="@color/colorWhite">
+                <TextView
+                    android:id="@+id/account"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:maxEms="7"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/listItemFontSize"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
             android:text="对方以太坊地址"
             android:textColor="@color/colorBlack"
             android:textSize="13sp" />

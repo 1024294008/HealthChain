@@ -29,6 +29,7 @@ public class TransactionRecordDetailActivity extends AppCompatActivity {
 
     private ImageView back;
     private TextView transactType;
+    private TextView account;
     private TextView ethAddress;
     private TextView transactEth;
     private TextView transactTime;
@@ -59,6 +60,7 @@ public class TransactionRecordDetailActivity extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         transactType = findViewById(R.id.transactType);
+        account = findViewById(R.id.account);
         ethAddress = findViewById(R.id.ethAddress);
         transactEth = findViewById(R.id.transactEth);
         transactTime = findViewById(R.id.transactTime);
@@ -78,9 +80,9 @@ public class TransactionRecordDetailActivity extends AppCompatActivity {
     private void setContent(){
         String transactionId = getIntent().getStringExtra("id");
         if(getIntent().getStringExtra("type").equals("0")){
-            transactType.setText("以太币支出");
+            transactType.setText("健康币支出");
         } else {
-            transactType.setText("以太币收入");
+            transactType.setText("健康币转入");
         }
 
         Handler handler = new UserTransactionRecordDetailHandler(TransactionRecordDetailActivity.this);
@@ -90,6 +92,7 @@ public class TransactionRecordDetailActivity extends AppCompatActivity {
 
         Map<String, String> params = new HashMap<>();
         params.put("token", token);
+        params.put("ethAddress", sharedPreferences.getString("ethAddress", ""));
         params.put("id", transactionId);  // 转账记录的id
 
         request.doPost(params);
@@ -114,8 +117,6 @@ public class TransactionRecordDetailActivity extends AppCompatActivity {
             switch (msg.what){
                 case 0:
                     // 具体执行内容
-
-
                     try {
                         JSONObject response = (JSONObject)msg.obj;
                         String _code = response.getString("_code");
@@ -123,18 +124,15 @@ public class TransactionRecordDetailActivity extends AppCompatActivity {
                         if("200".equals(_code)){
                             JSONObject _data = response.getJSONObject("_data");
                             // 根据transactionId和token获取该条转账信息，需要设置一下信息
-                            ethAddress.setText(_data.getString("recieveAddress"));  //对方账户的以太坊地址（要区分收入和支出的情况）
+                            account.setText(_data.getString("account"));  //对方账户
+                            ethAddress.setText(_data.getString("oppositeAddress"));  //对方账户的以太坊地址
                             transactEth.setText(_data.getString("transactEth"));   //转账金额
                             transactTime.setText(_data.getString("transactTime"));   //转账时间
                             transactRemarks.setText(_data.getString("transactRemarks"));  //转账备注
                         }
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-                    Toast t = Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT);
-                    t.show();
                     break;
             }
         }

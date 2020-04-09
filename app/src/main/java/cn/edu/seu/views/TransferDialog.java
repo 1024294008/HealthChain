@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.edu.seu.R;
+import cn.edu.seu.common.CoinTransManager;
 import cn.edu.seu.http.HttpHandler.TransferToUserHandler;
 import cn.edu.seu.http.RequestAction.TransferToUserRequest;
 
@@ -97,7 +98,7 @@ public class TransferDialog extends Dialog implements View.OnClickListener {
         // 转账金额：this.value
         String token = sharedPreferences.getString("token", "");
         String account = this.receiverAccount;
-        String val = this.value;
+        String val = CoinTransManager.transToEth(this.value);
 
         this.dismiss();
         loadProgress.setVisibility(View.VISIBLE);

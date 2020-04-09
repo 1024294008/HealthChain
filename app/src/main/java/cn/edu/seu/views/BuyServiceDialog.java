@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.edu.seu.R;
+import cn.edu.seu.common.CoinTransManager;
 import cn.edu.seu.http.HttpHandler.TransferToOrgHandler;
 import cn.edu.seu.http.RequestAction.TransferToOrgRequest;
 
@@ -99,7 +100,7 @@ public class BuyServiceDialog extends Dialog implements View.OnClickListener {
 
         String token = sharedPreferences.getString("token", "");
         String receiverEthAddr = this.receiverEthAddress;
-        String val = this.value;
+        String val = CoinTransManager.transToEth(this.value);
 
         this.dismiss();
         loadProgress.setVisibility(View.VISIBLE);

@@ -3,6 +3,7 @@ package cn.edu.seu.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import cn.edu.seu.R;
+import cn.edu.seu.common.CoinTransManager;
 import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.RequestAction.MedicalServiceRequest;
@@ -154,7 +155,7 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                             tel.setText(serviceAndOrgInfo.getString("tel"));
                             serviceName.setText(serviceAndOrgInfo.getString("serviceName"));
                             serviceDetails.setText(serviceAndOrgInfo.getString("serviceDetails"));
-                            cost.setText(serviceAndOrgInfo.getString("cost"));
+                            cost.setText(CoinTransManager.transToCoin(serviceAndOrgInfo.getString("cost")));
                             ethAddress = serviceAndOrgInfo.getString("ethAddress");
                         }
 

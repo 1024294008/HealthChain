@@ -65,12 +65,12 @@ public class TransferListAdapter extends BaseAdapter {
             transferIcon = cache.transferIcon;
         }
         if(transferList.get(position).get("type").equals("0")){
-            transferType.setText("以太币支出");
+            transferType.setText("健康币支出");
             transferIcon.setImageDrawable(this.context.getResources().getDrawable(R.drawable.ic_transfer_out, null));
 
             amount.setText("- " + transferList.get(position).get("amount"));
         } else {
-            transferType.setText("以太币转入");
+            transferType.setText("健康币转入");
             transferIcon.setImageDrawable(this.context.getResources().getDrawable(R.drawable.ic_transfer_in, null));
             amount.setText("+ " + transferList.get(position).get("amount"));
         }
