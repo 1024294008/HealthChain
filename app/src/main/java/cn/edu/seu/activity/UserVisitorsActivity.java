@@ -117,7 +117,7 @@ public class UserVisitorsActivity extends AppCompatActivity implements View.OnCl
                         String _code = response.getString("_code");
                         if("200".equals(_code)){
                             JSONArray dataList = response.getJSONArray("_data");
-                            for(Integer i=0; i<dataList.length(); i++){
+                            for(Integer i = dataList.length() - 1; i >= 0; i--){
                                 String organizationName = dataList.getJSONObject(i).getString("organizationName");
                                 String visitTime = dataList.getJSONObject(i).getString("visitTime");
                                 String dis = organizationName + "于" + visitTime + "访问了您的健康数据";

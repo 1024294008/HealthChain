@@ -3,6 +3,7 @@ package cn.edu.seu.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import cn.edu.seu.R;
+import cn.edu.seu.common.CoinTransManager;
 import cn.edu.seu.common.PortraitManager;
 import cn.edu.seu.http.HttpRequest.HttpRequest;
 import cn.edu.seu.http.RequestAction.MedicalServiceRequest;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,7 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
     private TextView tel;
     private String ethAddress;
     private BuyServiceDialog buyServiceDialog;
+    private RelativeLayout loadProgress;
 
     public SharedPreferences sharedPreferences;
 
@@ -77,8 +80,11 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
         cost = this.findViewById(R.id.cost);
         tel = this.findViewById(R.id.tel);
 
+        loadProgress = findViewById(R.id.loadProgress);
+
         back.setOnClickListener(this);
         requestService.setOnClickListener(this);
+        loadProgress.setVisibility(View.INVISIBLE);
 
         // 设置服务详情页面内容
         setContent(serviceId);
@@ -91,9 +97,7 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                 this.finish();
                 break;
             case R.id.requestService:
-                if(buyServiceDialog == null){
-                    buyServiceDialog = new BuyServiceDialog(this, ethAddress, cost.getText().toString());
-                }
+                buyServiceDialog = new BuyServiceDialog(this, ethAddress, cost.getText().toString(), loadProgress);
                 buyServiceDialog.show();
                 break;
         }
@@ -151,7 +155,7 @@ public class MedicalDetailActivity extends AppCompatActivity implements View.OnC
                             tel.setText(serviceAndOrgInfo.getString("tel"));
                             serviceName.setText(serviceAndOrgInfo.getString("serviceName"));
                             serviceDetails.setText(serviceAndOrgInfo.getString("serviceDetails"));
-                            cost.setText(serviceAndOrgInfo.getString("cost"));
+                            cost.setText(CoinTransManager.transToCoin(serviceAndOrgInfo.getString("cost")));
                             ethAddress = serviceAndOrgInfo.getString("ethAddress");
                         }
 

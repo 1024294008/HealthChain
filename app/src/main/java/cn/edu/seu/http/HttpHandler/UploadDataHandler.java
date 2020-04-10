@@ -2,6 +2,8 @@ package cn.edu.seu.http.HttpHandler;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -16,11 +18,11 @@ import cn.edu.seu.views.UploadDialog;
 public class UploadDataHandler extends Handler {
 
     private Context context;
-    private UploadDialog uploadDialog;
+    private RelativeLayout loadProgress;
 
-    public UploadDataHandler(Context context, UploadDialog uploadDialog) {
+    public UploadDataHandler(Context context, RelativeLayout loadProgress) {
         this.context = context;
-        this.uploadDialog = uploadDialog;
+        this.loadProgress = loadProgress;
     }
 
     @Override
@@ -33,7 +35,6 @@ public class UploadDataHandler extends Handler {
                 try {
                     String _code = response.getString("_code"); // 状态码
                     if("200".equals(_code)) {
-                        JSONObject _data = response.getJSONObject("_data"); // 数据
                         Toast.makeText(context, "上传成功", Toast.LENGTH_SHORT).show();
                     }
                     else {
@@ -46,7 +47,7 @@ public class UploadDataHandler extends Handler {
                     e.printStackTrace();
                     return;
                 } finally {
-                    uploadDialog.dismiss();
+                    loadProgress.setVisibility(View.INVISIBLE);
                 }
                 break;
         }

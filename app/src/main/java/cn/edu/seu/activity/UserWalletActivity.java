@@ -1,6 +1,7 @@
 package cn.edu.seu.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -30,6 +31,7 @@ import java.util.Map;
 
 import cn.edu.seu.R;
 import cn.edu.seu.adapter.TransferListAdapter;
+import cn.edu.seu.common.CoinTransManager;
 import cn.edu.seu.http.RequestAction.UserBalanceRequest;
 import cn.edu.seu.http.RequestAction.UserTransactionRecordRequest;
 
@@ -96,7 +98,7 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.transant:
                 Intent intent = new Intent(UserWalletActivity.this, UserTransferActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 break;
         }
     }
@@ -107,6 +109,13 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
         intent.putExtra("id", transactionRecordList.get(position).get("id"));
         intent.putExtra("type", transactionRecordList.get(position).get("type"));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        getBalance();
+        getTransactionRecord();
     }
 
     // 获取余额
@@ -127,6 +136,7 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
 
     // 获取转账记录
     private void getTransactionRecord(){
+        transactionRecordList.clear();
 
         String token = sharedPreferences.getString("token", "");
         String ethAddress = sharedPreferences.getString("ethAddress", "");
@@ -168,7 +178,7 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
                         String _code = response.getString("_code");
                         if("200".equals(_code)){
                             String bal = response.getJSONObject("_data").getString("balance");
-                            balance.setText(bal);
+                            balance.setText(CoinTransManager.transToCoin(bal));
                         }
                         else{
                             Toast.makeText(context, "余额加载失败", Toast.LENGTH_SHORT).show();
@@ -209,18 +219,18 @@ public class UserWalletActivity extends AppCompatActivity implements View.OnClic
                         if("200".equals(_code)){
                             JSONArray _data = response.getJSONArray("_data");
 
-                            for(Integer i=0; i<_data.length(); i++){
+                            for(Integer i= _data.length() - 1; i >= 0; i--){
                                 Map<String, String> item = new HashMap<>();
                                 item.put("id", _data.getJSONObject(i).getString("id")); // 交易记录id
                                 String sendAddress = _data.getJSONObject(i).getString("sendAddress"); // 发送方地址
-                                String recieveAddress = _data.getJSONObject(i).getString("recieveAddress"); // 接受放地址
+                                String recieveAddress = _data.getJSONObject(i).getString("recieveAddress"); // 接受方地址
 
                                 if(ethAddress.equals(sendAddress))
                                     item.put("type", "0"); // 交易类型(type为0表示支出。为1表示收入);
                                 else if(ethAddress.equals(recieveAddress))
                                     item.put("type", "1"); // 交易类型(type为0表示支出。为1表示收入)
 
-                                item.put("amount", _data.getJSONObject(i).getString("transactEth"));  // 交易金额
+                                item.put("amount", CoinTransManager.transToCoin(_data.getJSONObject(i).getString("transactEth")));  // 交易金额
                                 transactionRecordList.add(item);
 
                             }

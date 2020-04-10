@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 import cn.edu.seu.R;
 import cn.edu.seu.http.RequestAction.TransferRequest;
+import cn.edu.seu.model.User;
 import cn.edu.seu.views.TransferDialog;
 
 public class UserTransferActivity extends AppCompatActivity implements View.OnClickListener{
@@ -36,9 +38,7 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
     private EditText amount;   //转账金额
     private Button pay;
     private TransferDialog transferDialog;
-
-    private String dataBalance; //用户余额
-    private String localEthAddress; // 本人以太坊地址
+    private RelativeLayout loadProgress;
 
     private SharedPreferences sharedPreferences;
 
@@ -68,14 +68,14 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
         ethaddress = (EditText) findViewById(R.id.ethaddress);
         amount = (EditText) findViewById(R.id.amount);
         pay = (Button) findViewById(R.id.pay);
+        loadProgress = findViewById(R.id.loadProgress);
 
         // 读取sharedpreferences中的用户余额
-        sharedPreferences = getSharedPreferences("wallet", Context.MODE_PRIVATE);
-        dataBalance = sharedPreferences.getString("userbalance", "");
-        localEthAddress = sharedPreferences.getString("ethAddress", ""); // 本人以太坊账号
+        sharedPreferences = getSharedPreferences("test", Context.MODE_PRIVATE);
 
         back.setOnClickListener(this);
         pay.setOnClickListener(this);
+        loadProgress.setVisibility(View.INVISIBLE);
     }
 
     //监听点击事件
@@ -92,31 +92,13 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    //判断账户是否存在
-    private boolean isExist(EditText ethaddress){
-
-        //查找用户输入的账户
-
-        return true;
-    }
-
-    //判断用户余额是否足够
-    private boolean isEnough(EditText amount, String dataBalance){
-
-//        //转换成小数
-//        double dbAmount = Double.parseDouble(amount.getText().toString());
-//        double dbBalance = Double.parseDouble(dataBalance);
-//
-//        //emmmmm, 如何比较相等？
-//        if(dbBalance > dbAmount)
-//            return  true;
-//        else
-//            return false;
-        return true;
-    }
-
     //开始转账
     private void startTransfer(){
+        if(ethaddress.getText().toString().trim().equals(sharedPreferences.getString("username", ""))){
+            Toast toast = Toast.makeText(UserTransferActivity.this,"不能给自己转账",Toast.LENGTH_SHORT);
+            toast.show();
+            return ;
+        }
         //如果用户未输入账户和余额 提示
         if(ethaddress.getText().toString().isEmpty() || amount.getText().toString().isEmpty())
         {
@@ -124,25 +106,8 @@ public class UserTransferActivity extends AppCompatActivity implements View.OnCl
             toast.show();
             return ;
         }
-        //如果账户不存在
-        if( !isExist(ethaddress) ){
-            //提示账户不存在
-            Toast toast = Toast.makeText(UserTransferActivity.this,"您输入的账户不存在",Toast.LENGTH_SHORT);
-            toast.show();
-            return ;
-        }
-//
-        //如果余额不足
-        if( !isEnough(amount, dataBalance) ){
-            //提示用户余额不足
-            Toast toast = Toast.makeText(UserTransferActivity.this,"您的余额不足",Toast.LENGTH_SHORT);
-            toast.show();
-            return ;
-        }
 
-        if(transferDialog == null){
-            transferDialog = new TransferDialog(this, ethaddress.getText().toString(), amount.getText().toString());
-        }
+        transferDialog = new TransferDialog(this, ethaddress.getText().toString(), amount.getText().toString(), loadProgress);
         transferDialog.show();
 
 

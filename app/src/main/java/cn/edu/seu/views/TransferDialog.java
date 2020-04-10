@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.edu.seu.R;
+import cn.edu.seu.common.CoinTransManager;
 import cn.edu.seu.http.HttpHandler.TransferToUserHandler;
 import cn.edu.seu.http.RequestAction.TransferToUserRequest;
 
@@ -24,14 +26,16 @@ public class TransferDialog extends Dialog implements View.OnClickListener {
     private String receiverAccount; // 接收方账号
     private String value; // 转账金额
     private EditText purchasePassword;
+    private RelativeLayout loadProgress;
 
     public SharedPreferences sharedPreferences;
 
-    public TransferDialog(@NonNull Context context, String receiverAccount, String value)  {
+    public TransferDialog(@NonNull Context context, String receiverAccount, String value, RelativeLayout loadProgress)  {
         super(context);
         this.context = context;
         this.receiverAccount = receiverAccount;
         this.value = value;
+        this.loadProgress = loadProgress;
     }
 
     @Override
@@ -94,9 +98,12 @@ public class TransferDialog extends Dialog implements View.OnClickListener {
         // 转账金额：this.value
         String token = sharedPreferences.getString("token", "");
         String account = this.receiverAccount;
-        String val = this.value;
+        String val = CoinTransManager.transToEth(this.value);
 
-        Handler handler = new TransferToUserHandler(context);
+        this.dismiss();
+        loadProgress.setVisibility(View.VISIBLE);
+
+        Handler handler = new TransferToUserHandler(context, loadProgress);
         TransferToUserRequest request = new TransferToUserRequest(context, handler);
 
         Map<String, String> params = new HashMap<>();

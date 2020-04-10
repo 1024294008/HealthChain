@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,12 +33,14 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
     private TextView heartRate;
     private Switch share;
     private EditText evaluation;
+    private RelativeLayout loadProgress;
 
     public SharedPreferences sharedPreferences;
 
-    public UploadDialog(@NonNull Context context) {
+    public UploadDialog(@NonNull Context context, RelativeLayout loadProgress) {
         super(context);
         this.context = context;
+        this.loadProgress = loadProgress;
     }
 
     @Override
@@ -59,6 +62,7 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
         p.height = (int)((context.getResources().getDisplayMetrics()).heightPixels * 0.65);
         getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         getWindow().setAttributes(p);
+        getWindow().setWindowAnimations(R.style.dialogWindowAnim);
 
         // 获取控件
         distance = findViewById(R.id.distance);
@@ -132,6 +136,7 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
             Toast.makeText(context, "写个心情呗", Toast.LENGTH_SHORT).show();
             return;
         }
+
         // 获取数据并上传
         String str_distance =  distance.getText().toString();
         String str_heat = heat.getText().toString();
@@ -139,7 +144,11 @@ public class UploadDialog extends Dialog implements View.OnClickListener {
         String str_heartRate =  heartRate.getText().toString();
         boolean is_share =  share.isChecked();
         String str_evaluation = evaluation.getText().toString();
-        Handler handler =new UploadDataHandler(context, this);
+
+        this.dismiss();
+        loadProgress.setVisibility(View.VISIBLE);
+
+        Handler handler =new UploadDataHandler(context, loadProgress);
         UploadDataRequest request = new UploadDataRequest(context, handler);
 
         Map<String, String> param = new HashMap<String, String>();

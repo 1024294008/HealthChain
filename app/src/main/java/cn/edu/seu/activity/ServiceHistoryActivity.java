@@ -127,7 +127,7 @@ public class ServiceHistoryActivity extends AppCompatActivity implements View.On
                         String _code = response.getString("_code");
                         if("200".equals(_code)){
                             JSONArray dataList = response.getJSONArray("_data");
-                            for(Integer i=0; i<dataList.length(); i++){
+                            for(Integer i = dataList.length() - 1; i >= 0; i --){
                                 String transactTime = dataList.getJSONObject(i).getString("transactTime");
                                 String dis = "您于" + transactTime + "购买了医疗服务";
                                 Map<String, String> item = new HashMap<>();
@@ -135,10 +135,6 @@ public class ServiceHistoryActivity extends AppCompatActivity implements View.On
                                 serviceHistoryList.add(item);
                             }
                             descriptionListAdapter.notifyDataSetChanged();
-                            break;
-                        }
-                        else{
-                            Toast.makeText(context, "服务购买记录查询失败", Toast.LENGTH_SHORT).show();
                             break;
                         }
                     } catch (JSONException e) {
