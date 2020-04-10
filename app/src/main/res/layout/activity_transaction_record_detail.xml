@@ -36,51 +36,50 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="@color/colorWhite">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_height="50dp"
             android:background="@color/colorWhite"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp">
-                <TextView
-                    android:id="@+id/transactType"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/listItemFontSize" />
-            </LinearLayout>
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/transactType"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:text="健康币收入"
+                android:textSize="@dimen/listItemFontSize" />
         </LinearLayout>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:text="对方账户"
-            android:textColor="@color/colorBlack"
-            android:textSize="13sp" />
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/standardBackground"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:text="对方账户"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:background="@color/colorWhite">
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_transaction_record_bg1"/>
                 <TextView
                     android:id="@+id/account"
                     android:layout_width="0dp"
@@ -96,28 +95,71 @@
             </LinearLayout>
         </LinearLayout>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:text="对方以太坊地址"
-            android:textColor="@color/colorBlack"
-            android:textSize="13sp" />
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/standardBackground"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:text="对方以太坊地址"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:background="@color/colorWhite">
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_transaction_record_bg2"/>
                 <TextView
                     android:id="@+id/ethAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textIsSelectable="true"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="11sp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/standardBackground"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:text="交易时间"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_transaction_record_bg3"/>
+                <TextView
+                    android:id="@+id/transactTime"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -131,87 +173,31 @@
             </LinearLayout>
         </LinearLayout>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:text="转账金额"
-            android:textColor="@color/colorBlack"
-            android:textSize="13sp" />
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/standardBackground"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:text="备注"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp">
-                <TextView
-                    android:id="@+id/transactEth"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:padding="10dp"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/listItemFontSize"/>
-            </LinearLayout>
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:text="交易时间"
-            android:textColor="@color/colorBlack"
-            android:textSize="13sp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp">
-                <TextView
-                    android:id="@+id/transactTime"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/listItemFontSize"/>
-            </LinearLayout>
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:text="备注"
-            android:textColor="@color/colorBlack"
-            android:textSize="13sp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp">
+                    android:src="@drawable/ic_transaction_record_bg4"/>
                 <TextView
                     android:id="@+id/transactRemarks"
                     android:layout_width="0dp"
@@ -219,9 +205,43 @@
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:maxEms="7"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/listItemFontSize"/>
             </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/standardBackground"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:text="转账金额"
+                android:textSize="@dimen/listItemFontSize" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/transactEth"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:textSize="25sp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

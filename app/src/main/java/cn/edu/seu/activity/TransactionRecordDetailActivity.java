@@ -3,6 +3,7 @@ package cn.edu.seu.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import cn.edu.seu.R;
+import cn.edu.seu.common.CoinTransManager;
 import cn.edu.seu.http.RequestAction.UserTransactionRecordDetailRequest;
 
 import android.content.Context;
@@ -126,7 +127,7 @@ public class TransactionRecordDetailActivity extends AppCompatActivity {
                             // 根据transactionId和token获取该条转账信息，需要设置一下信息
                             account.setText(_data.getString("account"));  //对方账户
                             ethAddress.setText(_data.getString("oppositeAddress"));  //对方账户的以太坊地址
-                            transactEth.setText(_data.getString("transactEth"));   //转账金额
+                            transactEth.setText("$ " + CoinTransManager.transToCoin(_data.getString("transactEth")));   //转账金额
                             transactTime.setText(_data.getString("transactTime"));   //转账时间
                             transactRemarks.setText(_data.getString("transactRemarks"));  //转账备注
                         }
