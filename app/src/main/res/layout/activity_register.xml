@@ -5,12 +5,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_standard_head2">
+        android:background="@drawable/ic_login_bg">
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6000"/>
+        android:background="#4000"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -118,7 +118,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        android:background="#8000">
+        android:background="#6000">
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
