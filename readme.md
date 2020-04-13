@@ -22,19 +22,19 @@ Android 5.0+
 │      ├─androidTest                               // 测试  
 │      ├─main                                      // 主文件  
 │      │  ├─java                                    
-│      │  │  └─cn
-│      │  │      └─edu
-│      │  │          └─seu
+│      │  │  └─cn  
+│      │  │      └─edu  
+│      │  │          └─seu  
 │      │  │              ├─activity                // 存放activity类  
 │      │  │              ├─adapter                 // 存放适配器  
 │      │  │              ├─common                  // 公共模块  
 │      │  │              ├─fragment                // 存放fragment类  
 │      │  │              ├─http                    // http模块  
-│      │  │              │  ├─HttpHandler
-│      │  │              │  ├─HttpRequest
-│      │  │              │  ├─IHttpApi
-│      │  │              │  ├─RequestAction
-│      │  │              │  └─url
+│      │  │              │  ├─HttpHandler  
+│      │  │              │  ├─HttpRequest  
+│      │  │              │  ├─IHttpApi  
+│      │  │              │  ├─RequestAction  
+│      │  │              │  └─url  
 │      │  │              ├─model                   // 实体模型  
 │      │  │              ├─util                    // 工具类  
 │      │  │              └─views                   // 自定义的视图  
@@ -42,17 +42,17 @@ Android 5.0+
 │      │      ├─anim                               // 动画文件  
 │      │      ├─color                              // 颜色文件  
 │      │      ├─drawable                           // 图片文件  
-│      │      ├─drawable-nodpi
-│      │      ├─drawable-v24
+│      │      ├─drawable-nodpi  
+│      │      ├─drawable-v24  
 │      │      ├─layout                             // 布局文件  
 │      │      ├─mipmap-anydpi-v26                  // 图片文件  
-│      │      ├─mipmap-hdpi
-│      │      ├─mipmap-mdpi
-│      │      ├─mipmap-xhdpi
-│      │      ├─mipmap-xxhdpi
-│      │      ├─mipmap-xxxhdpi
+│      │      ├─mipmap-hdpi  
+│      │      ├─mipmap-mdpi  
+│      │      ├─mipmap-xhdpi  
+│      │      ├─mipmap-xxhdpi  
+│      │      ├─mipmap-xxxhdpi  
 │      │      └─values                             // 存放字符串、样式、rgb、dimen等信息  
 │      └─test                                      // 测试  
-|
+|  
 ├─gradle                                           // 构建工具  
 └─healthchain.apk                                  // 项目的安装包  
